@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import './style.css';
+import SignIn from './components/SignIn';
+import SignupStepOne from './components/SignupStepOne';
+import SignupStepTwo from './components/SignupStepTwo';
+import SignupStepThree from './components/SignupStepThree';
+import Signup from './Pages/signup';
+import {Route, Routes, useNavigate} from 'react-router-dom';
+import Home from './Pages/home';
 
-function App() {
+const App = () => {
+  const navigate = useNavigate();
+
+  console.log('app');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+
+        {/* <Route path="expenses" element={<Expenses />} />
+        <Route path="invoices" element={<Invoices />} /> */}
+      </Routes>
+      {/* <SignIn /> */}
+      {/* <SignupStepOne /> */}
+      {/* <SignupStepTwo /> */}
+      {/* <SignupStepThree /> */}
+      {/* <Signup /> */}
+    </>
   );
-}
+};
 
 export default App;
