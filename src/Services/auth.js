@@ -21,4 +21,19 @@ const login = async params => {
     });
 };
 
-export {login};
+const registerUser = async params => {
+  axios({
+    method: 'post',
+    url: 'https:/azizsolutions.onecoderz.com/api/user-register',
+    data: params,
+    headers: {'Content-Type': 'multipart/form-data'},
+  })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (response) {
+      console.log(response);
+    });
+};
+
+export {login, registerUser};

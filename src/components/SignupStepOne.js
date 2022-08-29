@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+/* eslint no-use-before-define: 0 */ // --> OFF
+import React from 'react';
 
 const SignupStepOne = ({setFormData, formData, setStep}) => {
   const handleEmail = e => {
@@ -9,13 +10,12 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
   };
 
   const handleUpdateMe = e => {
-    setFormData({...formData, updateMe: e.target.checked});
+    // setFormData({...formData, updateMe: e.target.checked});
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     if (formData.email && formData.password) {
-      localStorage.setItem('formData', JSON.stringify(formData));
       setStep(2);
     }
   };
@@ -71,7 +71,7 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
           Create your account
         </button>
         <p className="mt-lg-4 mt-3 mb-0">
-          By signing up. you agree to all of our{' '}
+          By signing up. you agree to all of our
           <a href="#" className="theme-link">
             Terms and Conditions
           </a>

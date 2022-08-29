@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react';
+/* eslint no-use-before-define: 0 */ // --> OFF
+
+import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
 import signInStepSide from '../images/sign-in-step-side-img.png';
@@ -8,14 +10,6 @@ const SignIn = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (localStorage.getItem('TOKEN')) {
-  //     navigate('/home');
-  //   } else {
-  //     navigate('/');
-  //   }
-  // }, []);
 
   const handleEmail = e => {
     setEmail(e.target.value);

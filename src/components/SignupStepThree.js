@@ -1,8 +1,33 @@
-import React from 'react';
-import logo from '../images/account-auth-logo.png';
-import stepThreeSide from '../images/signup-step1-side-img.png';
+import React, {useState} from 'react';
 
-const SignupStepThree = () => {
+const SignupStepThree = ({setFormData, formData, setStep}) => {
+  const tagsData = [
+    'interest',
+    'Youth',
+    'Food',
+    'Java Development',
+    'MBA',
+    'Art & Culture',
+    'Energy',
+    'Artificial Intelligence',
+    'Dessert',
+  ];
+
+  const [role, setRole] = useState();
+
+  const handleRadio = e => {
+    const {value} = e.target;
+    setRole(value);
+    setFormData({...formData, challenge: value});
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (role) {
+      setStep(4);
+    }
+  };
+
   return (
     <div className="col-lg-6 col-md-8">
       <h1>Complete your sign up process</h1>
@@ -16,12 +41,17 @@ const SignupStepThree = () => {
       <p className="mb-xl-4">I am signing up as a</p>
       <form>
         <div className="form-row">
-          <div className="custom-control custom-radio signup-as-radio text-center">
+          <div
+            className={`custom-control custom-radio signup-as-radio text-center ${
+              role === 'host' && 'active-radio'
+            }`}>
             <input
               type="radio"
               id="signUpAsRadio1"
               name="signUpAsRadio"
               className="custom-control-input"
+              value="host"
+              onChange={handleRadio}
             />
             <label
               className="custom-control-label position-static"
@@ -32,12 +62,17 @@ const SignupStepThree = () => {
               I want to host challenges
             </small>
           </div>
-          <div className="custom-control custom-radio signup-as-radio text-center ml-lg-4 ml-sm-3 ml-2">
+          <div
+            className={`custom-control custom-radio signup-as-radio text-center ml-lg-4 ml-sm-3 ml-2 ${
+              role === 'solver' && 'active-radio'
+            }`}>
             <input
               type="radio"
               id="signUpAsRadio2"
               name="signUpAsRadio"
               className="custom-control-input"
+              value="solver"
+              onChange={handleRadio}
             />
             <label
               className="custom-control-label position-static"
@@ -48,25 +83,26 @@ const SignupStepThree = () => {
               I just want to solve challenges
             </small>
           </div>
-          <h5 className="mt-lg-4 my-3">
+          <h6 className="mt-lg-4 my-3">
             What keywords should we look out for that describe the types of
             challenges you might be interested in?
-          </h5>
+          </h6>
+
           <div className="mt-xl-2 mb-xl-5 mb-3 interests-container">
-            <span className="interest">Youth</span>
-            <span className="interest">Food</span>
-            <span className="interest">Java Development</span>
-            <span className="interest">MBA</span>
-            <span className="interest">Art & Culture</span>
-            <span className="interest">Energy</span>
-            <span className="interest">Artificial Intelligence</span>
-            <span className="interest">Dessert</span>
+            {tagsData.map((item, index) => (
+              <span className="interest" key={index}>
+                {item}
+              </span>
+            ))}
             <span className="interest add-interest">
               <span className="fa fa-plus"></span>
             </span>
           </div>
         </div>
-        <button type="submit" className="btn create-account-btn">
+        <button
+          type="submit"
+          className="btn create-account-btn"
+          onClick={handleSubmit}>
           Create your account
         </button>
       </form>

@@ -58,7 +58,11 @@ body {
   border: 1px solid #dddddd !important;
   border-radius: 15px !important;
   padding: 16px !important;
+  padding-left: 40px !important;
   height: calc(2.5em + 0.75rem + 2px) !important;
+}
+.active-radio {
+  border-color: orange !important;
 }
 .header-navbar {
   position: fixed;
@@ -299,7 +303,7 @@ input.form-control[type='number']::-webkit-outer-spin-button {
 body .form-control {
   border: 1px solid #dddddd;
   border-radius: 15px;
-  padding: 16px;
+  padding: 2px 16px 2px 16px;
   height: calc(2.5em + 0.75rem + 2px);
 }
 
@@ -472,6 +476,9 @@ img[alt='account-auth-logo'] {
 .account-auth-pg .pass-below-text {
   color: #3a3a3a;
 }
+.create-account-btn {
+  color: #fff !important;
+}
 .account-auth-pg .create-account-btn {
   width: 100%;
 }
@@ -510,6 +517,17 @@ img[alt='account-auth-logo'] {
   border: 0.5px solid #7dc6fd;
   border-radius: 10px;
   color: #737373;
+}
+.account-auth-pg .interests-container .interest.active {
+  background: #7dc6fd;
+  color: #fff;
+}
+.account-auth-pg .interests-container .interest.active > .fa-check-circle {
+  background: #fff;
+  color: #7dc6fd;
+  border-radius: 50px;
+  border: 1px solid #fff;
+  padding-right: 1px;
 }
 .account-auth-pg .interests-container .add-interest {
   cursor: pointer;

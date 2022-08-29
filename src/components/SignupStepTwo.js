@@ -1,6 +1,4 @@
 import React, {useMemo} from 'react';
-import IntlTelInput from 'react-intl-tel-input';
-import 'react-intl-tel-input/dist/main.css';
 import countryList from 'react-select-country-list';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -8,14 +6,13 @@ import 'react-phone-input-2/lib/style.css';
 const SignupStepTwo = ({setFormData, formData, setStep}) => {
   const countries = useMemo(() => countryList().getData(), []);
   const handleFirstName = e => {
-    setFormData({...formData, firstName: e.target.value});
+    setFormData({...formData, fname: e.target.value});
   };
   const handleLastName = e => {
-    setFormData({...formData, lastName: e.target.value});
+    setFormData({...formData, lname: e.target.value});
   };
   const handlePhone = phoneNumber => {
-    console.log(phoneNumber);
-    setFormData({...formData, phoneNo: phoneNumber});
+    setFormData({...formData, phone: phoneNumber});
   };
   const handleCity = e => {
     setFormData({...formData, city: e.target.value});
@@ -23,11 +20,12 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
   const handleCountry = e => {
     setFormData({...formData, country: e.target.value});
   };
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     if (
-      formData.firstName &&
-      formData.lastName &&
-      formData.phoneNo &&
+      formData.fname &&
+      formData.lname &&
+      formData.phone &&
       formData.city &&
       formData.country
     ) {

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import SignupStepFour from '../components/SignupStepFour';
 import SignupStepOne from '../components/SignupStepOne';
 import SignupStepThree from '../components/SignupStepThree';
 import SignupStepTwo from '../components/SignupStepTwo';
@@ -8,17 +9,18 @@ import stepOneSide from '../images/signup-step1-side-img.png';
 const Signup = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    updateMe: false,
-    firstName: '',
-    lastName: '',
+    fname: '',
+    lname: '',
     country: '',
     city: '',
-    phoneNo: '',
-    role: '',
+    phone: '',
+    challenge: '',
+    interested_challenges: 'test test',
+    prefered_challenges: [],
+    interested_challenges_keywords: 'test test test',
+    email: '',
+    password: '',
   });
-  console.log(formData);
 
   return (
     <>
@@ -49,6 +51,13 @@ const Signup = () => {
         )}
         {step === 3 && (
           <SignupStepThree
+            setStep={setStep}
+            setFormData={setFormData}
+            formData={formData}
+          />
+        )}
+        {step === 4 && (
+          <SignupStepFour
             setStep={setStep}
             setFormData={setFormData}
             formData={formData}

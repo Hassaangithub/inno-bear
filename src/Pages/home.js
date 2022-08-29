@@ -7,7 +7,7 @@ const Home = () => {
     localStorage.removeItem('TOKEN');
     navigate('/');
   };
-  return <button onClick={handleClick}>home</button>;
+  return <button onClick={handleClick}>Logout</button>;
 };
 
 export default Home;
