@@ -6,7 +6,7 @@ const Layout = ({children}) => {
   return (
     <>
       <TopNav />
-      {children}
+      <div style={{paddingBottom: '22rem'}}>{children}</div>
       <Footer />
     </>
   );

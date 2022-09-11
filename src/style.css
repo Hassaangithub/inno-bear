@@ -13,6 +13,12 @@
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
 }
+p {
+  color: #5f5f5f;
+}
+.font-14 {
+  font-size: 14px;
+}
 /*page loader gif*/
 #pgLoader {
   position: fixed;
@@ -269,8 +275,8 @@ button[disabled] {
   color: #fff;
   border-radius: 8px;
   border: none;
-  padding: 16px;
-  border-radius: 15px;
+  padding: 16px 24px;
+  border-radius: 10px;
   box-shadow: 0 2px 10px var(--theme-light-box-shadow);
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -371,7 +377,7 @@ input.form-control[type='number']::-webkit-outer-spin-button {
 body .form-control {
   border: 1px solid #dddddd;
   border-radius: 15px;
-  padding: 2px 16px 2px 16px;
+  padding: 16px;
   height: calc(2.5em + 0.75rem + 2px);
 }
 
@@ -485,6 +491,7 @@ h6,
 .h5,
 .h6 {
   font-family: 'Raleway', sans-serif;
+  font-weight: 600;
 }
 
 h1,
@@ -494,7 +501,7 @@ h1,
 
 h2,
 .h2 {
-  font-size: 32px;
+  font-size: 32px !important;
 }
 
 h3,
@@ -504,7 +511,7 @@ h3,
 
 h4,
 .h4 {
-  font-size: 24px;
+  font-size: 24px !important;
 }
 
 h5,
@@ -543,9 +550,6 @@ img[alt='account-auth-logo'] {
 }
 .account-auth-pg .pass-below-text {
   color: #3a3a3a;
-}
-.create-account-btn {
-  color: #fff !important;
 }
 .account-auth-pg .create-account-btn {
   width: 100%;
@@ -622,6 +626,92 @@ img[alt='account-auth-logo'] {
 }
 /*account auth*/
 
+.banner-block {
+  background: #00000080;
+}
+.challenges-pg .ellipse-img {
+  border-radius: 50%;
+  border: 16px solid #e9f3ff;
+  height: 205px;
+  width: 205px;
+  object-fit: contain;
+}
+.challenges-pg .yello-circle {
+  width: 20px;
+  height: 20px;
+  right: 0;
+  bottom: 55px;
+  background-color: #fbc504;
+  border-radius: 50px;
+}
+.challenges-pg .meet-team-section {
+  column-gap: 106px;
+  row-gap: 40px;
+}
+.challenges-pg .member-name {
+  color: #020a41;
+}
+
+.started-kit-pg .challenge-img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+.started-kit-pg .kit-feature-img {
+  height: 200px;
+  object-fit: contain;
+  object-position: left;
+}
+.started-kit-pg .inno-images-gap {
+  gap: 4px;
+}
+
+.content-w-side-img .blue-orange-heading,
+.content-w-side-img .blue-orange-heading * {
+  font-size: 48px !important;
+}
+.content-w-side-img .blue-orange-heading {
+  color: #030d56;
+}
+.orange {
+  color: #fc912e;
+}
+.content-w-side-img .btn {
+  margin-top: 40px;
+}
+.current-challenge-block {
+  border: 1px solid #cdd0e6;
+  box-shadow: 10px 24px 54px rgba(0, 0, 0, 0.04);
+  border-radius: 30px;
+}
+.current-challenge-block .orange-txt {
+  background: #fccf2e;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px 0 0 12px;
+  font-size: 14px;
+}
+.current-challenge-block .grey-txt {
+  background: #dddddd66;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 0 12px 12px 0;
+  font-size: 14px;
+}
+.how-it-works .draw-img {
+  height: 155px;
+  object-fit: contain;
+}
+.how-it-works .draw-number {
+  background: var(--theme-clr);
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
 @media (max-width: 1199px) {
   h1,
   .h1 {
@@ -632,7 +722,7 @@ img[alt='account-auth-logo'] {
 @media (max-width: 991px) {
   h2,
   .h2 {
-    font-size: 28px;
+    font-size: 28px !important;
   }
 
   h3,
@@ -642,7 +732,7 @@ img[alt='account-auth-logo'] {
 
   h4,
   .h4 {
-    font-size: 22px;
+    font-size: 22px !important;
   }
 
   h5,
@@ -653,6 +743,14 @@ img[alt='account-auth-logo'] {
   .btn {
     padding: 8px 16px;
     border-width: 1px;
+  }
+
+  .content-w-side-img .blue-orange-heading,
+  .content-w-side-img .blue-orange-heading * {
+    font-size: 30px !important;
+  }
+  .content-w-side-img .btn {
+    margin-top: 16px;
   }
 
   /*account auth*/
@@ -696,6 +794,19 @@ img[alt='account-auth-logo'] {
   .header-navbar .sign-in-btn {
     padding: 8px 24px;
   }
+  .challenges-pg .meet-team-section {
+    column-gap: 40px;
+    row-gap: 20px;
+  }
+  .challenges-pg .ellipse-img {
+    border-width: 8px;
+    height: 165px;
+    width: 165px;
+  }
+  .challenges-pg .yello-circle {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -727,6 +838,10 @@ img[alt='account-auth-logo'] {
   .footer {
     height: 28.5rem;
   }
+
+  .team-project-section {
+    row-gap: 8px;
+  }
 }
 
 @media (max-width: 575px) {
@@ -751,7 +866,7 @@ img[alt='account-auth-logo'] {
 
   h2,
   .h2 {
-    font-size: 18px;
+    font-size: 18px !important;
   }
 
   h3,
@@ -790,5 +905,16 @@ img[alt='account-auth-logo'] {
   .footer {
     height: unset;
     position: unset;
+  }
+
+  .content-w-side-img .blue-orange-heading,
+  .content-w-side-img .blue-orange-heading * {
+    font-size: 20px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .started-kit-pg .kit-feature-img {
+    height: 150px;
+    object-position: center;
   }
 }
