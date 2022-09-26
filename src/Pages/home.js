@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 // import {useNavigate} from 'react-router-dom';
 import Layout from '../components/Layout';
 import group1726 from '../images/Group-1726.png';
@@ -9,13 +9,19 @@ import draw2 from '../images/draw-2.png';
 import draw3 from '../images/draw-3.png';
 import draw4 from '../images/draw-4.png';
 import scienceHaromatic from '../images/science-hromatic.png';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const Home = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const handleClick = () => {
   //   localStorage.removeItem('TOKEN');
-  //   navigate('/');
+  //   navigate('/sign-in');
   // };
+
+
+
+
   return (
     <Layout>
       <div className="px-md-5 px-3">

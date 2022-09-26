@@ -1,35 +1,60 @@
 /* eslint no-use-before-define: 0 */ // --> OFF
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
 import signInStepSide from '../images/sign-in-step-side-img.png';
 import {login} from '../Services/auth';
+import CustomToast from './Toast';
 
 const SignIn = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState({
+    email: false,
+    password: false,
+  });
+
   const navigate = useNavigate();
 
   const handleEmail = e => {
+    if (e.target.value) {
+      setError({...error, email: false});
+    }
     setEmail(e.target.value);
   };
   const handlePassword = e => {
+    if (e.target.value) {
+      setError({...error, password: false});
+    }
     setPassword(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    login({
-      email: email,
-      password: password,
-    }).then(() => {
-      navigate('/home');
-    });
+    if (!email) {
+      setError({...error, email: true});
+    } else if (!password) {
+      setError({...error, password: true});
+    } else {
+      const response = await login({
+        email: email,
+        password: password,
+      });
+      if (response.successData) {
+        localStorage.setItem('token', response.successData.user.accessToken);
+        if (response.successData.user.challenge === 'host') {
+          navigate('/starter-kit');
+        } else if (response.successData.user.challenge === 'solver') {
+          navigate('/challenges');
+        }
+      }
+    }
   };
 
   return (
     <>
+      {/* <CustomToast></CustomToast> */}
       <div className="text-center my-lg-0 my-3">
         <img src={accountAuth} alt="account-auth-logo" />
       </div>
@@ -51,25 +76,35 @@ const SignIn = () => {
             <button className="account-auth-btns">Sign up with Facebook</button>
           </div>
           <form>
-            <div className="form-group">
+            <div className="form-group mb-lg-4">
               <label htmlFor="userEmail">Email Address</label>
               <input
                 type="email"
-                className="form-control mb-lg-4"
+                className={`form-control ${error.email && 'border-danger'}`}
                 id="userEmail"
                 placeholder="e.g floramatthew@gmail.com"
                 onChange={handleEmail}
               />
+              {error.email && (
+                <span className="text-danger ml-2 w-100">
+                  Please Enter Email
+                </span>
+              )}
             </div>
             <div className="form-group mb-0">
               <label htmlFor="userPassword">Password</label>
               <input
                 type="password"
-                className="form-control"
+                className={`form-control ${error.password && 'border-danger'}`}
                 id="userPassword"
                 placeholder="at least 8 characters"
                 onChange={handlePassword}
               />
+              {error.password && (
+                <span className="text-danger ml-2 w-100">
+                  Please Enter Password
+                </span>
+              )}
             </div>
             <p className="mt-2 mb-lg-4 mb-3">
               Forgot Password?{' '}
@@ -77,7 +112,9 @@ const SignIn = () => {
                 Click here to reset password
               </a>
             </p>
-            <button className="btn create-account-btn" onClick={handleSubmit}>
+            <button
+              className="btn create-account-btn text-white"
+              onClick={handleSubmit}>
               Sign in
             </button>
             <p className="mt-lg-4 mt-3 mb-0">

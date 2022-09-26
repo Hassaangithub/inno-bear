@@ -9,6 +9,8 @@ import ellipse5 from '../images/Ellipse-5.png';
 import ellipse6 from '../images/Ellipse-6.png';
 
 const Challanges = () => {
+
+
   return (
     <Layout>
       <div className="position-relative">

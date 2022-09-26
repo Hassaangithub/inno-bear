@@ -11,6 +11,10 @@ const SignupStepFour = ({setFormData, formData}) => {
     'Challenges where i can make sense of data',
     'Challenges where i can scale up a prototype',
   ];
+  const [formError, setFormError] = useState({
+    challange: false,
+    keyword: false,
+  });
 
   const [checkedState, setCheckedState] = useState(
     new Array(challanges.length).fill(false),
@@ -29,6 +33,9 @@ const SignupStepFour = ({setFormData, formData}) => {
     });
     const getCheckedChallanges = values.filter(item => item !== undefined);
     let preferChallanges = getCheckedChallanges.toString();
+    if(preferChallanges){
+      setFormError({...formError, challange: false})
+    }
     setFormData({...formData, prefered_challenges: preferChallanges});
   };
 
@@ -36,11 +43,14 @@ const SignupStepFour = ({setFormData, formData}) => {
 
   const handleRegisterUser = e => {
     e.preventDefault();
-    if (formData.prefered_challenges) {
+    if(!formData.prefered_challenges){
+      setFormError({...formError, challange: true})
+    }
+    else if (formData.prefered_challenges) {
       registerUser(formData).then(() => navigate('/'));
     }
   };
-
+ 
   return (
     <div className="col-lg-6 col-md-8">
       <h1>Complete your sign up process</h1>
@@ -61,6 +71,9 @@ const SignupStepFour = ({setFormData, formData}) => {
             checkedState={checkedState}
             handleCheckbox={handleCheckbox}
           />
+            {formError.challange && (
+            <span className="text-danger ml-2 w-100">Please Select Challenges</span>
+          )}
           <h6 className="my-3">
             What keywords should we look out for that describe the types of
             challenges you might be interested in?

@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 
 const SignupStepThree = ({setFormData, formData, setStep}) => {
+  const [formError, setFormError] = useState({
+    role: false,
+    keyword: false,
+  });
+
   const tagsData = [
     'interest',
     'Youth',
@@ -18,12 +23,18 @@ const SignupStepThree = ({setFormData, formData, setStep}) => {
   const handleRadio = e => {
     const {value} = e.target;
     setRole(value);
+    if (value) {
+      setFormError({...formError, role: false});
+    }
     setFormData({...formData, challenge: value});
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (role) {
+
+    if (!role) {
+      setFormError({...formError, role: true});
+    } else if (role) {
       setStep(4);
     }
   };
@@ -83,6 +94,9 @@ const SignupStepThree = ({setFormData, formData, setStep}) => {
               I just want to solve challenges
             </small>
           </div>
+          {formError.role && (
+            <span className="text-danger ml-2 w-100">Please Select Role</span>
+          )}
           <h6 className="mt-lg-4 my-3">
             What keywords should we look out for that describe the types of
             challenges you might be interested in?
@@ -101,7 +115,7 @@ const SignupStepThree = ({setFormData, formData, setStep}) => {
         </div>
         <button
           type="submit"
-          className="btn create-account-btn"
+          className="btn create-account-btn text-white"
           onClick={handleSubmit}>
           Create your account
         </button>

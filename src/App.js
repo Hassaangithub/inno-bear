@@ -4,7 +4,7 @@ import SignIn from './components/SignIn';
 import Signup from './Pages/signup';
 import {Route, Routes} from 'react-router-dom';
 import Home from './Pages/home';
-import Challenges from './Pages/challenges';
+import Challenges from './Pages/challengesDetail';
 import ContactUs from './Pages/contactUs';
 import Pricing from './Pages/pricing';
 import HostChallenge from './Pages/hostChallenge';
@@ -13,15 +13,18 @@ import Faqs from './Pages/faqs';
 import Help from './Pages/help';
 import AboutUs from './Pages/aboutUs';
 import PrivacyAndPolicy from './Pages/privacyAndPolicy';
+import ExploreChallenges from './Pages/exploreChallenges';
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<SignIn />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/sign-in" element={<SignIn />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/challenges" element={<Challenges />} />
+        <Route path="/challenges" element={<ExploreChallenges />} />
+        <Route path="/challenges-detail" element={<Challenges />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/host-Challenge" element={<HostChallenge />} />

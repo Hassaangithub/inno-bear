@@ -1,12 +1,22 @@
 import React from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import {Button} from 'react-bootstrap';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
 
 const TopNav = () => {
+  const navigate = useNavigate();
   let location = useLocation();
+  const user = localStorage.getItem('token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/sign-in');
+  };
+  console.log('token', user)
+
   const navItems = [
     {
-      path: '/home',
+      path: '/',
       title: 'Home',
       key: '1',
     },
@@ -39,7 +49,7 @@ const TopNav = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light px-sm-4 px-3 py-sm-3 py-2 header-navbar">
-      <Link to="/home" className="navbar-brand">
+      <Link to="/" className="navbar-brand">
         <img src={accountAuth} alt="main-account-auth-logo" />
       </Link>
       <button
@@ -58,7 +68,8 @@ const TopNav = () => {
           {navItems.map(item => (
             <li
               className={`nav-item ${
-                item.path === location.pathname && 'active'
+                (item.path === 'Home' && location.pathname === '/' || item.path === location.pathname) &&
+                'active'
               }`}
               key={item.id}>
               <Link to={item.path} className="nav-link">
@@ -67,11 +78,17 @@ const TopNav = () => {
             </li>
           ))}
         </ul>
-        <form className="my-lg-2 my-lg-0 d-flex justify-content-center">
-          <Link to="/sign-in" className="btn sign-in-btn">
-            Sign in
-          </Link>
-        </form>
+        {!user ? (
+          <form className="my-lg-2 my-lg-0 d-flex justify-content-center">
+            <Link to="/sign-in" className="btn sign-in-btn">
+              Sign in
+            </Link>
+          </form>
+        ) : (
+          <Button className="btn sign-in-btn" onClick={handleLogout}>
+            Logout
+          </Button>
+        )}
       </div>
     </nav>
   );

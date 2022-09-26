@@ -1,11 +1,18 @@
 /* eslint no-use-before-define: 0 */ // --> OFF
-import React from 'react';
+import React, {useState} from 'react';
 
 const SignupStepOne = ({setFormData, formData, setStep}) => {
+  const [formError, setFormError] = useState({email: false, password: false});
   const handleEmail = e => {
+    if (e.target.value) {
+      setFormError({...formError, email: false});
+    }
     setFormData({...formData, email: e.target.value});
   };
   const handlePassword = e => {
+    if (e.target.value) {
+      setFormError({...formError, password: false});
+    }
     setFormData({...formData, password: e.target.value});
   };
 
@@ -15,7 +22,17 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (formData.email && formData.password) {
+    if (!formData.email) {
+      console.log('Enter email');
+      setFormError({...formError, email: true});
+    }
+    if (!formData.password) {
+      console.log('Enter password');
+      setFormError({...formError, password: true});
+    }
+    if (!formData.email && !formData.password) {
+      setFormError({email: true, password: false});
+    } else if (formData.email && formData.password) {
       setStep(2);
     }
   };
@@ -31,25 +48,31 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
         <button className="account-auth-btns">Sign up with Facebook</button>
       </div>
       <form>
-        <div className="form-group">
+        <div className="form-group  mb-lg-4">
           <label htmlFor="userEmail">Email Address</label>
           <input
             type="email"
-            className="form-control mb-lg-4"
+            className={`form-control ${formError.email && 'border-danger'}`}
             id="userEmail"
             placeholder="e.g floramatthew@gmail.com"
             onChange={handleEmail}
           />
+          {formError.email && (
+            <span className="text-danger ml-2 ">Enter Email</span>
+          )}
         </div>
         <div className="form-group mb-0">
           <label htmlFor="userPassword">Password</label>
           <input
             type="password"
-            className="form-control"
+            className={`form-control ${formError.password && 'border-danger'}`}
             id="userPassword"
             placeholder="at least 8 characters"
             onChange={handlePassword}
           />
+          {formError.password && (
+            <span className="text-danger ml-2">Enter Password</span>
+          )}
         </div>
         <div className="custom-control custom-checkbox">
           <input
@@ -66,7 +89,7 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
         </div>
         <button
           type="submit"
-          className="btn create-account-btn"
+          className="btn create-account-btn text-white"
           onClick={handleSubmit}>
           Create your account
         </button>
