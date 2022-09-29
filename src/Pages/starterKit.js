@@ -14,8 +14,10 @@ import rectangle61 from '../images/Rectangle-61.png';
 import rectangle62 from '../images/Rectangle-62.png';
 import rectangle63 from '../images/Rectangle-63.png';
 import rectangle64 from '../images/Rectangle-64.png';
+import {useNavigate} from 'react-router-dom';
 
 const StarterKit = () => {
+  const navigate = useNavigate();
   return (
     <Layout>
       <div className="started-kit-pg px-md-5 px-3">
@@ -32,7 +34,9 @@ const StarterKit = () => {
               for and we can help you quickly fill the gap with our Challenge
               Starter Kit’s.
             </p>
-            <button className="btn">Get Started</button>
+            <button className="btn" onClick={() => navigate('/host-challenge')}>
+              Get Started
+            </button>
           </div>
           <div className="col-sm-5">
             <img

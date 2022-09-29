@@ -1,11 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Heading from '../components/hostChallenges/Heading';
+import Step1 from '../components/hostChallenges/Step1';
+import Step2 from '../components/hostChallenges/Step2';
+import Step3 from '../components/hostChallenges/Step3';
+import Step4 from '../components/hostChallenges/Step4';
+import Step5 from '../components/hostChallenges/Step5';
+import Step6 from '../components/hostChallenges/Step6';
+import Step7 from '../components/hostChallenges/Step7';
 import Layout from '../components/Layout';
 
 const HostChallenge = () => {
+  const [step, setStep] = useState(1);
   return (
     <Layout>
-      <Heading />
+      <div className="page-main-content mt-3 px-md-5 px-3">
+        <Heading />
+        {step === 1 && <Step1 setStep={setStep} />}
+        {step === 2 && <Step2 setStep={setStep} />}
+        {step === 3 && <Step3 setStep={setStep} />}
+        {step === 4 && <Step4 setStep={setStep} />}
+        {step === 5 && <Step5 setStep={setStep} />}
+        {step === 6 && <Step6 setStep={setStep} />}
+        {step === 7 && <Step7 setStep={setStep} />}
+      </div>
     </Layout>
   );
 };

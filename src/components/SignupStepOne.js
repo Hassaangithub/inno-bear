@@ -23,11 +23,9 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (!formData.email) {
-      console.log('Enter email');
       setFormError({...formError, email: true});
     }
     if (!formData.password) {
-      console.log('Enter password');
       setFormError({...formError, password: true});
     }
     if (!formData.email && !formData.password) {

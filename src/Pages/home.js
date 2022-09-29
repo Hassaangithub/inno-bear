@@ -1,27 +1,33 @@
-import React,{useEffect} from 'react';
+import React, {useEffect} from 'react';
 // import {useNavigate} from 'react-router-dom';
 import Layout from '../components/Layout';
 import group1726 from '../images/Group-1726.png';
 import rectangle35 from '../images/rectangle-35.png';
-import challenge from '../images/challege.png';
 import draw1 from '../images/draw-1.png';
 import draw2 from '../images/draw-2.png';
 import draw3 from '../images/draw-3.png';
 import draw4 from '../images/draw-4.png';
 import scienceHaromatic from '../images/science-hromatic.png';
-import { useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
+import challenges from '../images/challege.png';
+import {Button} from 'react-bootstrap';
 
 const Home = () => {
   const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem('token');
+
   // const handleClick = () => {
   //   localStorage.removeItem('TOKEN');
   //   navigate('/sign-in');
   // };
-
-
-
-
+  const handleCard = () => {
+    if (isLoggedIn) {
+      navigate('/challenges/detail');
+    }
+    else{
+      console.log("please login or register")
+    }
+  };
   return (
     <Layout>
       <div className="px-md-5 px-3">
@@ -37,7 +43,13 @@ const Home = () => {
               only a few humans away. Tap into human minds across the globe with
               a challenge prize competition, and watch the solutions roll in.
             </p>
-            <button className="btn">Get Started</button>
+            <button
+              className="btn"
+              onClick={() => {
+                navigate('/starter-kit');
+              }}>
+              Get Started
+            </button>
           </div>
           <div className="col-sm-5">
             <img src={group1726} alt="Group-1726" className="w-100" />
@@ -48,7 +60,7 @@ const Home = () => {
           Discover current challenges seeking solutions
         </p>
         <div className="row mt-lg-5 mt-4">
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
+          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3" onClick={handleCard}>
             <div className="p-3 current-challenge-block">
               <img
                 rectangle35
@@ -65,170 +77,11 @@ const Home = () => {
                 <span className="grey-txt">$20,000</span>
               </div>
               <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src="images/challege.png" alt="challege" />
+                <img src={challenges} alt="challege" />
                 <div className="ml-3">
                   <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
                   <p className="mb-0 font-14">14 January, 2020</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
-            <div className="p-3 current-challenge-block">
-              <img src={rectangle35} alt="rectangle-35" className="w-100" />
-              <h6 className="mt-3 mb-2">
-                Healthy food and exercise routine for health
-              </h6>
-              <p>Theoretical</p>
-              <div>
-                <span className="orange-txt">Award</span>
-                <span className="grey-txt">$20,000</span>
-              </div>
-              <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src="images/challege.png" alt="challege" />
-                <div className="ml-3">
-                  <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                  <p className="mb-0 font-14">14 January, 2020</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
-            <div className="p-3 current-challenge-block">
-              <img src={rectangle35} alt="rectangle-35" className="w-100" />
-              <h6 className="mt-3 mb-2">
-                Healthy food and exercise routine for health
-              </h6>
-              <p>Theoretical</p>
-              <div>
-                <span className="orange-txt">Award</span>
-                <span className="grey-txt">$20,000</span>
-              </div>
-              <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src="images/challege.png" alt="challege" />
-                <div className="ml-3">
-                  <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                  <p className="mb-0 font-14">14 January, 2020</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
-            <div className="p-3 current-challenge-block">
-              <img src={rectangle35} alt="rectangle-35" className="w-100" />
-              <h6 className="mt-3 mb-2">
-                Healthy food and exercise routine for health
-              </h6>
-              <p>Theoretical</p>
-              <div>
-                <span className="orange-txt">Award</span>
-                <span className="grey-txt">$20,000</span>
-              </div>
-              <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src="images/challege.png" alt="challege" />
-                <div className="ml-3">
-                  <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                  <p className="mb-0 font-14">14 January, 2020</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
-            <div className="p-3 current-challenge-block">
-              <img src={rectangle35} alt="rectangle-35" className="w-100" />
-              <h6 className="mt-3 mb-2">
-                Healthy food and exercise routine for health
-              </h6>
-              <p>Theoretical</p>
-              <div>
-                <span className="orange-txt">Award</span>
-                <span className="grey-txt">$20,000</span>
-              </div>
-              <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src="images/challege.png" alt="challege" />
-                <div className="ml-3">
-                  <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                  <p className="mb-0 font-14">14 January, 2020</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
-            <div className="p-3 current-challenge-block">
-              <img src={rectangle35} alt="rectangle-35" className="w-100" />
-              <h6 className="mt-3 mb-2">
-                Healthy food and exercise routine for health
-              </h6>
-              <p>Theoretical</p>
-              <div>
-                <span className="orange-txt">Award</span>
-                <span className="grey-txt">$20,000</span>
-              </div>
-              <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src="images/challege.png" alt="challege" />
-                <div className="ml-3">
-                  <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                  <p className="mb-0 font-14">14 January, 2020</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
-            <div className="p-3 current-challenge-block">
-              <img src={rectangle35} alt="rectangle-35" className="w-100" />
-              <h6 className="mt-3 mb-2">
-                Healthy food and exercise routine for health
-              </h6>
-              <p>Theoretical</p>
-              <div>
-                <span className="orange-txt">Award</span>
-                <span className="grey-txt">$20,000</span>
-              </div>
-              <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src="images/challege.png" alt="challege" />
-                <div className="ml-3">
-                  <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                  <p className="mb-0 font-14">14 January, 2020</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
-            <div className="p-3 current-challenge-block">
-              <img src={rectangle35} alt="rectangle-35" className="w-100" />
-              <h6 className="mt-3 mb-2">
-                Healthy food and exercise routine for health
-              </h6>
-              <p>Theoretical</p>
-              <div>
-                <span className="orange-txt">Award</span>
-                <span className="grey-txt">$20,000</span>
-              </div>
-              <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src="images/challege.png" alt="challege" />
-                <div className="ml-3" />
-                <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                <p className="mb-0 font-14">14 January, 2020</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3">
-          <div className="p-3 current-challenge-block">
-            <img src={rectangle35} alt="rectangle-35" className="w-100" />
-            <h6 className="mt-3 mb-2">
-              Healthy food and exercise routine for health
-            </h6>
-            <p>Theoretical</p>
-            <div>
-              <span className="orange-txt">Award</span>
-              <span className="grey-txt">$20,000</span>
-            </div>
-            <div className="d-flex align-items-center mt-md-4 mt-3">
-              <img src={challenge} alt="challege" />
-              <div className="ml-3">
-                <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                <p className="mb-0 font-14">14 January, 2020</p>
               </div>
             </div>
           </div>
@@ -280,7 +133,9 @@ const Home = () => {
               for and we can help you quickly fill the gap with our Challenge
               Starter Kit’s.
             </p>
-            <button className="btn">Get Started</button>
+            <button className="btn" onClick={() => navigate('/starter-kit')}>
+              Get Started
+            </button>
           </div>
           <div className="col-sm-5">
             <img

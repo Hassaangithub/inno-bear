@@ -6,13 +6,13 @@ import accountAuth from '../images/account-auth-logo.png';
 const TopNav = () => {
   const navigate = useNavigate();
   let location = useLocation();
+  const pathName = '/' + location.pathname.split('/')[1];
   const user = localStorage.getItem('token');
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/sign-in');
   };
-  console.log('token', user)
 
   const navItems = [
     {
@@ -65,13 +65,14 @@ const TopNav = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mx-auto">
-          {navItems.map(item => (
+          {navItems.map((item, index) => (
             <li
+              key={index}
               className={`nav-item ${
-                (item.path === 'Home' && location.pathname === '/' || item.path === location.pathname) &&
+                ((item.path === 'Home' && pathName === '/') ||
+                  item.path === pathName) &&
                 'active'
-              }`}
-              key={item.id}>
+              }`}>
               <Link to={item.path} className="nav-link">
                 {item.title} <span className="sr-only">(current)</span>
               </Link>

@@ -2,9 +2,9 @@ import React from 'react';
 import './style.css';
 import SignIn from './components/SignIn';
 import Signup from './Pages/signup';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 import Home from './Pages/home';
-import Challenges from './Pages/challengesDetail';
+import Challenges from './Pages/TeamDetail';
 import ContactUs from './Pages/contactUs';
 import Pricing from './Pages/pricing';
 import HostChallenge from './Pages/hostChallenge';
@@ -14,8 +14,16 @@ import Help from './Pages/help';
 import AboutUs from './Pages/aboutUs';
 import PrivacyAndPolicy from './Pages/privacyAndPolicy';
 import ExploreChallenges from './Pages/exploreChallenges';
+import TeamDetail from './Pages/TeamDetail';
+import ChallengeDetail from './Pages/challengeDetail';
+import ViewTeams from './Pages/viewTeams';
 
 const App = () => {
+  // const navigate = useNavigate();
+  // if (!localStorage.getItem('token')) {
+  //   navigate('/sign-in');
+  // }
+
   return (
     <>
       <Routes>
@@ -24,7 +32,9 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/challenges" element={<ExploreChallenges />} />
-        <Route path="/challenges-detail" element={<Challenges />} />
+        <Route path="/challenges/detail" element={<ChallengeDetail />} />
+        <Route path="/team-detail" element={<TeamDetail />} />
+        <Route path="/challenges/detail/view-team" element={<ViewTeams />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/host-Challenge" element={<HostChallenge />} />

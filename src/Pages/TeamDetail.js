@@ -8,9 +8,7 @@ import ellipse4 from '../images/Ellipse-4.png';
 import ellipse5 from '../images/Ellipse-5.png';
 import ellipse6 from '../images/Ellipse-6.png';
 
-const Challanges = () => {
-
-
+const TeamDetail = () => {
   return (
     <Layout>
       <div className="position-relative">
@@ -97,4 +95,4 @@ const Challanges = () => {
   );
 };
 
-export default Challanges;
+export default TeamDetail;

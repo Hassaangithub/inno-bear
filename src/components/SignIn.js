@@ -14,6 +14,7 @@ const SignIn = () => {
     email: false,
     password: false,
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,12 +38,14 @@ const SignIn = () => {
     } else if (!password) {
       setError({...error, password: true});
     } else {
+      setLoading(true);
       const response = await login({
         email: email,
         password: password,
       });
       if (response.successData) {
         localStorage.setItem('token', response.successData.user.accessToken);
+        setLoading(false);
         if (response.successData.user.challenge === 'host') {
           navigate('/starter-kit');
         } else if (response.successData.user.challenge === 'solver') {
@@ -115,7 +118,14 @@ const SignIn = () => {
             <button
               className="btn create-account-btn text-white"
               onClick={handleSubmit}>
-              Sign in
+              {loading ? (
+                <div
+                  class="spinner-border text-primary spinner-border-md"
+                  role="status"
+                />
+              ) : (
+                'Sign in'
+              )}
             </button>
             <p className="mt-lg-4 mt-3 mb-0">
               Dont have an account?{' '}
