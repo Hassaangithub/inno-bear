@@ -17,6 +17,7 @@ import ExploreChallenges from './Pages/exploreChallenges';
 import TeamDetail from './Pages/TeamDetail';
 import ChallengeDetail from './Pages/challengeDetail';
 import ViewTeams from './Pages/viewTeams';
+import CreateSolution from './Pages/CreateSolution';
 
 const App = () => {
   // const navigate = useNavigate();
@@ -32,7 +33,7 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/challenges" element={<ExploreChallenges />} />
-        <Route path="/challenges/detail" element={<ChallengeDetail />} />
+        <Route path="/challenges/detail:id" element={<ChallengeDetail />} />
         <Route path="/team-detail" element={<TeamDetail />} />
         <Route path="/challenges/detail/view-team" element={<ViewTeams />} />
         <Route path="/contact-us" element={<ContactUs />} />
@@ -43,6 +44,10 @@ const App = () => {
         <Route path="/help" element={<Help />} />
         <Route path="/privacy-&-policy" element={<PrivacyAndPolicy />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route
+          path="/challenges/create-solution"
+          element={<CreateSolution />}
+        />
       </Routes>
     </>
   );

@@ -33,24 +33,28 @@ const SignupStepFour = ({setFormData, formData}) => {
     });
     const getCheckedChallanges = values.filter(item => item !== undefined);
     let preferChallanges = getCheckedChallanges.toString();
-    if(preferChallanges){
-      setFormError({...formError, challange: false})
+    if (preferChallanges) {
+      setFormError({...formError, challange: false});
     }
     setFormData({...formData, prefered_challenges: preferChallanges});
   };
 
   const navigate = useNavigate();
 
-  const handleRegisterUser = e => {
+  const handleRegisterUser = async e => {
     e.preventDefault();
-    if(!formData.prefered_challenges){
-      setFormError({...formError, challange: true})
-    }
-    else if (formData.prefered_challenges) {
-      registerUser(formData).then(() => navigate('/'));
+    if (!formData.prefered_challenges) {
+      setFormError({...formError, challange: true});
+    } else if (formData.prefered_challenges) {
+      const response = await registerUser(formData);
+      if (!response) {
+        navigate('/signup');
+      } else {
+        navigate('/');
+      }
     }
   };
- 
+
   return (
     <div className="col-lg-6 col-md-8">
       <h1>Complete your sign up process</h1>
@@ -71,8 +75,10 @@ const SignupStepFour = ({setFormData, formData}) => {
             checkedState={checkedState}
             handleCheckbox={handleCheckbox}
           />
-            {formError.challange && (
-            <span className="text-danger ml-2 w-100">Please Select Challenges</span>
+          {formError.challange && (
+            <span className="text-danger ml-2 w-100">
+              Please Select Challenges
+            </span>
           )}
           <h6 className="my-3">
             What keywords should we look out for that describe the types of

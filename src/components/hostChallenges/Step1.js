@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
+import {useRecoilState, useSetRecoilState} from 'recoil';
+import AddUpdateModal from '../AddUpdateModal';
 import InputModal from '../InputModal';
+import {challengeAtom} from '../../recoil/atom';
+import {saveChallenge1} from '../../Services/challanges';
 
 const Step1 = ({setStep}) => {
   const inputData = [
@@ -66,26 +70,18 @@ const Step1 = ({setStep}) => {
   ];
 
   const [title, setTitle] = useState('');
-  const [challengeType, setChallengeType] = useState(
-    new Array(inputData.length).fill(false),
-  );
+  const [challengeType, setChallengeType] = useState('');
   const [keywords, setKeywords] = useState(keywordData);
   const [editTag, setEditTag] = useState(false);
   const [newKeyword, setNewKeyword] = useState(undefined);
+  const [challenge, setChallenge] = useRecoilState(challengeAtom);
 
   const handleTitle = e => {
     setTitle(e.target.value);
   };
 
-  const handleCheckbox = (position, title) => {
-    const updatedList = challengeType.map((item, index) => {
-      if (index === position) {
-        return item !== false ? false : title;
-      } else {
-        return item;
-      }
-    });
-    setChallengeType(updatedList);
+  const handleType = e => {
+    setChallengeType(e.target.value);
   };
 
   const handleKeyword = position => {
@@ -123,91 +119,121 @@ const Step1 = ({setStep}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setStep(2);
+    const keywordList = keywords
+      .filter(item => item.status === true)
+      .map(item => item.value)
+      .toString();
+    if (title && challengeType && keywordList) {
+      setChallenge({
+        ...challenge,
+        title: title,
+        challenge_type: challengeType,
+        keywords: keywordList,
+      });
+      setStep(2);
+    }
+  };
+
+  const handleSave = e => {
+    e.preventDefault();
+    // saveChallenge1({
+    //   title: title,
+    //   challenge_type: challengeType,
+    //   keywords: keywordList,
+    // });
   };
 
   return (
-    <div className="col-xl-7 mb-md-5 mb-3 mx-auto steps-model">
-      <p className="text-muted mb-2 steps-label">STEP 1 OF 7</p>
-      <div className="d-flex flex-wrap mb-3">
-        <span className="auth-step gradient-step"></span>
-        <span className="auth-step grey-step"></span>
-        <span className="auth-step grey-step"></span>
-        <span className="auth-step grey-step"></span>
-        <span className="auth-step grey-step"></span>
-        <span className="auth-step grey-step"></span>
-        <span className="auth-step grey-step"></span>
-      </div>
-      <h4 className="mb-4">The Basics</h4>
-      <form>
-        <div className="form-row mx-0">
-          <div className="w-100 form-group">
-            <h6>Challenge Title</h6>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="What is the name of your project?"
-              onChange={handleTitle}
-            />
-          </div>
-          <h6 className="mt-lg-4 my-3">What Type of Challenge will it Be?</h6>
-
-          {inputData.map((item, index) => (
-            <div className="w-100 custom-control custom-checkbox" key={item.id}>
+    <>
+      <InputModal
+        title="Add Keyword"
+        submitText="Add Keyword"
+        show={editTag}
+        handleClose={closeModal}
+        onSubmit={addKeyword}
+        handleInput={e => setNewKeyword(e.target.value)}
+      />
+      <div className="col-xl-7 mb-md-5 mb-3 mx-auto steps-model">
+        <p className="text-muted mb-2 steps-label">STEP 1 OF 7</p>
+        <div className="d-flex flex-wrap mb-3">
+          <span className="auth-step gradient-step"></span>
+          <span className="auth-step grey-step"></span>
+          <span className="auth-step grey-step"></span>
+          <span className="auth-step grey-step"></span>
+          <span className="auth-step grey-step"></span>
+          <span className="auth-step grey-step"></span>
+          <span className="auth-step grey-step"></span>
+        </div>
+        <h4 className="mb-4">The Basics</h4>
+        <form>
+          <div className="form-row mx-0">
+            <div className="w-100 form-group">
+              <h6>Challenge Title</h6>
               <input
-                type="checkbox"
-                className="custom-control-input"
-                id={item.id}
-                checked={challengeType[index]}
-                onChange={() => handleCheckbox(index, item.title)}
+                type="text"
+                className="form-control"
+                placeholder="What is the name of your project?"
+                onChange={handleTitle}
               />
-              <label
-                className="my-1 custom-control-label pass-below-text"
-                htmlFor={item.id}>
-                <b>{item.title}:</b> {item.text}
-              </label>
             </div>
-          ))}
-          <h6 className="mt-4 mb-3">
-            What keywords would you associate with this challenge?
-          </h6>
-          <div className="mb-3 interests-container">
-            {keywords.map((item, index) => (
-              <span
-                className={`interest ${item.status && 'active'}`}
-                key={index}
-                role="button"
-                onClick={() => handleKeyword(index)}>
-                {item.value}
-                {item.status && (
-                  <span className="fa fa-check-circle ml-2"></span>
-                )}
-              </span>
+            <h6 className="mt-lg-4 my-3">What Type of Challenge will it Be?</h6>
+
+            {inputData.map((item, index) => (
+              <div
+                className="w-100 custom-control custom-checkbox"
+                key={item.id}
+                onChange={handleType}>
+                <input
+                  name="type"
+                  type="radio"
+                  className="custom-control-input"
+                  id={item.id}
+                />
+                <label
+                  className="my-1 custom-control-label pass-below-text"
+                  htmlFor={item.id}>
+                  <b>{item.title}:</b> {item.text}
+                </label>
+              </div>
             ))}
-            <span className="interest add-interest" onClick={openModal}>
-              <span className="fa fa-plus"></span>
-            </span>
-            <InputModal
-              show={editTag}
-              handleClose={closeModal}
-              addKeyword={addKeyword}
-              setNewKeyword={setNewKeyword}
-            />
+            <h6 className="mt-4 mb-3">
+              What keywords would you associate with this challenge?
+            </h6>
+            <div className="mb-3 interests-container">
+              {keywords.map((item, index) => (
+                <span
+                  className={`interest ${item.status && 'active'}`}
+                  key={index}
+                  role="button"
+                  onClick={() => handleKeyword(index)}>
+                  {item.value}
+                  {item.status && (
+                    <span className="fa fa-check-circle ml-2"></span>
+                  )}
+                </span>
+              ))}
+              <span className="interest add-interest" onClick={openModal}>
+                <span className="fa fa-plus"></span>
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="mt-xl-5 mt-sm-4 mt-0">
-          <button type="submit" className="px-md-5 white-btn btn">
-            Save as Draft
-          </button>
-          <button
-            onClick={handleSubmit}
-            type="submit"
-            className="px-md-5 ml-md-4 ml-3 btn create-account-btn">
-            Next
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="mt-xl-5 mt-sm-4 mt-0">
+            <button
+              type="submit"
+              className="px-md-5 white-btn btn"
+              onClick={handleSave}>
+              Save as Draft
+            </button>
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className="px-md-5 ml-md-4 ml-3 btn create-account-btn">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -14,7 +14,7 @@ const login = async params =>
       console.log(error);
     });
 
-const registerUser = async params => {
+const registerUser = async params =>
   axios({
     method: 'post',
     url: 'https:/azizsolutions.onecoderz.com/api/user-register',
@@ -22,11 +22,10 @@ const registerUser = async params => {
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(function (response) {
-      console.log(response);
+      return response;
     })
     .catch(function (response) {
       console.log(response);
     });
-};
 
 export {login, registerUser};

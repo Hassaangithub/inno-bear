@@ -1,12 +1,75 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {responsivePropType} from 'react-bootstrap/esm/createUtilityClasses';
 import {useNavigate} from 'react-router-dom';
+import {useRecoilState} from 'recoil';
+// import {storage} from '../../Firebase/firebase';
+import {challengeAtom} from '../../recoil/atom';
+import {createChallenge} from '../../Services/challanges';
 
 const Step7 = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = e => {
+  const [imagePath, setImagesPaths] = useState({
+    thumbnail: '',
+    header: '',
+  });
+  const [description, setDescription] = useState('');
+  const [headerImage, setHeaderImage] = useState();
+  const [file, setFile] = useState();
+  const [thumbnailImage, setThumbnailImage] = useState();
+  const [challenge, setChallenge] = useRecoilState(challengeAtom);
+  const [loading, setLoading] = useState(false);
+
+  const handleFile = e => {
+    setFile(e.target.files[0]);
+  };
+  const handleHeaderImage = e => {
+    setHeaderImage(URL.createObjectURL(e.target.files[0]));
+    setImagesPaths({...imagePath, header: e.target.files[0]});
+  };
+
+  const handleThumbnailImage = e => {
+    setThumbnailImage(URL.createObjectURL(e.target.files[0]));
+    setImagesPaths({...imagePath, thumbnail: e.target.files[0]});
+  };
+  const handleSubmit = async e => {
     e.preventDefault();
-    navigate('/challenges');
+    const userId = localStorage.getItem('userId');
+    console.log(userId);
+    if (
+      description &&
+      Object.keys(headerImage).length &&
+      file &&
+      thumbnailImage &&
+      userId
+    ) {
+      setLoading(true);
+      setChallenge({
+        ...challenge,
+        attachment_description: description,
+        attachment: file,
+        header_image: imagePath.header,
+        thumbnail_image: imagePath.thumbnail,
+        user_id: userId,
+      });
+      const formData = {
+        ...challenge,
+        attachment_description: description,
+        attachment: file,
+        header_image: imagePath.header,
+        thumbnail_image: imagePath.thumbnail,
+        user_id: userId,
+        step: 7,
+      };
+      const response = await createChallenge(formData);
+      if (response) {
+        setLoading(false);
+        navigate('/challenges');
+      } else {
+        setLoading(false);
+        alert('error');
+      }
+    }
   };
 
   return (
@@ -35,6 +98,8 @@ const Step7 = () => {
               type="text"
               className="form-control"
               placeholder="Describe what this attachment is"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
             />
           </div>
           <div className="w-100 form-group dropzone-attachment">
@@ -44,12 +109,14 @@ const Step7 = () => {
                   type="file"
                   className="custom-file-input"
                   id="inputGroupFile04"
+                  onChange={handleFile}
                 />
                 <label className="custom-file-label" htmlFor="inputGroupFile04">
                   Drag and drop a file here or
                 </label>
               </div>
             </div>
+            {file && <p className="text-center">{file.name}</p>}
             <h6 className="text-center mt-3 mb-0 file-size-txt">
               File size:5mb max
             </h6>
@@ -65,12 +132,22 @@ const Step7 = () => {
                     type="file"
                     className="custom-file-input"
                     id="inputGroupFile04"
+                    onChange={handleHeaderImage}
                   />
-                  <label className="custom-file-label" htmlFor="inputGroupFile04">
+                  <label
+                    className="custom-file-label"
+                    htmlFor="inputGroupFile04">
                     Drag and drop a file here or
                   </label>
                 </div>
               </div>
+              {headerImage && (
+                <img
+                  src={headerImage}
+                  alt="preview"
+                  style={{height: '80px', width: '80px'}}
+                />
+              )}
               <h6 className="text-center mt-3 mb-0 file-size-txt">
                 Image size:100mb max
               </h6>
@@ -88,12 +165,22 @@ const Step7 = () => {
                     type="file"
                     className="custom-file-input"
                     id="inputGroupFile04"
+                    onChange={handleThumbnailImage}
                   />
-                  <label className="custom-file-label" htmlFor="inputGroupFile04">
+                  <label
+                    className="custom-file-label"
+                    htmlFor="inputGroupFile04">
                     Drag and drop a file here or
                   </label>
                 </div>
               </div>
+              {thumbnailImage && (
+                <img
+                  src={thumbnailImage}
+                  alt="preview"
+                  style={{height: '80px', width: '80px'}}
+                />
+              )}
               <h6 className="text-center mt-3 mb-0 file-size-txt">
                 Image size:100mb max
               </h6>
@@ -109,8 +196,16 @@ const Step7 = () => {
           </button>
           <button
             type="submit"
-            className="px-md-5 ml-md-4 ml-3 btn create-account-btn">
-            Make it Live
+            className="px-md-5 ml-md-4 ml-3 btn create-account-btn"
+            onClick={handleSubmit}>
+            {loading ? (
+              <div
+                class="spinner-border text-primary spinner-border-md"
+                role="status"
+              />
+            ) : (
+              ' Make it Live'
+            )}
           </button>
         </div>
       </form>

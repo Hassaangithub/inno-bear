@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import Banner from './Banner';
 import Navbar from './Navbar';
 import Overview from './Overview';
@@ -14,6 +15,7 @@ import WinningCriteria from './tabs/WinningCriteria';
 import Teams from './Teams';
 
 const Detail = () => {
+  const navigate = useNavigate();
   const [view, setView] = useState('overview');
   const [activeTab, setActiveTab] = useState('');
 
@@ -37,7 +39,17 @@ const Detail = () => {
             </a>
           </div>
           <div className="text-md-left text-center">
-            <button className="btn">Create a Solution</button>
+            <button
+              className="btn text-white"
+              onClick={() => {
+                if (localStorage.getItem('token')) {
+                  navigate('/challenges/create-solution');
+                } else {
+                  navigate('/sign-in');
+                }
+              }}>
+              Create a Solution
+            </button>
           </div>
         </div>
         <div className="tab-content" id="challengeTypeTabContent">

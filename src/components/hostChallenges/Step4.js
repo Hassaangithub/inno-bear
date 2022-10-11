@@ -1,12 +1,24 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
+import {useRecoilState} from 'recoil';
+import {challengeAtom} from '../../recoil/atom';
 
 const Step4 = ({setStep}) => {
   const [background, setBackground] = useState('');
   const [goal, setGoal] = useState('');
+  const [challenge, setChallenge] = useRecoilState(challengeAtom);
 
   const handleSubmit = e => {
     e.preventDefault();
-    setStep(5);
+
+    if (background && goal) {
+      setChallenge({
+        ...challenge,
+        description_about_challenge: background,
+        end_goal: goal,
+      });
+
+      setStep(5);
+    }
   };
 
   return (

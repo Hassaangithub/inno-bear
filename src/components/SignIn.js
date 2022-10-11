@@ -45,6 +45,7 @@ const SignIn = () => {
       });
       if (response.successData) {
         localStorage.setItem('token', response.successData.user.accessToken);
+        localStorage.setItem('userId', response.successData.user.id);
         setLoading(false);
         if (response.successData.user.challenge === 'host') {
           navigate('/starter-kit');

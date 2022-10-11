@@ -1,14 +1,26 @@
 import React, {useState} from 'react';
+import {useRecoilState} from 'recoil';
+import {challengeAtom} from '../../recoil/atom';
 
 const Step2 = ({setStep}) => {
   const [start, setStart] = useState('');
   const [deadline, setDeadline] = useState('');
   const [question, setQestion] = useState('');
   const [isQA, setIsQA] = useState('');
+  const [challenge, setChallenge] = useRecoilState(challengeAtom);
 
   const handleSubmit = e => {
     e.preventDefault();
-    setStep(3);
+    if (start && deadline && question && isQA) {
+      setChallenge({
+        ...challenge,
+        start_date: start,
+        cutOff_date: question,
+        submission_date: deadline,
+        Q_A: isQA,
+      });
+      setStep(3);
+    }
   };
 
   return (

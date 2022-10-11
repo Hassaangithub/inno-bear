@@ -34,7 +34,15 @@ const StarterKit = () => {
               for and we can help you quickly fill the gap with our Challenge
               Starter Kit’s.
             </p>
-            <button className="btn" onClick={() => navigate('/host-challenge')}>
+            <button
+              className="btn"
+              onClick={() => {
+                if (localStorage.getItem('token')) {
+                  navigate('/host-challenge');
+                } else {
+                  navigate('/sign-in');
+                }
+              }}>
               Get Started
             </button>
           </div>

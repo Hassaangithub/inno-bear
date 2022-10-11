@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
+import {useRecoilState} from 'recoil';
+import {challengeAtom} from '../../recoil/atom';
 
 const Step3 = ({setStep}) => {
+  const [challenge, setChallenge] = useRecoilState(challengeAtom);
   const [prize, setPrize] = useState();
   const [awards, setAwards] = useState([
     {text: '', number: ''},
@@ -20,7 +23,7 @@ const Step3 = ({setStep}) => {
     );
   };
 
-  const addAward = (e) => {
+  const addAward = e => {
     e.preventDefault();
     if (awards.length < 5) {
       setAwards([...awards, {text: '', number: ''}]);
@@ -29,9 +32,29 @@ const Step3 = ({setStep}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setStep(4);
+
+    const totalAwards = awards.filter(
+      item => item.number && item.number !== '',
+    );
+    const price = awards
+      .filter(item => item.text && item.number)
+      .map(item => item.text);
+    const awardsNumber = awards
+      .filter(item => item.text && item.number)
+      .map(item => item.number);
+
+    if (prize && totalAwards.length) {
+      setChallenge({
+        ...challenge,
+        award_prize: prize,
+        number_of_awards: awardsNumber,
+        price: price,
+      });
+      setStep(4);
+    }
   };
 
+  // console.log('challenge', challenge);
   return (
     <div className="col-xl-7 mb-md-5 mb-3 mx-auto steps-model">
       <p className="text-muted mb-2 steps-label">STEP 3 OF 7</p>
@@ -74,7 +97,7 @@ const Step3 = ({setStep}) => {
               <input
                 type="number"
                 className="form-control"
-                placeholder="1"
+                placeholder="Enter Number"
                 min={0}
                 onChange={e => handleAward(e, index)}
               />
