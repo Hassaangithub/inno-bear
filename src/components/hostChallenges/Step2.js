@@ -105,7 +105,7 @@ const Step2 = ({setStep}) => {
           </button>
           <button
             type="submit"
-            className="px-md-5 ml-md-4 ml-3 btn create-account-btn"
+            className="px-md-5 ml-md-4 ml-3 btn create-account-btn text-white"
             onClick={handleSubmit}>
             Next
           </button>

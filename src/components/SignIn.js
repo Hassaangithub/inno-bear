@@ -5,7 +5,6 @@ import {Link, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
 import signInStepSide from '../images/sign-in-step-side-img.png';
 import {login} from '../Services/auth';
-import CustomToast from './Toast';
 
 const SignIn = () => {
   const [email, setEmail] = useState();
@@ -121,7 +120,7 @@ const SignIn = () => {
               onClick={handleSubmit}>
               {loading ? (
                 <div
-                  class="spinner-border text-primary spinner-border-md"
+                  className="spinner-border text-primary spinner-border-md"
                   role="status"
                 />
               ) : (

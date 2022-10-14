@@ -44,7 +44,7 @@ const Step6 = ({setStep}) => {
   const [challenge, setChallenge] = useRecoilState(challengeAtom);
 
   const [addRule, setAddRule] = useState(false);
-
+  const [editFeild, setEditFeild] = useState(true);
   const toggleAdd = position => {
     setRules(
       [...rules].map((object, index) => {
@@ -59,19 +59,14 @@ const Step6 = ({setStep}) => {
   };
 
   const handleEdit = id => {
-    const [currentObj] = rules.filter(item => item.id === id);
-    setEditedRule(currentObj);
-    setEdit(true);
+    setEditFeild(false);
   };
 
-  const handleInput = e => setEditedRule({...editedRule, text: e.target.value});
-
-  const closeModal = () => setEdit(false);
-  const updateRule = id => {
+  const handleInputText = id => {
+    setRules();
     if (addRule) {
       setRules([...rules, editedRule]);
       setAddRule(false);
-      closeModal();
     } else {
       setRules(
         [...rules].map((object, index) => {
@@ -83,7 +78,6 @@ const Step6 = ({setStep}) => {
           } else return object;
         }),
       );
-      closeModal();
     }
   };
 
@@ -115,15 +109,6 @@ const Step6 = ({setStep}) => {
 
   return (
     <>
-      <AddUpdateModal
-        title={addRule ? 'Add Rule' : 'Update Rule'}
-        submitText={addRule ? 'Add Rule' : 'Update Rule'}
-        show={edit}
-        handleClose={closeModal}
-        onSubmit={updateRule}
-        editedRule={editedRule}
-        handleInput={handleInput}
-      />
       <div className="col-xl-7 mb-md-5 mb-3 mx-auto steps-model">
         <p className="text-muted mb-2 steps-label">STEP 6 OF 7</p>
         <div className="d-flex flex-wrap mb-3">
@@ -151,7 +136,13 @@ const Step6 = ({setStep}) => {
                   onClick={() => toggleAdd(index)}
                 />
                 <p className="mb-0" />
-                <p className="mb-0">{item.text}</p>
+                <input
+                  className="mb-0"
+                  type="text"
+                  value={item.text}
+                  onChange={() => handleInputText(item.id)}
+                  readOnly={editFeild}
+                />
                 <img
                   src={pencilIcon}
                   alt="pencil-alt"
@@ -171,7 +162,7 @@ const Step6 = ({setStep}) => {
             <button
               onClick={handleSubmit}
               type="submit"
-              className="px-md-5 ml-md-4 ml-3 btn create-account-btn">
+              className="px-md-5 ml-md-4 ml-3 btn create-account-btn text-white">
               Next
             </button>
           </div>

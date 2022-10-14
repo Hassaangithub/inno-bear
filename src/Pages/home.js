@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 // import {useNavigate} from 'react-router-dom';
 import Layout from '../components/Layout';
 import group1726 from '../images/Group-1726.png';
@@ -11,21 +11,32 @@ import scienceHaromatic from '../images/science-hromatic.png';
 import {useNavigate} from 'react-router-dom';
 import challenges from '../images/challege.png';
 import {Button} from 'react-bootstrap';
+import {allChallenges} from '../Services/challanges';
 
 const Home = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem('token');
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(false);
 
-  // const handleClick = () => {
-  //   localStorage.removeItem('TOKEN');
-  //   navigate('/sign-in');
-  // };
-  const handleCard = () => {
+  useEffect(() => {
+    const getChallenges = async () => {
+      setLoading(true);
+      const response = await allChallenges();
+      if (!response) {
+      } else {
+        setData(response.data.successData.data);
+        setLoading(false);
+      }
+    };
+    getChallenges();
+  }, []);
+
+  const handleCard = id => {
     if (isLoggedIn) {
-      navigate('/challenges/detail');
-    }
-    else{
-      console.log("please login or register")
+      navigate(`/challenges/detail:${id}`);
+    } else {
+      console.log('please login or register');
     }
   };
   return (
@@ -44,7 +55,7 @@ const Home = () => {
               a challenge prize competition, and watch the solutions roll in.
             </p>
             <button
-              className="btn"
+              className="btn action-btn"
               onClick={() => {
                 navigate('/starter-kit');
               }}>
@@ -59,32 +70,64 @@ const Home = () => {
         <p className="text-center mb-0">
           Discover current challenges seeking solutions
         </p>
-        <div className="row mt-lg-5 mt-4">
-          <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3" onClick={handleCard}>
-            <div className="p-3 current-challenge-block">
-              <img
-                rectangle35
-                src={rectangle35}
-                alt="rectangle-35"
-                className="w-100"
+        <div className="row mt-lg-5 mt-4" style={{minHeight: '200px'}}>
+          {loading ? (
+            <div className="d-flex align-items-center justify-content-center w-100 h-100 position-relative">
+              <div
+                className="spinner-border text-primary spinner-border-md position-absolute"
+                role="status"
+                style={{top: '80px'}}
               />
-              <h6 className="mt-3 mb-2">
-                Healthy food and exercise routine for health
-              </h6>
-              <p>Theoretical</p>
-              <div>
-                <span className="orange-txt">Award</span>
-                <span className="grey-txt">$20,000</span>
-              </div>
-              <div className="d-flex align-items-center mt-md-4 mt-3">
-                <img src={challenges} alt="challege" />
-                <div className="ml-3">
-                  <p className="mb-0 text-dark font-14">Cipay Agustrian</p>
-                  <p className="mb-0 font-14">14 January, 2020</p>
-                </div>
-              </div>
             </div>
-          </div>
+          ) : (
+            <div className="row mt-lg-5 mt-4 mb-3">
+              {data?.map((card, index) => (
+                <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3" key={index}>
+                  <div
+                    className="p-3 current-challenge-block "
+                    role="button"
+                    onClick={() => handleCard(card.id)}>
+                    <img
+                      src={card.header_image}
+                      alt="rectangle-35"
+                      className="w-100"
+                    />
+                    <h6 className="mt-3 mb-2">
+                      {card.description_about_challenge} &nbsp;
+                    </h6>
+                    <p>{card.challenge_type}</p>
+                    <div>
+                      <span className="orange-txt">Award</span>
+                      <span className="grey-txt">$ {card.award_prize}</span>
+                    </div>
+                    <div className="d-flex align-items-center mt-md-4 mt-3">
+                      <div
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '50%',
+                          overflow: 'hidden',
+                        }}>
+                        <img
+                          src={card.header_image}
+                          alt="challege"
+                          style={{
+                            minHeight: '100%',
+                            objectFit: 'cover',
+                            maxWidth: '100%',
+                          }}
+                        />
+                      </div>
+                      <div className="ml-3">
+                        <p className="mb-0 text-dark font-14">{card.title}</p>
+                        <p className="mb-0 font-14">{card.submission_date}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <h2 className="text-center my-md-5 mt-3">How it Works</h2>
         <div className="row how-it-works">
@@ -133,7 +176,9 @@ const Home = () => {
               for and we can help you quickly fill the gap with our Challenge
               Starter Kit’s.
             </p>
-            <button className="btn" onClick={() => navigate('/starter-kit')}>
+            <button
+              className="btn action-btn"
+              onClick={() => navigate('/starter-kit')}>
               Get Started
             </button>
           </div>

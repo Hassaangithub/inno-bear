@@ -44,30 +44,6 @@ p {
   -moz-animation: spin 1s linear infinite;
 }
 
-.custom-file-input:lang(en) ~ .custom-file-label::after {
-  content: 'Select a file';
-  color: #fff;
-  background: var(--theme-clr);
-  text-shadow: 0 2px 6px var(--text-shadow);
-  border-radius: 10px;
-  border-radius: 8px !important;
-  padding: 8px 24px;
-}
-.dropzone-attachment {
-  border: 0.818766px dashed #abb0d5;
-  background: rgba(239, 243, 248, 0.25);
-  padding: 32px 145px;
-}
-.custom-file-label {
-  background: none;
-  border: none;
-  font-family: 'Raleway';
-  font-weight: 500;
-}
-.file-size-txt {
-  font-weight: 500;
-}
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -83,17 +59,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-.react-tel-input .phone-input {
-  width: 100% !important;
-  border: 1px solid #dddddd !important;
-  border-radius: 15px !important;
-  padding: 16px !important;
-  padding-left: 40px !important;
-  height: calc(2.5em + 0.75rem + 2px) !important;
-}
-.active-radio {
-  border-color: orange !important;
-}
+
 .header-navbar {
   position: sticky;
   top: 0;
@@ -185,11 +151,13 @@ body {
 .header-navbar .nav-item.active .nav-link {
   position: relative;
   color: var(--theme-clr) !important;
+  display: flex;
+  justify-content: center;
 }
 .header-navbar .nav-item.active .nav-link:before {
   background: #fccf2e;
   content: '';
-  width: 100%;
+  width: 80%;
   height: 4px;
   position: absolute;
   bottom: -4px;
@@ -350,7 +318,7 @@ button[disabled] {
 .btn:focus,
 .btn:active {
   box-shadow: 0 2px 10px var(--theme-dark-box-shadow);
-  color: #fff;
+  color: #fff !important;
   background: var(--theme-clr);
   text-shadow: 0 2px 6px var(--text-shadow);
 }
@@ -581,6 +549,10 @@ h6,
 .h6 {
   font-size: 16px;
 }
+.action-btn {
+  color: white !important;
+}
+
 /*account auth*/
 img[alt='account-auth-logo'] {
   position: absolute;
@@ -625,6 +597,30 @@ img[alt='account-auth-logo'] {
 .account-auth-pg label[for='phoneNumber'] + .iti .iti__selected-flag {
   border-radius: 12px 0 0 12px;
   background-color: rgba(0, 0, 0, 0.05);
+}
+.contact-us-txt {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+}
+.choose-plan-block {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  column-gap: 5%;
+}
+.choose-plan-block .choose-plan-inside {
+  border: 1px solid #dddddd;
+  box-shadow: 0px 4px 8px rgba(148, 42, 232, 0.15);
+  border-radius: 10px;
+}
+.choose-plan-block .heading {
+  color: var(--theme-clr);
+}
+.choose-plan-block .percent-sign {
+  position: relative;
+  bottom: 5px;
+}
+.choose-plan-block .check-mark {
+  color: #737373;
 }
 .steps-model {
   box-shadow: 0px 2px 16px rgb(149 148 148 / 15%);
@@ -708,7 +704,6 @@ img[alt='account-auth-logo'] {
   border-radius: 10px;
   color: #fff;
   font-size: 14px;
-  margin: 2px 0 0 4px;
 }
 .team-txt {
   font-family: 'Raleway';
@@ -789,10 +784,6 @@ a,
   border: 1px solid #cdd0e6;
   box-shadow: 10px 24px 54px rgba(0, 0, 0, 0.04);
   border-radius: 30px;
-}
-.current-challenge-block:hover {
-  cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .current-challenge-block .orange-txt {
   background: #fccf2e;
@@ -887,20 +878,109 @@ a,
     rgba(0, 179, 218, 0.78) -16.08%,
     var(--theme-clr) 125.08%
   );
-  color: #fff;
+  color: #fff !important;
   border: none;
   border-radius: 0;
 }
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: 'Select a file';
+  color: #fff;
+  background: var(--theme-clr);
+  text-shadow: 0 2px 6px var(--text-shadow);
+  border-radius: 10px;
+  border-radius: 8px !important;
+  padding: 8px 24px;
+}
+.dropzone-attachment {
+  border: 0.818766px dashed #abb0d5;
+  background: rgba(239, 243, 248, 0.25);
+  padding: 32px 145px;
+}
+.custom-file-label {
+  background: none;
+  border: none;
+  font-family: 'Raleway';
+  font-weight: 500;
+}
+.file-size-txt {
+  font-weight: 500;
+}
+.theme-blue-link {
+  color: #2e3a96;
+  background: none;
+  border: none;
+  outline: none !important;
+}
+.text-blue {
+  color: #abb0d5;
+}
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.challenge-body {
+  padding: 96px;
+}
+
+.challenge-body .blue-heading {
+  color: var(--theme-clr);
+}
+
+.challenge-body .below-main-heading {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+}
+
+.challenge-body img[alt='challenge-img'] {
+  width: 140px;
+  height: 140px;
+}
+
+.challenge-body img[alt='share-icon'] {
+  width: 20px;
+  margin-right: 16px;
+}
 @media (max-width: 1199px) {
+  .challenge-body {
+    padding: 36px;
+  }
   h1,
   .h1 {
     font-size: 32px;
   }
+  .dropzone-attachment {
+    padding: 16px;
+  }
+  .choose-plan-block {
+    gap: 2%;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 991px) {
+  .challenge-body {
+    padding: 24px;
+  }
+
+  .challenge-body img[alt='challenge-img'] {
+    width: 120px;
+    height: 120px;
+  }
+
+  .challenge-body img[alt='share-icon'] {
+    width: 16px;
+    margin-right: 10px;
+  }
+
   .steps-model {
     padding: 24px;
+  }
+
+  .choose-plan-block {
+    gap: 2%;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .challenge-nav-tabs .nav-link {
@@ -1037,6 +1117,11 @@ a,
 }
 
 @media (max-width: 575px) {
+  .challenge-body img[alt='challenge-img'] {
+    width: 90px;
+    height: 90px;
+  }
+
   a,
   button,
   b,
@@ -1077,10 +1162,15 @@ a,
   .challenge-nav-tabs .nav-link {
     padding: 8px;
   }
-
   .steps-model {
     padding: 16px;
     margin-top: 15px;
+  }
+  .choose-plan-block {
+    display: block;
+  }
+  .choose-plan-block li {
+    font-size: 14px;
   }
   .auth-step {
     width: 30px;

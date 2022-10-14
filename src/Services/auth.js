@@ -5,7 +5,7 @@ const login = async params =>
     method: 'post',
     url: 'https:/azizsolutions.onecoderz.com/api/user-login',
     data: params,
-    headers: {'Content-Type': 'multipart/form-data'},
+    headers: {'Content-Type': 'application/json'},
   })
     .then(response => {
       return response.data;

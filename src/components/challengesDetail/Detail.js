@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
+import {singleChallenge} from '../../Services/challanges';
 import Banner from './Banner';
 import Navbar from './Navbar';
 import Overview from './Overview';
@@ -15,9 +16,25 @@ import WinningCriteria from './tabs/WinningCriteria';
 import Teams from './Teams';
 
 const Detail = () => {
+  const param = useParams();
   const navigate = useNavigate();
   const [view, setView] = useState('overview');
   const [activeTab, setActiveTab] = useState('');
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState();
+
+  useEffect(() => {
+    const getChallenge = async () => {
+      setLoading(true);
+      const response = await singleChallenge(param.id);
+      if (!response) {
+      } else {
+        setData(response.data.successData.data);
+        setLoading(false);
+      }
+    };
+    getChallenge();
+  }, []);
 
   return (
     <>
