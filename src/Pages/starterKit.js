@@ -35,7 +35,7 @@ const StarterKit = () => {
               Starter Kit’s.
             </p>
             <button
-              className="btn"
+              className="btn text-white"
               onClick={() => {
                 if (localStorage.getItem('token')) {
                   navigate('/host-challenge');

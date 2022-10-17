@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import plusIcon from '../../images/plus-icon.png';
 import pencilIcon from '../../images/Pencil-alt.png';
 import minusIcon from '../../images/minus-icon.png';
-import AddUpdateModal from '../AddUpdateModal';
 import {challengeAtom} from '../../recoil/atom';
 import {useRecoilState} from 'recoil';
 
@@ -12,36 +11,40 @@ const Step5 = ({setStep}) => {
       id: 1,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true
     },
     {
       id: 2,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true
+
     },
     {
       id: 3,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true
+
     },
     {
       id: 4,
       status: false,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true
+
     },
     {
       id: 5,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true
+
     },
   ];
 
   const [challenge, setChallenge] = useRecoilState(challengeAtom);
-  const [edit, setEdit] = useState(false);
   const [rules, setRules] = useState(data);
-  const [editedRule, setEditedRule] = useState({
-    id: '',
-    text: '',
-  });
   const [addRule, setAddRule] = useState(false);
 
   const toggleAdd = position => {
@@ -58,43 +61,44 @@ const Step5 = ({setStep}) => {
   };
 
   const handleEdit = id => {
-    const [currentObj] = rules.filter(item => item.id === id);
-    setEditedRule(currentObj);
-    setEdit(true);
+    setRules(
+      [...rules].map((object, index) => {
+        if (object.id === id) {
+          return {
+            ...object,
+            readOnly: false,
+          };
+        } else return object;
+      }),
+    );
+
   };
 
-  const handleInput = e => setEditedRule({...editedRule, text: e.target.value});
-
-  const closeModal = () => setEdit(false);
-  const updateRule = id => {
-    if (addRule) {
-      setRules([...rules, editedRule]);
-      setAddRule(false);
-      closeModal();
-    } else {
-      setRules(
-        [...rules].map((object, index) => {
-          if (object.id === id) {
-            return {
-              ...object,
-              text: editedRule.text,
-            };
-          } else return object;
-        }),
-      );
-      closeModal();
-    }
-  };
-
+  const handleInputText = (e,id) =>{
+    setRules(
+      [...rules].map((object, index) => {
+        if (object.id === id) {
+          return {
+            ...object,
+            text: e.target.value,
+          };
+        } else return object;
+      }),
+    );
+  }
   const handleAddRule = e => {
     e.preventDefault();
-    setAddRule(true);
-    setEditedRule({
-      id: rules.length + 1,
-      text: '',
-      status: true,
-    });
-    setEdit(true);
+    setRules(
+      [...rules, {
+        text:"",
+        status: true,
+        id: rules.length + 1,
+        readOnly:false
+      }]
+    )
+
+    //   id: rules.length + 1,
+    //   text
   };
 
   const handleSubmit = e => {
@@ -111,17 +115,9 @@ const Step5 = ({setStep}) => {
       setStep(6);
     }
   };
+  
   return (
     <>
-      <AddUpdateModal
-        title={addRule ? 'Add Rule' : 'Update Rule'}
-        submitText={addRule ? 'Add Rule' : 'Update Rule'}
-        show={edit}
-        handleClose={closeModal}
-        onSubmit={updateRule}
-        editedRule={editedRule}
-        handleInput={handleInput}
-      />
       <div className="col-xl-7 mb-md-5 mb-3 mx-auto steps-model">
         <p className="text-muted mb-2 steps-label">STEP 5 OF 7</p>
         <div className="d-flex flex-wrap mb-3">
@@ -149,7 +145,14 @@ const Step5 = ({setStep}) => {
                   onClick={() => toggleAdd(index)}
                 />
                 <p className="mb-0" />
-                <p className="mb-0">{item.text}</p>
+                <input
+                  className="mb-0"
+                  type="text"
+                  value={item.text}
+                  onChange={(e) => handleInputText(e,item.id)}
+                  readOnly={item.readOnly}
+                />
+            
                 <img
                   src={pencilIcon}
                   alt="pencil-alt"
@@ -169,7 +172,7 @@ const Step5 = ({setStep}) => {
             <button
               onClick={handleSubmit}
               type="submit"
-              className="px-md-5 ml-md-4 ml-3 btn create-account-btn text-whites">
+              className="px-md-5 ml-md-4 ml-3 btn create-account-btn text-white">
               Next
             </button>
           </div>

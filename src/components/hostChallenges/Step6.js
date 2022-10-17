@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import plusIcon from '../../images/plus-icon.png';
 import pencilIcon from '../../images/Pencil-alt.png';
 import minusIcon from '../../images/minus-icon.png';
-import AddUpdateModal from '../AddUpdateModal';
 import {challengeAtom} from '../../recoil/atom';
 import {useRecoilState} from 'recoil';
 
@@ -12,26 +11,35 @@ const Step6 = ({setStep}) => {
       id: 1,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true,
     },
     {
       id: 2,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true,
+
     },
     {
       id: 3,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true,
+
     },
     {
       id: 4,
       status: false,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true,
+
     },
     {
       id: 5,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
+      readOnly: true,
+
     },
   ];
 
@@ -59,38 +67,42 @@ const Step6 = ({setStep}) => {
   };
 
   const handleEdit = id => {
-    setEditFeild(false);
+    setRules(
+      [...rules].map((obj, index)=>{
+        if(obj.id === id){
+          return{
+            ...obj,
+            readOnly: false
+          };
+        }else return obj;
+      }),
+    )
   };
 
-  const handleInputText = id => {
-    setRules();
-    if (addRule) {
-      setRules([...rules, editedRule]);
-      setAddRule(false);
-    } else {
-      setRules(
-        [...rules].map((object, index) => {
-          if (object.id === id) {
-            return {
-              ...object,
-              text: editedRule.text,
-            };
-          } else return object;
-        }),
-      );
-    }
-  };
+  const handleInputText =(e, id) => {
+    setRules(
+      [...rules].map((obj, index)=>{
+        if(obj.id === id){
+          return{
+            ...obj,
+            text: e.target.value
+          };
+        }else return obj;
+      }),
+    )
+  }
 
-  const handleAddRule = e => {
-    e.preventDefault();
-    setAddRule(true);
-    setEditedRule({
-      id: rules.length + 1,
-      text: '',
-      status: true,
-    });
-    setEdit(true);
-  };
+const handleAddRule = (e) =>{
+  e.preventDefault();
+setRules(
+  [...rules, {
+    readOnly: false,
+    text:"",
+    status: true,
+    id: rules.length + 1
+  }]
+)
+}
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -135,13 +147,12 @@ const Step6 = ({setStep}) => {
                   className="add-icon"
                   onClick={() => toggleAdd(index)}
                 />
-                <p className="mb-0" />
                 <input
                   className="mb-0"
                   type="text"
                   value={item.text}
-                  onChange={() => handleInputText(item.id)}
-                  readOnly={editFeild}
+                  onChange={(e) => handleInputText(e,item.id)}
+                  readOnly={item.readOnly}
                 />
                 <img
                   src={pencilIcon}
@@ -152,7 +163,7 @@ const Step6 = ({setStep}) => {
               </div>
             ))}
           </div>
-          <button className="theme-link" onClick={e => handleAddRule(e)}>
+          <button className="theme-link" onClick={ handleAddRule}>
             <span className="mr-2 fa fa-plus"></span>Add Additional Criteria
           </button>
           <div className="mt-xl-5 mt-sm-4 mt-3">

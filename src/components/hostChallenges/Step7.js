@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {useRecoilState} from 'recoil';
 // import {storage} from '../../Firebase/firebase';
 import {challengeAtom} from '../../recoil/atom';
+import { toast, ToastContainer } from 'react-toastify';
 import {createChallenge} from '../../Services/challanges';
 
 const Step7 = () => {
@@ -64,8 +65,10 @@ const Step7 = () => {
       const response = await createChallenge(formData);
       if (response) {
         setLoading(false);
+        toast.success(response.data.message);
         navigate('/challenges');
       } else {
+        toast.error(response.response.data.message);
         setLoading(false);
         alert('error');
       }
@@ -73,6 +76,19 @@ const Step7 = () => {
   };
 
   return (
+    <>
+    <ToastContainer
+    position='top-right'
+    autoClose={5000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme='light'
+  />
     <div className="col-xl-7 mb-md-5 mb-3 mx-auto steps-model">
       <p className="text-muted mb-2 steps-label">STEP 7 OF 7</p>
       <div className="d-flex flex-wrap mb-3">
@@ -210,6 +226,7 @@ const Step7 = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react';
 import Layout from '../components/Layout';
 import {useNavigate} from 'react-router-dom';
 import {allChallenges} from '../Services/challanges';
+import {useSetRecoilState} from 'recoil'
+import {challengeAtom} from "../recoil/atom"
 
 const ExploreChallenges = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
+  const setChallenges = useSetRecoilState(challengeAtom)
 
   useEffect(() => {
     const getChallenges = async () => {
@@ -14,6 +17,7 @@ const ExploreChallenges = () => {
       if (!response) {
       } else {
         setData(response.data.successData.data);
+        setChallenges(response.data.successData.data)
         setLoading(false);
       }
     };

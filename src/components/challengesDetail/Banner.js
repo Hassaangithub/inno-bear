@@ -1,17 +1,19 @@
 import React from 'react';
 import banner from '../../images/hydro-banner.png';
 
-const Banner = () => {
+const Banner = ({image, title}) => {
   return (
     <div className="position-relative">
-      <img src={banner} alt="banner-img" className="w-100" />
+    <div className="w-100" style={{height:  '400px'}}>
+      <img src={image} alt="banner-img" className="w-100" style={{objectFit: 'cover', maxHeight:"100%"}} />
+      </div>
       <div
         className="position-absolute w-100 h-100 top-0 d-flex flex-column justify-content-center align-items-center banner-block"
         style={{background: 'none'}}>
         <h1 className="text-white mob-heading">
-          Hydropower Operations Optimization
+          {title}
         </h1>
-        <h1 className="text-white mob-heading">(H2Os) Prize</h1>
+        {/* <h1 className="text-white mob-heading">(H2Os) Prize</h1> */}
       </div>
     </div>
   );

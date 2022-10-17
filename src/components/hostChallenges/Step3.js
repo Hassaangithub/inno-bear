@@ -73,8 +73,9 @@ const Step3 = ({setStep}) => {
           <div className="w-100 form-group mb-0">
             <h6>What is the total prize purse amount you’d like to award?</h6>
             <input
-              type="text"
+              type="number"
               className="form-control"
+              min={0}
               placeholder="What is the total prize purse amount you’d like to award?"
               onChange={e => setPrize(e.target.value)}
             />
@@ -85,7 +86,7 @@ const Step3 = ({setStep}) => {
             <div className="form-group col-sm-8 mb-0">
               <h6>Award {index + 1}</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 placeholder="Type in an amount"
                 min={0}

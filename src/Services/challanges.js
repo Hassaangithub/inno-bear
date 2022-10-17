@@ -16,15 +16,14 @@ const allChallenges = async =>
 const singleChallenge = async id =>
   axios({
     method: 'get',
-    url: `https:/azizsolutions.onecoderz.com/api/challenge`,
-    data: id,
+    url: `https:/azizsolutions.onecoderz.com/api/challenge?challenge_id=${id}`,
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
       return response;
     })
     .catch(error => {
-      console.log(error);
+      return error;
     });
 
 const createChallenge = async data =>
@@ -35,11 +34,10 @@ const createChallenge = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      console.log('created', response);
       return response;
     })
     .catch(error => {
-      console.log(error);
+      return error;
     });
 
 const saveChallenge1 = async data =>

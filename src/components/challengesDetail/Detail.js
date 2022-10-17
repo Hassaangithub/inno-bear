@@ -14,6 +14,11 @@ import Timelines from './tabs/Timelines';
 import Updates from './tabs/Updates';
 import WinningCriteria from './tabs/WinningCriteria';
 import Teams from './Teams';
+import {challengeId, challengeAtom, currentChallenge} from '../../recoil/atom';
+import {useSetRecoilState} from 'recoil';
+import { toast, ToastContainer } from 'react-toastify';
+import {useRecoilValue} from 'recoil';
+
 
 const Detail = () => {
   const param = useParams();
@@ -22,14 +27,23 @@ const Detail = () => {
   const [activeTab, setActiveTab] = useState('');
   const [data, setData] = useState();
   const [loading, setLoading] = useState();
+  const setChallengeId = useSetRecoilState(challengeId)
+  const allChallenges = useRecoilValue(challengeAtom)
+  const setCurrentChallenge = useSetRecoilState(currentChallenge)
 
   useEffect(() => {
     const getChallenge = async () => {
       setLoading(true);
-      const response = await singleChallenge(param.id);
-      if (!response) {
-      } else {
+      const id = param.id.replace(":","");
+      setChallengeId(id)
+      const response = await singleChallenge(id);
+      if (response) {
+        toast.success(response.data.message);
         setData(response.data.successData.data);
+        setCurrentChallenge(response.data.successData.data);
+        setLoading(false);
+      } else {
+        toast.error(response.response.data.message);
         setLoading(false);
       }
     };
@@ -38,7 +52,19 @@ const Detail = () => {
 
   return (
     <>
-      <Banner />
+        <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
+      <Banner image={data?.thumbnail_image} title={data?.title}/>
       <div className="challenges-pg px-md-5 px-3">
         <div className="my-4 d-flex flex-wrap flex-md-row flex-column flex-column-reverse justify-content-between team-project-section">
           <div className="breadcrumbs">
@@ -70,14 +96,14 @@ const Detail = () => {
           </div>
         </div>
         <div className="tab-content" id="challengeTypeTabContent">
-          {view === 'overview' && <Overview />}
-          {view === 'teams' && <Teams />}
+          {view === 'overview' && <Overview cashPrize={data?.award_prize} type={data?.keywords} submission={data?.submission_date} close={data?.cutOff_date} />}
+          {view === 'teams' && <Teams description={data?.description_about_challenge} type={data?.challenge_type} keyword={data?.keywords} />}
           <Navbar
             tab={view}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
-          {activeTab === 'Overview' && <OverviewTab />}
+          {activeTab === 'Overview' && <OverviewTab  />}
           {activeTab === 'Rules' && <Rules />}
           {activeTab === 'Timeline' && <Timelines />}
           {activeTab === 'Prizes' && <Prizes />}
