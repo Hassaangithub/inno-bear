@@ -278,7 +278,7 @@ button[disabled] {
 .btn {
   background: linear-gradient(84.22deg, var(--theme-clr) 5.65%, #1f71d0 93.53%),
     var(--theme-clr);
-  color: #fff;
+  color: #fff !important;
   border-radius: 8px;
   border: none;
   padding: 16px 24px;

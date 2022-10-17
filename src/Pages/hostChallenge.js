@@ -10,7 +10,7 @@ import Step7 from '../components/hostChallenges/Step7';
 import Layout from '../components/Layout';
 
 const HostChallenge = () => {
-  const [step, setStep] = useState(6);
+  const [step, setStep] = useState(1);
   return (
     <Layout>
       <div className="page-main-content mt-3 px-md-5 px-3">
