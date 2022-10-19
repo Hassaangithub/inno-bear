@@ -17,6 +17,7 @@ import TeamDetail from './Pages/TeamDetail';
 import ChallengeDetail from './Pages/challengeDetail';
 import ViewTeams from './Pages/viewTeams';
 import CreateSolution from './Pages/CreateSolution';
+import FundingSource from './Pages/FundingSource';
 
 const Router = () => {
   return (
@@ -32,6 +33,10 @@ const Router = () => {
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/host-Challenge" element={<HostChallenge />} />
+      <Route
+        path="/host-Challenge/funding-source"
+        element={<FundingSource />}
+      />
       <Route path="/starter-kit" element={<StarterKit />} />
       <Route path="/faqs" element={<Faqs />} />
       <Route path="/help" element={<Help />} />

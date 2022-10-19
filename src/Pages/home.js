@@ -12,14 +12,14 @@ import {useNavigate} from 'react-router-dom';
 import challenges from '../images/challege.png';
 import {Button} from 'react-bootstrap';
 import {allChallenges} from '../Services/challanges';
-import {useSetRecoilState} from 'recoil'
-import {challengeAtom} from "../recoil/atom"
+import {useSetRecoilState} from 'recoil';
+import {challengeAtom} from '../recoil/atom';
 
 const Home = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem('token');
   const [data, setData] = useState();
-  const setChallenges = useSetRecoilState(challengeAtom)
+  const setChallenges = useSetRecoilState(challengeAtom);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Home = () => {
       if (!response) {
       } else {
         setData(response.data.successData.data);
-        setChallenges(response.data.successData.data)
+        setChallenges(response.data.successData.data);
         setLoading(false);
       }
     };
@@ -37,11 +37,7 @@ const Home = () => {
   }, []);
 
   const handleCard = id => {
-    if (isLoggedIn) {
-      navigate(`/challenges/detail:${id}`);
-    } else {
-      console.log('please login or register');
-    }
+    navigate(`/challenges/detail:${id}`);
   };
   return (
     <Layout>

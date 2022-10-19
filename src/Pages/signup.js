@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import SignupStepFour from '../components/SignupStepFour';
 import SignupStepOne from '../components/SignupStepOne';
 import SignupStepThree from '../components/SignupStepThree';
@@ -21,11 +22,16 @@ const Signup = () => {
     email: '',
     password: '',
   });
-
+  const navigate = useNavigate();
   return (
     <>
       <div className="text-center my-lg-0 my-3">
-        <img src={logo} alt="account-auth-logo" />
+        <img
+          src={logo}
+          alt="account-auth-logo"
+          role="button"
+          onClick={() => navigate('/')}
+        />
       </div>
       <div className="row mx-0 mb-lg-0 mb-4 pr-lg-4 account-auth-pg">
         <div className="col-lg-6 pl-lg-0 d-lg-block d-none side-img-block">

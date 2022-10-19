@@ -59,7 +59,12 @@ const SignIn = () => {
     <>
       {/* <CustomToast></CustomToast> */}
       <div className="text-center my-lg-0 my-3">
-        <img src={accountAuth} alt="account-auth-logo" />
+        <img
+          src={accountAuth}
+          alt="account-auth-logo"
+          onClick={() => navigate('/')}
+          role="button"
+        />
       </div>
       <div className="row mx-0 account-auth-pg pr-lg-4">
         <div className="col-lg-6 pl-lg-0 d-lg-block d-none side-img-block">
