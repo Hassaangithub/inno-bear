@@ -27,9 +27,9 @@ const Navbar = ({tab, setActiveTab, activeTab}) => {
       id="challengeTypeTab"
       role="tablist">
       {data.map((item, index) => (
-        <li className="nav-item" key={index} role='button'>
+        <li className="nav-item" key={index} role="button">
           <a
-            className={`nav-link ${item === activeTab && 'active'}`}
+            className={`nav-link ${item === activeTab && 'active text-white'}`}
             id={item + 'Tab'}
             data-toggle="tab"
             role="tab"

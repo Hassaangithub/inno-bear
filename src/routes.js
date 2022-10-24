@@ -1,9 +1,9 @@
 import React from 'react';
 import SignIn from './components/SignIn';
 import Signup from './Pages/signup';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, Outlet, Navigate} from 'react-router-dom';
 import Home from './Pages/home';
-import Challenges from './Pages/TeamDetail';
+import UserDashboard from './Pages/userDashboard';
 import ContactUs from './Pages/contactUs';
 import Pricing from './Pages/pricing';
 import HostChallenge from './Pages/hostChallenge';
@@ -19,6 +19,12 @@ import ViewTeams from './Pages/viewTeams';
 import CreateSolution from './Pages/CreateSolution';
 import FundingSource from './Pages/FundingSource';
 
+export const ProtectedRoutes = () => {
+  const isLogin = localStorage.getItem('token');
+
+  return isLogin ? <Outlet /> : <Navigate to="/sign-in" />;
+};
+
 const Router = () => {
   return (
     <Routes>
@@ -32,17 +38,20 @@ const Router = () => {
       <Route path="/challenges/detail/view-team" element={<ViewTeams />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/pricing" element={<Pricing />} />
-      <Route path="/host-Challenge" element={<HostChallenge />} />
       <Route
         path="/host-Challenge/funding-source"
         element={<FundingSource />}
       />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/host-Challenge" element={<HostChallenge />} />
+      </Route>
       <Route path="/starter-kit" element={<StarterKit />} />
       <Route path="/faqs" element={<Faqs />} />
       <Route path="/help" element={<Help />} />
       <Route path="/privacy-&-policy" element={<PrivacyAndPolicy />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/challenges/create-solution" element={<CreateSolution />} />
+      <Route path="/user-dashboard" element={<UserDashboard />} />
     </Routes>
   );
 };

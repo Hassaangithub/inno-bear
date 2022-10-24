@@ -55,7 +55,7 @@ const Home = () => {
               a challenge prize competition, and watch the solutions roll in.
             </p>
             <button
-              className="btn action-btn"
+              className="btn action-btn text-white"
               onClick={() => {
                 navigate('/starter-kit');
               }}>
@@ -177,7 +177,7 @@ const Home = () => {
               Starter Kit’s.
             </p>
             <button
-              className="btn action-btn"
+              className="btn action-btn text-white"
               onClick={() => navigate('/starter-kit')}>
               Get Started
             </button>

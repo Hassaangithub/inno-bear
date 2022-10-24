@@ -5,70 +5,70 @@ import InputModal from '../InputModal';
 import {challengeAtom} from '../../recoil/atom';
 import {saveChallenge1} from '../../Services/challanges';
 
+const inputData = [
+  {title: 'Ideation', text: 'I want to generate new ideas', id: '1'},
+  {
+    title: 'Build',
+    text: ' I want to build a solution to a problem',
+    id: '2',
+  },
+  {
+    title: 'Engagement',
+    text: 'I want to grow or educate a community',
+    id: '3',
+  },
+  {
+    title: 'Analysis/Open Data',
+    text: 'I want to make sense of data',
+    id: '4',
+  },
+  {title: 'Acceleration', text: 'I want to scale up a prototype', id: '5'},
+];
+
+const keywordData = [
+  {
+    value: 'Youth',
+    status: false,
+    id: '1',
+  },
+  {
+    value: 'Food',
+    status: false,
+    id: '2',
+  },
+  {
+    value: 'Java Development',
+    status: false,
+    id: '3',
+  },
+  {
+    status: false,
+    value: 'MBA',
+    id: '4',
+  },
+  {
+    status: false,
+    value: 'Art & Culture',
+    id: '5',
+  },
+  {
+    status: false,
+    value: 'Energy',
+    id: '6',
+  },
+  {
+    status: false,
+    value: 'Artificial Intelligence',
+    id: '7',
+  },
+  {
+    status: false,
+    value: 'Dessert',
+    id: '8',
+  },
+];
+
 const Step1 = ({setStep}) => {
-  const inputData = [
-    {title: 'Ideation', text: 'I want to generate new ideas', id: '1'},
-    {
-      title: 'Build',
-      text: ' I want to build a solution to a problem',
-      id: '2',
-    },
-    {
-      title: 'Engagement',
-      text: 'I want to grow or educate a community',
-      id: '3',
-    },
-    {
-      title: 'Analysis/Open Data',
-      text: 'I want to make sense of data',
-      id: '4',
-    },
-    {title: 'Acceleration', text: 'I want to scale up a prototype', id: '5'},
-  ];
-
-  const keywordData = [
-    {
-      value: 'Youth',
-      status: false,
-      id: '1',
-    },
-    {
-      value: 'Food',
-      status: false,
-      id: '2',
-    },
-    {
-      value: 'Java Development',
-      status: false,
-      id: '3',
-    },
-    {
-      status: false,
-      value: 'MBA',
-      id: '4',
-    },
-    {
-      status: false,
-      value: 'Art & Culture',
-      id: '5',
-    },
-    {
-      status: false,
-      value: 'Energy',
-      id: '6',
-    },
-    {
-      status: false,
-      value: 'Artificial Intelligence',
-      id: '7',
-    },
-    {
-      status: false,
-      value: 'Dessert',
-      id: '8',
-    },
-  ];
-
   const [title, setTitle] = useState('');
   const [challengeType, setChallengeType] = useState('');
   const [keywords, setKeywords] = useState(keywordData);

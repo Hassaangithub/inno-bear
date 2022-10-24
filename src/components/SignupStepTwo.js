@@ -2,6 +2,8 @@ import React, {useMemo, useState} from 'react';
 import countryList from 'react-select-country-list';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import {registerUserStep2} from '../Services/auth';
+import {toast, ToastContainer} from 'react-toastify';
 
 const SignupStepTwo = ({setFormData, formData, setStep}) => {
   const [formError, setFormError] = useState({
@@ -11,6 +13,7 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
     city: false,
     phoneNo: false,
   });
+  const [loading, setLoading] = useState(false);
   const countries = useMemo(() => countryList().getData(), []);
   const handleFirstName = e => {
     if (e.target.value) {
@@ -42,7 +45,7 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
     }
     setFormData({...formData, country: e.target.value});
   };
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!formData.fname) {
       setFormError({...formError, firstName: true});
@@ -61,108 +64,154 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
       formData.city &&
       formData.country
     ) {
-      setStep(3);
+      setLoading(true);
+      const response = await registerUserStep2({
+        fname: formData.fname,
+        lname: formData.lname,
+        country: formData.country,
+        city: formData.city,
+        phone: formData.phone,
+      });
+
+      if (response.data) {
+        setLoading(false);
+        setStep(3);
+      } else {
+        toast.error(response.response.data.message);
+        setFormError({
+          firstName: true,
+          lastName: true,
+          country: true,
+          phoneNo: true,
+          city: true,
+        });
+        setLoading(false);
+      }
     }
   };
 
   return (
-    <div className="col-lg-6 col-md-8">
-      <h1>Complete your sign up process</h1>
-      <p className="beneath-main-heading">
-        Let's grab a few more details to finish setting up your account
-      </p>
-      <div className="d-flex flex-wrap mb-3">
-        <span className="auth-step gradient-step mr-2"></span>
-        <span className="auth-step grey-step"></span>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
+      <div className="col-lg-6 col-md-8">
+        <h1>Complete your sign up process</h1>
+        <p className="beneath-main-heading">
+          Let's grab a few more details to finish setting up your account
+        </p>
+        <div className="d-flex flex-wrap mb-3">
+          <span className="auth-step gradient-step mr-2"></span>
+          <span className="auth-step grey-step"></span>
+        </div>
+        <form>
+          <div className="form-row">
+            <div className="form-group col-lg-6">
+              <label htmlFor="firstName">First name</label>
+              <input
+                type="text"
+                className={`form-control ${
+                  formError.firstName && 'border-danger'
+                }`}
+                id="firstName"
+                placeholder="e.g John"
+                onChange={handleFirstName}
+              />
+              {formError.firstName && (
+                <span className="text-danger ml-2 ">Enter First Name</span>
+              )}
+            </div>
+            <div className="form-group col-lg-6">
+              <label htmlFor="firstName">Last name</label>
+              <input
+                type="text"
+                className={`form-control ${
+                  formError.lastName && 'border-danger'
+                }`}
+                id="lastName"
+                placeholder="e.g Doe"
+                onChange={handleLastName}
+              />
+              {formError.lastName && (
+                <span className="text-danger ml-2 ">Enter Last Name</span>
+              )}
+            </div>
+          </div>
+          <div className="form-row my-lg-4">
+            <div className="form-group col-lg-6">
+              <label htmlFor="Country">Country</label>
+              <select
+                className={`form-control ${
+                  formError.country && 'border-danger'
+                }`}
+                onChange={handleCountry}>
+                <option disabled>--Please Select--</option>
+                {countries.map((country, index) => (
+                  <option key={index}>{country.label}</option>
+                ))}
+              </select>
+              {formError.country && (
+                <span className="text-danger ml-2 ">Select Country</span>
+              )}
+            </div>
+            <div className="form-group col-lg-6">
+              <label htmlFor="City">City</label>
+              <select
+                className={`form-control ${formError.city && 'border-danger'}`}
+                onChange={handleCity}>
+                <option disabled>--Please Select--</option>
+                <option>Lahore</option>
+                <option>Karachi</option>
+              </select>
+              {formError.city && (
+                <span className="text-danger ml-2 ">Select City</span>
+              )}
+            </div>
+          </div>
+          <div className="form-group mb-lg-5 mb-4">
+            <label htmlFor="phoneNumber">Phone number</label>
+            <PhoneInput
+              containerClass="d-block"
+              inputClass={`form-control phone-input ${
+                formError.email && 'border-danger'
+              }`}
+              id="phoneNumber"
+              name="phone"
+              type="tel"
+              onChange={handlePhone}
+              value={formData.phoneNo}
+              // country={"us"}
+            />
+            {formError.phoneNo && (
+              <span className="text-danger ml-2 ">Enter Phone No.</span>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="btn create-account-btn text-white"
+            onClick={handleSubmit}>
+            {loading ? (
+              <div
+                className="spinner-border text-primary spinner-border-md"
+                role="status"
+              />
+            ) : (
+              'Next'
+            )}
+          </button>
+        </form>
       </div>
-      <form>
-        <div className="form-row">
-          <div className="form-group col-lg-6">
-            <label htmlFor="firstName">First name</label>
-            <input
-              type="text"
-              className={`form-control ${
-                formError.firstName && 'border-danger'
-              }`}
-              id="firstName"
-              placeholder="e.g John"
-              onChange={handleFirstName}
-            />
-            {formError.firstName && (
-              <span className="text-danger ml-2 ">Enter First Name</span>
-            )}
-          </div>
-          <div className="form-group col-lg-6">
-            <label htmlFor="firstName">Last name</label>
-            <input
-              type="text"
-              className={`form-control ${
-                formError.lastName && 'border-danger'
-              }`}
-              id="lastName"
-              placeholder="e.g Doe"
-              onChange={handleLastName}
-            />
-            {formError.lastName && (
-              <span className="text-danger ml-2 ">Enter Last Name</span>
-            )}
-          </div>
-        </div>
-        <div className="form-row my-lg-4">
-          <div className="form-group col-lg-6">
-            <label htmlFor="Country">Country</label>
-            <select
-              className={`form-control ${formError.country && 'border-danger'}`}
-              onChange={handleCountry}>
-              <option disabled>--Please Select--</option>
-              {countries.map((country, index) => (
-                <option key={index}>{country.label}</option>
-              ))}
-            </select>
-            {formError.country && (
-              <span className="text-danger ml-2 ">Select Country</span>
-            )}
-          </div>
-          <div className="form-group col-lg-6">
-            <label htmlFor="City">City</label>
-            <select
-              className={`form-control ${formError.city && 'border-danger'}`}
-              onChange={handleCity}>
-              <option disabled>--Please Select--</option>
-              <option>Lahore</option>
-              <option>Karachi</option>
-            </select>
-            {formError.city && (
-              <span className="text-danger ml-2 ">Select City</span>
-            )}
-          </div>
-        </div>
-        <div className="form-group mb-lg-5 mb-4">
-          <label htmlFor="phoneNumber">Phone number</label>
-          <PhoneInput
-            containerClass="d-block"
-            inputClass={`form-control phone-input ${
-              formError.email && 'border-danger'
-            }`}
-            id="phoneNumber"
-            name="phone"
-            type="tel"
-            onChange={handlePhone}
-            value={formData.phoneNo}
-            // country={"us"}
-          />
-          {formError.phoneNo && (
-            <span className="text-danger ml-2 ">Enter Phone No.</span>
-          )}
-        </div>
-        <button
-          type="submit"
-          className="btn create-account-btn text-white"
-          onClick={handleSubmit}>
-          Next
-        </button>
-      </form>
-    </div>
+    </>
   );
 };
 

@@ -5,8 +5,11 @@ import {Link, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
 import signInStepSide from '../images/sign-in-step-side-img.png';
 import {login} from '../Services/auth';
+import {toast, ToastContainer} from 'react-toastify';
+import GoogleLogin from 'react-google-login';
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState({
@@ -14,8 +17,6 @@ const SignIn = () => {
     password: false,
   });
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleEmail = e => {
     if (e.target.value) {
@@ -51,13 +52,34 @@ const SignIn = () => {
         } else if (response.successData.user.challenge === 'solver') {
           navigate('/challenges');
         }
+      } else {
+        toast.error(response.response.data.message);
+        setLoading(false);
+        setError({
+          email: true,
+          password: true,
+        });
       }
     }
+  };
+  const responseGoogle = response => {
+    console.log('hey', response);
   };
 
   return (
     <>
-      {/* <CustomToast></CustomToast> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="text-center my-lg-0 my-3">
         <img
           src={accountAuth}
@@ -80,7 +102,17 @@ const SignIn = () => {
             Please sign into your account to continue with your project
           </p>
           <div className="my-lg-4 my-2 d-flex flex-wrap justify-content-between">
-            <button className="account-auth-btns">Sign up with Google</button>
+            {/* <button className="account-auth-btns"> */}
+            <GoogleLogin
+              className="account-auth-btns"
+              clientId="1024862251961-c69lv4b0lj6q0oi8shr01cn9vvqt30vg.apps.googleusercontent.com"
+              buttonText="Sign up with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
+
+            {/* </button> */}
             <button className="account-auth-btns">Sign up with Facebook</button>
           </div>
           <form>
@@ -95,7 +127,7 @@ const SignIn = () => {
               />
               {error.email && (
                 <span className="text-danger ml-2 w-100">
-                  Please Enter Email
+                  Please Enter Valid Email
                 </span>
               )}
             </div>
@@ -110,7 +142,7 @@ const SignIn = () => {
               />
               {error.password && (
                 <span className="text-danger ml-2 w-100">
-                  Please Enter Password
+                  Please Enter Valid Password
                 </span>
               )}
             </div>
@@ -146,3 +178,7 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+// "1024862251961-c69lv4b0lj6q0oi8shr01cn9vvqt30vg.apps.googleusercontent.com" : Clientid
+
+// "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": secrete

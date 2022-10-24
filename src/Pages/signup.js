@@ -16,12 +16,13 @@ const Signup = () => {
     city: '',
     phone: '',
     challenge: '',
-    interested_challenges: 'test test',
+    interested_challenges: '',
     prefered_challenges: [],
-    interested_challenges_keywords: 'test test test',
+    interested_challenges_keywords: '',
     email: '',
     password: '',
   });
+
   const navigate = useNavigate();
   return (
     <>
