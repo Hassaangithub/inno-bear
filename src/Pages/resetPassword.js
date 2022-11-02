@@ -37,7 +37,7 @@ const ResetPassword = () => {
       <div
         className="right_main pr-lg-3 pt-4 pb-5 bg-white"
         id="dashboardSidebarRightContent">
-        <TopContent />
+        <TopContent isProfile={true} />
         <div style={{paddingBottom: '351px'}}>
           <div className="profile m-5">
             <div className="profileInner m-5">
@@ -46,7 +46,7 @@ const ResetPassword = () => {
                 <p>Please enter a new password to reset your password</p>
                 <div className="form-row">
                   <div className="form-group col-md-6">
-                    <label for="currentPassword">Current Password</label>
+                    <label htmlFor="currentPassword">Current Password</label>
                     <input
                       type="password"
                       className="form-control"
@@ -55,7 +55,7 @@ const ResetPassword = () => {
                   </div>
                   <div className="form-group col-md-6"></div>
                   <div className="form-group col-md-6">
-                    <label for="newPassword">New Password</label>
+                    <label htmlFor="newPassword">New Password</label>
                     <input
                       type="password"
                       className="form-control"
@@ -64,7 +64,9 @@ const ResetPassword = () => {
                   </div>
                   <div className="form-group col-md-6"></div>
                   <div className="form-group col-md-6">
-                    <label for="confirmPassword">Confirm New Password</label>
+                    <label htmlFor="confirmPassword">
+                      Confirm New Password
+                    </label>
                     <input
                       type="password"
                       className="form-control"

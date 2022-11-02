@@ -42,7 +42,7 @@ const EditProfile = () => {
       <div
         className="right_main pr-lg-3 pt-4 pb-5 bg-white"
         id="dashboardSidebarRightContent">
-        <TopContent />
+        <TopContent isProfile={true} />
         <div style={{paddingBottom: '351px'}}>
           <div className="profile m-5">
             <div className="profileInner m-5">
