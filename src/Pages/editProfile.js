@@ -1,26 +1,14 @@
 import React from 'react';
-import AccountAuthLogo from '../images/account-auth-logo.png';
 import FluentPeople from '../images/fluent-people.png';
 import OutlineWork from '../images/outline-work.png';
 import Vector from '../images/Vector.png';
 import Vector1 from '../images/Vector-1.png';
-import Vector3 from '../images/Vector-3.png';
-import Vector4 from '../images/Vector-4.png';
-import Logout from '../images/logout.png';
-import NotificationBing from '../images/notification-bing.png';
-import UserPic from '../images/profile-img.png';
-import CelebPic from '../images/celeb.png';
-import EditIcon from '../images/edit-icon.png';
-import BinPic from '../images/bin.png';
-import Rectangle35 from '../images/rectangle-35.png';
-import Vector5 from '../images/vector-5.png';
-import Vector6 from '../images/vector-6.png';
-import Vector7 from '../images/vector-7.png';
 import {useNavigate} from 'react-router-dom';
-import {useEffect, useState} from 'react';
-import {fetchStats} from '../Services/dashboard';
-import {handleLogout} from '../utility';
 import DashboardSidebar from '../components/UserDashboard/DashboardSidebar';
+import TopContent from '../components/UserDashboard/TopContent';
+import Footer from '../components/Footer';
+import profileImg from '../images/profileeditimage.png';
+import editIcon from '../images/profileedit.png';
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -54,36 +42,91 @@ const EditProfile = () => {
       <div
         className="right_main pr-lg-3 pt-4 pb-5 bg-white"
         id="dashboardSidebarRightContent">
-        <div className="d-flex align-items-center col-lg-6 ml-lg-auto">
-          <button
-            className="d-lg-none d-md-inline-block btn mr-3"
-            id="menuToggle">
-            <span className="fa fa-bars text-white"></span>
-          </button>
-
-          <div className="navbar p-0 w-100">
-            <div className="dropdown ml-auto">
-              <a
-                className="p-0 dropdown-toggle"
-                role="button"
-                id="profContentBtn"
-                data-toggle="dropdown"
-                aria-expanded="false">
-                <img src={UserPic} className="profile-user-pic" />
-              </a>
-              <div className="dropdown-menu dropdown-menu-right animated-dropdown slideIn w-100 border-0 dark-box-shadow">
-                <b className="text-muted text-uppercase d-block mb-2 user-name-text">
-                  User Menu
-                </b>
-
-                <hr className="my-1" />
-                <a className="dropdown-item" onClick={handleLogout}>
-                  <span className="fa fa-sign-out-alt mr-2"></span>Logout
+        <TopContent />
+        <div style={{paddingBottom: '351px'}}>
+          <div className="profile m-5">
+            <div className="profileInner m-5">
+              <h1>Profile</h1>
+              <div className="profileEditImage">
+                <a href="">
+                  <img src={profileImg} alt="profile" />
+                </a>
+                <a href="" className="profileEdit">
+                  <img src={editIcon} alt="" />
                 </a>
               </div>
+
+              <form className="m-5 profileForm">
+                <div className="form-row">
+                  <div className="form-group col-md-6">
+                    <label htmlFor="inputfirstName">First Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputfirstName"
+                    />
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label htmlFor="inputlastName">Last Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputlastName"
+                    />
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label htmlFor="emailAddress">Email Address</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="emailAddress"
+                    />
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input type="number" className="form-control" id="phone" />
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label htmlFor="city">City</label>
+                    <input type="text" className="form-control" id="city" />
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label htmlFor="country">Country</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="country"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="profile m-5  ">
+            <div className="profileInner m-5">
+              <form className="m-5 profileForm">
+                <h3>Password</h3>
+                <p>Manage your Innobear Password</p>
+                <div className="form-row">
+                  <div className="form-group col-md-6">
+                    <label htmlFor="changePassword">Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="changePassword"
+                    />
+                  </div>
+                  <div className="form-group col-md-6">
+                    <button type="submit" className="btn changebtn">
+                      Change
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

@@ -65,11 +65,7 @@ const SignIn = () => {
       }
     }
   };
-  const responseGoogle = response => {
-    console.log('hey', response);
-  };
-
-  console.log('hello', process.env.REACT_APP_BASE_URL);
+  const responseGoogle = response => {};
 
   return (
     <>

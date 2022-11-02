@@ -78,7 +78,7 @@ const FundingSource = () => {
               />
               <label
                 className="my-1 custom-control-label pass-below-text"
-                for="chalOne">
+                htmlFor="chalOne">
                 Save my funding details for future challenges
               </label>
             </div>

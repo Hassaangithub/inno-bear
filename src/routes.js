@@ -19,6 +19,9 @@ import ViewTeams from './Pages/viewTeams';
 import CreateSolution from './Pages/CreateSolution';
 import FundingSource from './Pages/FundingSource';
 import EditProfile from './Pages/editProfile';
+import ResetPassword from './Pages/resetPassword';
+import NotificationSetting from './Pages/notificationSetting';
+import Support from './Pages/support';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -47,6 +50,9 @@ const Router = () => {
         <Route path="/host-Challenge" element={<HostChallenge />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/notification-setting" element={<NotificationSetting />} />
+        <Route path="/support" element={<Support />} />
       </Route>
       <Route path="/starter-kit" element={<StarterKit />} />
       <Route path="/faqs" element={<Faqs />} />
