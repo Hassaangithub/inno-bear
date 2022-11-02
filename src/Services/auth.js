@@ -3,7 +3,7 @@ import axios from 'axios';
 const login = async params =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/user-login',
+    url: `${process.env.REACT_APP_BASE_URL}/user-login`,
     data: params,
     headers: {'Content-Type': 'application/json'},
   })
@@ -17,7 +17,7 @@ const login = async params =>
 const registerUser = async params =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/user-register',
+    url: `${process.env.REACT_APP_BASE_URL}/user-register`,
     data: params,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -31,7 +31,7 @@ const registerUser = async params =>
 const registerUserStep1 = async params =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/create-account-step-1-validations',
+    url: `${process.env.REACT_APP_BASE_URL}/create-account-step-1-validations`,
     data: params,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -45,7 +45,7 @@ const registerUserStep1 = async params =>
 const registerUserStep2 = async params =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/create-account-step-2-validations',
+    url: `${process.env.REACT_APP_BASE_URL}/create-account-step-2-validations`,
     data: params,
     headers: {'Content-Type': 'multipart/form-data'},
   })

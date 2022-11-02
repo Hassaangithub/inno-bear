@@ -31,7 +31,11 @@ const Signup = () => {
           src={logo}
           alt="account-auth-logo"
           role="button"
-          onClick={() => navigate('/')}
+          onClick={() =>
+            localStorage.getItem('token')
+              ? navigate('/dashboard')
+              : navigate('/home')
+          }
         />
       </div>
       <div className="row mx-0 mb-lg-0 mb-4 pr-lg-4 account-auth-pg">

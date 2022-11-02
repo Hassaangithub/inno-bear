@@ -3,7 +3,7 @@ import axios from 'axios';
 const allChallenges = async =>
   axios({
     method: 'get',
-    url: 'https://innobearadmin.floor23digital.com/api/challenges',
+    url: `${process.env.REACT_APP_BASE_URL}/challenges`,
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
@@ -16,7 +16,7 @@ const allChallenges = async =>
 const singleChallenge = async id =>
   axios({
     method: 'get',
-    url: `https://innobearadmin.floor23digital.com/api/challenge?challenge_id=${id}`,
+    url: `${process.env.REACT_APP_BASE_URL}/challenge?challenge_id=${id}`,
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
@@ -29,7 +29,7 @@ const singleChallenge = async id =>
 const createChallenge = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/create-challenge',
+    url: `${process.env.REACT_APP_BASE_URL}/create-challenge`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -43,7 +43,7 @@ const createChallenge = async data =>
 const saveChallenge1 = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.comapi/save-challenge-step-1',
+    url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-1`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -58,7 +58,7 @@ const saveChallenge1 = async data =>
 const saveChallenge2 = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/save-challenge-step-2',
+    url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-2`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -73,7 +73,7 @@ const saveChallenge2 = async data =>
 const saveChallenge3 = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/save-challenge-step-3',
+    url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-3`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -88,7 +88,7 @@ const saveChallenge3 = async data =>
 const saveChallenge4 = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/save-challenge-step-4',
+    url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-4`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -103,7 +103,7 @@ const saveChallenge4 = async data =>
 const saveChallenge5 = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/save-challenge-step-5',
+    url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-5`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -118,7 +118,7 @@ const saveChallenge5 = async data =>
 const saveChallenge6 = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/save-challenge-step-6',
+    url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-6`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })
@@ -132,7 +132,7 @@ const saveChallenge6 = async data =>
 const saveChallenge7 = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/save-challenge-step-7',
+    url: `${process.env.REACT_APP_BASE_URL}/api/save-challenge-step-7`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })

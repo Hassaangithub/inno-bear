@@ -18,6 +18,7 @@ import ChallengeDetail from './Pages/challengeDetail';
 import ViewTeams from './Pages/viewTeams';
 import CreateSolution from './Pages/CreateSolution';
 import FundingSource from './Pages/FundingSource';
+import EditProfile from './Pages/editProfile';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -28,8 +29,8 @@ export const ProtectedRoutes = () => {
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/sign-in" element={<SignIn />} />
+      <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/challenges" element={<ExploreChallenges />} />
@@ -44,6 +45,8 @@ const Router = () => {
       />
       <Route element={<ProtectedRoutes />}>
         <Route path="/host-Challenge" element={<HostChallenge />} />
+        <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
       </Route>
       <Route path="/starter-kit" element={<StarterKit />} />
       <Route path="/faqs" element={<Faqs />} />

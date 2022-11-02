@@ -1,14 +1,4 @@
 import React from 'react';
-import AccountAuthLogo from '../images/account-auth-logo.png';
-import FluentPeople from '../images/fluent-people.png';
-import OutlineWork from '../images/outline-work.png';
-import Vector from '../images/Vector.png';
-import Vector1 from '../images/Vector-1.png';
-import Vector3 from '../images/Vector-3.png';
-import Vector4 from '../images/Vector-4.png';
-import Logout from '../images/logout.png';
-import NotificationBing from '../images/notification-bing.png';
-import UserPic from '../images/profile-img.png';
 import CelebPic from '../images/celeb.png';
 import EditIcon from '../images/edit-icon.png';
 import BinPic from '../images/bin.png';
@@ -16,107 +6,83 @@ import Rectangle35 from '../images/rectangle-35.png';
 import Vector5 from '../images/vector-5.png';
 import Vector6 from '../images/vector-6.png';
 import Vector7 from '../images/vector-7.png';
+import FluentPeople from '../images/fluent-people.png';
+import OutlineWork from '../images/outline-work.png';
+import Vector from '../images/Vector.png';
+import Vector1 from '../images/Vector-1.png';
+import Vector3 from '../images/Vector-3.png';
+import Vector4 from '../images/Vector-4.png';
+import {useNavigate} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {fetchStats} from '../Services/dashboard';
+import TopContent from '../components/UserDashboard/TopContent';
+import DashboardSidebar from '../components/UserDashboard/DashboardSidebar';
 
 const UserDashboard = () => {
+  const [dashboardStats, setDashboardStats] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getStats = async () => {
+      const response = await fetchStats();
+
+      console.log(response);
+    };
+    getStats();
+  }, []);
+
   return (
     <>
-      <div id="sideNavOverlay" className="d-none"></div>
-      <div id="dashboardSidebar">
-        <img src={AccountAuthLogo} />
-        <aside className="side-nav">
-          <ul className="mb-0 side-nav-links">
-            <li className="position-relative">
-              <a href="#" className="d-block sidebar-links">
-                <img src={FluentPeople} alt="fluent-people" className="mr-2" />
-                Team
-              </a>
-            </li>
-            <li className="position-relative active">
-              <a href="#" className="d-block sidebar-links">
-                <img src={OutlineWork} alt="outline-work" className="mr-2" />
-                Challenges
-              </a>
-            </li>
-            <li className="position-relative">
-              <a href="#" className="d-block sidebar-links">
-                <img src={Vector} alt="Vector" className="mr-2" />
-                Innovation Pipiline
-              </a>
-            </li>
-            <li className="position-relative">
-              <a href="#" className="d-block sidebar-links">
-                <img src={Vector1} alt="Vector-1" className="mr-2" />
-                Messages
-              </a>
-            </li>
-            <li className="position-relative">
-              <a href="#" className="d-block sidebar-links">
-                <img src={Vector3} alt="Vector-3" className="mr-2" />
-                Admin Settings
-              </a>
-            </li>
-            <li className="position-relative">
-              <a href="#" className="d-block sidebar-links">
-                <img src={Vector4} alt="Vector-4" className="mr-2" />
-                Innovation Library
-              </a>
-            </li>
-            <li className="position-relative">
-              <a href="#" className="d-block sidebar-links">
-                <img src={Logout} alt="logout" className="mr-2" />
-                Log out
-              </a>
-            </li>
-          </ul>
-        </aside>
-      </div>
+      <DashboardSidebar
+        list={[
+          {
+            img: FluentPeople,
+            title: 'Team',
+            path: '/team',
+          },
+          {
+            img: OutlineWork,
+            title: 'Challenges',
+            path: '/challenges',
+          },
+          {
+            img: Vector,
+            title: 'Innovation Pipiline',
+            path: '/innovation-pipiline',
+          },
+          {
+            img: Vector1,
+            title: 'Messages',
+            path: '/messages',
+          },
+          {
+            img: Vector3,
+            title: 'Admin Settings',
+            path: '/admin-settings',
+          },
+          {
+            img: Vector4,
+            title: 'Innovation Library',
+            path: '/innovation-library',
+          },
+        ]}
+      />
       <div
         className="right_main pr-lg-3 pt-4 pb-5"
         id="dashboardSidebarRightContent">
-        <div className="d-flex align-items-center col-lg-6 ml-lg-auto">
-          <button
-            className="d-lg-none d-md-inline-block btn mr-3"
-            id="menuToggle">
-            <span className="fa fa-bars text-white"></span>
-          </button>
-          <input
-            type="text"
-            className="form-control search-field"
-            placeholder="Search for challenges here"
-          />
-          <div className="mx-4 notifications-holder">
-            <img src={NotificationBing} alt="notification-bing" />
-          </div>
-          <div className="navbar p-0">
-            <div className="dropdown ml-auto">
-              <a
-                className="p-0 dropdown-toggle"
-                role="button"
-                id="profContentBtn"
-                data-toggle="dropdown"
-                aria-expanded="false">
-                <img src={UserPic} className="profile-user-pic" />
-              </a>
-              <div className="dropdown-menu dropdown-menu-right animated-dropdown slideIn w-100 border-0 dark-box-shadow">
-                <b className="text-muted text-uppercase d-block mb-2 user-name-text">
-                  User Menu
-                </b>
-                <a className="dropdown-item" href="#">
-                  <span className="fa fa-user-alt mr-2"></span>My Profile
-                </a>
-                <hr className="my-1" />
-                <a className="dropdown-item" href="#">
-                  <span className="fa fa-sign-out-alt mr-2"></span>Logout
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TopContent />
         <div className="my-4 px-4 d-flex flex-wrap justify-content-between align-items-center">
           <h3 className="mb-0 user-name">
             Hello, Jennifer! <img src={CelebPic} alt="celeb" className="ml-3" />
           </h3>
-          <button className="btn text-white">Host a Challenge</button>
+          <button
+            className="btn text-white"
+            onClick={e => {
+              e.preventDefault();
+              navigate('/host-Challenge');
+            }}>
+            Host a Challenge
+          </button>
         </div>
         <div className="row col-lg-11">
           <div className="col-md-4 col-sm-6 mb-md-0 mb-3">
@@ -267,7 +233,7 @@ const UserDashboard = () => {
                       />
                       <label
                         className="my-1 custom-control-label pass-below-text"
-                        for="chal1">
+                        htmlFor="chal1">
                         AI NASA Challenge
                       </label>
                     </div>
@@ -303,7 +269,7 @@ const UserDashboard = () => {
                       />
                       <label
                         className="my-1 custom-control-label pass-below-text"
-                        for="chal2">
+                        htmlFor="chal2">
                         AI NASA Challenge
                       </label>
                     </div>
@@ -339,7 +305,7 @@ const UserDashboard = () => {
                       />
                       <label
                         className="my-1 custom-control-label pass-below-text"
-                        for="chal2">
+                        htmlFor="chal2">
                         AI NASA Challenge
                       </label>
                     </div>
@@ -375,7 +341,7 @@ const UserDashboard = () => {
                       />
                       <label
                         className="my-1 custom-control-label pass-below-text"
-                        for="chal2">
+                        htmlFor="chal2">
                         AI NASA Challenge
                       </label>
                     </div>
@@ -411,7 +377,7 @@ const UserDashboard = () => {
                       />
                       <label
                         className="my-1 custom-control-label pass-below-text"
-                        for="chal2">
+                        htmlFor="chal2">
                         AI NASA Challenge
                       </label>
                     </div>

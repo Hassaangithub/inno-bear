@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
+import profileImg from '../images/profile-img.png';
 
 const TopNav = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const TopNav = () => {
 
   const navItems = [
     {
-      path: '/',
+      path: '/home',
       title: 'Home',
       key: '1',
     },
@@ -60,7 +61,7 @@ const TopNav = () => {
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation">
-        <span className="fa fa-bars"></span>
+        <span className="fa fa-bars text-white"></span>
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -86,9 +87,32 @@ const TopNav = () => {
             </Link>
           </form>
         ) : (
-          <Button className="btn sign-in-btn" onClick={handleLogout}>
-            Logout
-          </Button>
+          <div className="right_main navbar p-0 rounded-circle">
+            <div className="dropdown ml-auto">
+              <a
+                className="p-0 dropdown-toggle"
+                role="button"
+                id="profContentBtn"
+                data-toggle="dropdown"
+                aria-expanded="false">
+                <img src={profileImg} className="profile-user-pic" />
+              </a>
+              <div className="dropdown-menu dropdown-menu-right animated-dropdown slideIn w-100 border-0 dark-box-shadow">
+                <b className="text-muted text-uppercase d-block mb-2 user-name-text">
+                  User Menu
+                </b>
+                <a
+                  className="dropdown-item"
+                  onClick={() => navigate('/edit-profile')}>
+                  <span className="fa fa-user-alt mr-2"></span>My Profile
+                </a>
+                <hr className="my-1" />
+                <a className="dropdown-item" onClick={handleLogout}>
+                  <span className="fa fa-sign-out-alt mr-2"></span>Logout
+                </a>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </nav>

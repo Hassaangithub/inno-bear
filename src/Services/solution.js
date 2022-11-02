@@ -3,7 +3,7 @@ import axios from 'axios';
 const createSolution = async data =>
   axios({
     method: 'post',
-    url: 'https://innobearadmin.floor23digital.com/api/create-solution',
+    url: `${process.env.REACT_APP_BASE_URL}/create-solution`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })

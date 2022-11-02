@@ -1,6 +1,6 @@
 /* eslint no-use-before-define: 0 */ // --> OFF
 
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
 import signInStepSide from '../images/sign-in-step-side-img.png';
@@ -47,11 +47,14 @@ const SignIn = () => {
         localStorage.setItem('token', response.successData.user.accessToken);
         localStorage.setItem('userId', response.successData.user.id);
         setLoading(false);
-        if (response.successData.user.challenge === 'host') {
-          navigate('/starter-kit');
-        } else if (response.successData.user.challenge === 'solver') {
-          navigate('/challenges');
+        if (response.successData.user) {
+          navigate('/dashboard');
         }
+        // if (response.successData.user.challenge === 'host') {
+        //   navigate('/starter-kit');
+        // } else if (response.successData.user.challenge === 'solver') {
+        //   navigate('/challenges');
+        // }
       } else {
         toast.error(response.response.data.message);
         setLoading(false);
@@ -65,6 +68,8 @@ const SignIn = () => {
   const responseGoogle = response => {
     console.log('hey', response);
   };
+
+  console.log('hello', process.env.REACT_APP_BASE_URL);
 
   return (
     <>
@@ -84,7 +89,11 @@ const SignIn = () => {
         <img
           src={accountAuth}
           alt="account-auth-logo"
-          onClick={() => navigate('/')}
+          onClick={() =>
+            localStorage.getItem('token')
+              ? navigate('/dashboard')
+              : navigate('/home')
+          }
           role="button"
         />
       </div>
@@ -102,7 +111,6 @@ const SignIn = () => {
             Please sign into your account to continue with your project
           </p>
           <div className="my-lg-4 my-2 d-flex flex-wrap justify-content-between">
-            {/* <button className="account-auth-btns"> */}
             <GoogleLogin
               className="account-auth-btns"
               clientId="1024862251961-c69lv4b0lj6q0oi8shr01cn9vvqt30vg.apps.googleusercontent.com"
@@ -111,8 +119,6 @@ const SignIn = () => {
               onFailure={responseGoogle}
               cookiePolicy={'single_host_origin'}
             />
-
-            {/* </button> */}
             <button className="account-auth-btns">Sign up with Facebook</button>
           </div>
           <form>
