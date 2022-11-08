@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {Children, useState} from 'react';
 import AccountAuthLogo from '../../images/account-auth-logo.png';
 import {Link, useNavigate} from 'react-router-dom';
 import Logout from '../../images/logout.png';
 import {handleLogout} from '../../utility';
 import CustomModal from '../CustomModal';
+import Footer from '../Footer';
+import TopContent from './TopContent';
 
-const DashboardSidebar = ({list}) => {
+const DashboardSidebar = ({list, footer, children}) => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -58,6 +60,13 @@ const DashboardSidebar = ({list}) => {
           </ul>
         </aside>
       </div>
+      <div
+        className="right_main pr-lg-3 pt-4 pb-5"
+        id="dashboardSidebarRightContent">
+        <TopContent />
+        {children}
+      </div>
+      {footer && <Footer />}
     </>
   );
 };

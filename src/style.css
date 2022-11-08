@@ -13,6 +13,130 @@
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
 }
+/* BY MOHSAN  STYLE*/
+.badge {
+  border-radius: 15px;
+  padding: 8px 16px;
+}
+.badge-closed {
+  background: rgba(255, 91, 91, 0.15);
+  color: #ff5b5b;
+}
+.badge-active {
+  background: rgba(46, 214, 163, 0.15);
+  color: #00a389;
+}
+.grey-txt {
+  color: #5f5f5f;
+}
+.user-pic {
+  background: #5f5f5f;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  margin-left: -10px;
+}
+.btn-post {
+  background: linear-gradient(84.22deg, var(--theme-clr) 5.65%, #1f71d0 93.53%),
+    var(--theme-clr);
+  border: 1px solid #dddddd;
+  box-shadow: 0px 4px 16px rgb(96 96 96 / 15%);
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px 30px;
+  font-weight: 700;
+}
+.btn-edit {
+  background: #fff;
+  border: 1px solid #dddddd;
+  box-shadow: 0px 4px 16px rgb(96 96 96 / 15%);
+  border-radius: 10px;
+  color: var(--theme-clr);
+  padding: 10px 26px;
+  font-weight: 700;
+}
+.btn-edit:hover {
+  color: #fff;
+  background: linear-gradient(84.22deg, var(--theme-clr) 5.65%, #1f71d0 93.53%),
+    var(--theme-clr);
+}
+.pdf-icon {
+  font-size: 100px;
+  color: red;
+  text-align: center;
+}
+.word-icon {
+  font-size: 100px;
+  color: #000;
+  text-align: center;
+}
+.shared-by {
+  width: 50px;
+  height: 50px;
+}
+.hr {
+  height: 3px;
+  width: 100%;
+  background-color: #dddddd;
+}
+.check-done {
+  color: var(--theme-clr);
+}
+.icon-section {
+  width: 5%;
+}
+.card-section {
+  width: 95%;
+}
+
+.side-contact-block {
+  background: #fafcfe;
+  height: 100vh;
+}
+.contacr-details {
+  padding: 100px;
+}
+.contact-form label {
+  font-weight: bold;
+}
+.rules-border {
+  border: 1px solid #5f5f5f;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 17px;
+}
+.participant {
+  border: 6px solid #d3e5fc;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.open-slots {
+  color: var(--theme-clr);
+}
+.search-field {
+  height: calc(1.5em + 0.75rem + 2px) !important;
+}
+.community-media-img {
+  width: 50px;
+  height: 50px;
+}
+.btn-answer {
+  background: linear-gradient(84.22deg, var(--theme-clr) 5.65%, #1f71d0 93.53%),
+    var(--theme-clr);
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  padding: 10px 24px;
+  box-shadow: 0 2px 10px var(--theme-light-box-shadow);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+/* END BY MOHSAN STYLE */
 p {
   color: #5f5f5f;
 }
@@ -868,6 +992,7 @@ a,
   font-family: 'Raleway', sans-serif;
   padding: 16px 30px;
   color: #737373;
+  font-size: 16px;
   font-weight: 600;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -982,8 +1107,9 @@ a,
   color: #2e3a96 !important;
 }
 #dashboardSidebar {
+  height: 100vh;
   background-color: #fff;
-  height: 100%;
+  /* height: 100%; */
   left: 0;
   position: fixed;
   transition: margin 0.25s ease-out;

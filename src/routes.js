@@ -22,6 +22,8 @@ import EditProfile from './Pages/editProfile';
 import ResetPassword from './Pages/resetPassword';
 import NotificationSetting from './Pages/notificationSetting';
 import Support from './Pages/support';
+import Messages from './Pages/messages';
+import AdminSettings from './Pages/adminSettings';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -47,20 +49,26 @@ const Router = () => {
         element={<FundingSource />}
       />
       <Route element={<ProtectedRoutes />}>
+        <Route
+          path="/challenges/create-solution"
+          element={<CreateSolution />}
+        />
+        <Route path="/user-dashboard" element={<UserDashboard />} />
+
         <Route path="/host-Challenge" element={<HostChallenge />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/notification-setting" element={<NotificationSetting />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/dashboard/messages" element={<Messages />} />
+        <Route path="/dashboard/admin-settings" element={<AdminSettings />} />
       </Route>
       <Route path="/starter-kit" element={<StarterKit />} />
       <Route path="/faqs" element={<Faqs />} />
       <Route path="/help" element={<Help />} />
       <Route path="/privacy-&-policy" element={<PrivacyAndPolicy />} />
       <Route path="/about-us" element={<AboutUs />} />
-      <Route path="/challenges/create-solution" element={<CreateSolution />} />
-      <Route path="/user-dashboard" element={<UserDashboard />} />
     </Routes>
   );
 };
