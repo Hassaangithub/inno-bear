@@ -30,7 +30,7 @@ const TeamDetail = () => {
             <h6>Actively looking for members</h6>
           </div>
           <div className="text-md-left text-center">
-            <button className="btn">Request to join team</button>
+            <button className="btn text-white">Request to join team</button>
           </div>
         </div>
         <h2 className="mt-md-5 text-center">Meet the team</h2>

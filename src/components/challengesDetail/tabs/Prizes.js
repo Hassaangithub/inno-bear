@@ -10,17 +10,49 @@ const Prizes = () => {
       <div className="mb-md-5 mb-3">
         <h3 className="mb-3">Prizes</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam feugiat
-          vulputate ullamcorper porta. Odio accumsan, cras commodo dignissim
-          amet vel. Gravida cursus duis nulla velit elit. Sit nunc ipsum quis
-          et. Non amet dignissim convallis in amet, proin pellentesque eget vel.
-          Varius at sit scelerisque gravida volutpat nulla id. Turpis sagittis
-          est vivamus eget. Potenti tortor arcu sit sapien faucibus vestibulum
-          tempor penatibus. Adipiscing vestibulum, quam convallis amet.
-          Scelerisque ultrices sit arcu bibendum dignissim pellentesque. Lectus
-          tellus nibh diam non tellus. Semper congue urna, vulputate nullam amet
-          consectetur mattis leo. Ultricies condimentum convallis vulputate a.
-          Et, cursus diam massa at feugiat.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
+          similique et dolor eius sunt natus, accusantium placeat corporis
+          beatae <strong>75,000 USD</strong>
+        </p>
+      </div>
+      <div class="mb-3">
+        <table class="table table-striped table-borderless table-responsive">
+          <thead>
+            <tr>
+              <th>Award</th>
+              <th>Curency</th>
+              <th>Amount</th>
+              <th>Number of Awards</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>USD</td>
+              <td>35,000</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>USD</td>
+              <td>10,000</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>USD</td>
+              <td>5,000</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mb-3">
+        <h3>Aditional Prize Information</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ea
+          soluta, in sit dolorem ipsum temporibus ipsam? Consectetur repudiandae
+          et alias expedita soluta debitis aut eum illo quae. Odit, voluptates.
         </p>
       </div>
     </div>

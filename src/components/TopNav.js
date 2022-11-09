@@ -4,7 +4,7 @@ import {Link, useLocation, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
 import profileImg from '../images/profile-img.png';
 
-const TopNav = () => {
+const TopNav = ({dashboard}) => {
   const navigate = useNavigate();
   let location = useLocation();
   const pathName = '/' + location.pathname.split('/')[1];
@@ -65,21 +65,23 @@ const TopNav = () => {
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mx-auto">
-          {navItems.map((item, index) => (
-            <li
-              key={index}
-              className={`nav-item ${
-                ((item.path === 'Home' && pathName === '/') ||
-                  item.path === pathName) &&
-                'active'
-              }`}>
-              <Link to={item.path} className="nav-link">
-                {item.title} <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {!dashboard && (
+          <ul className="navbar-nav mx-auto">
+            {navItems.map((item, index) => (
+              <li
+                key={index}
+                className={`nav-item ${
+                  ((item.path === 'Home' && pathName === '/') ||
+                    item.path === pathName) &&
+                  'active'
+                }`}>
+                <Link to={item.path} className="nav-link">
+                  {item.title} <span className="sr-only">(current)</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
         {!user ? (
           <form className="my-lg-2 my-lg-0 d-flex justify-content-center">
             <Link to="/sign-in" className="btn sign-in-btn">
@@ -87,7 +89,9 @@ const TopNav = () => {
             </Link>
           </form>
         ) : (
-          <div className="right_main navbar p-0 rounded-circle">
+          <div
+            className="right_main navbar p-0 rounded-circle"
+            style={{marginLeft: 'auto'}}>
             <div className="dropdown ml-auto">
               <a
                 className="p-0 dropdown-toggle"

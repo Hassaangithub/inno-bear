@@ -9,19 +9,42 @@ const Timelines = () => {
       aria-labelledby="timelineTab">
       <div className="mb-md-5 mb-3">
         <h3 className="mb-3">Timeline</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam feugiat
-          vulputate ullamcorper porta. Odio accumsan, cras commodo dignissim
-          amet vel. Gravida cursus duis nulla velit elit. Sit nunc ipsum quis
-          et. Non amet dignissim convallis in amet, proin pellentesque eget vel.
-          Varius at sit scelerisque gravida volutpat nulla id. Turpis sagittis
-          est vivamus eget. Potenti tortor arcu sit sapien faucibus vestibulum
-          tempor penatibus. Adipiscing vestibulum, quam convallis amet.
-          Scelerisque ultrices sit arcu bibendum dignissim pellentesque. Lectus
-          tellus nibh diam non tellus. Semper congue urna, vulputate nullam amet
-          consectetur mattis leo. Ultricies condimentum convallis vulputate a.
-          Et, cursus diam massa at feugiat.
-        </p>
+        <div className="row mb-3">
+          <div className="col-lg-1 mb-2 d-flex align-items-center">
+            <i className="fas fa-check check-done"> Done</i>
+          </div>
+          <div className="col-lg-11 ">
+            <div className="card  p-3">
+              <h5>Challenge Launch</h5>
+              <p>05/21/22 07:00 AM +6</p>
+            </div>
+          </div>
+          <div className="col-lg-12 mb-3"></div>
+          <div className="col-lg-2 mb-2 d-flex justify-content-center align-items-center ">
+            <i className="fas fa-calendar text-muted text-center">
+              {' '}
+              Not Started
+            </i>
+          </div>
+          <div className="col-lg-10">
+            <div className="card p-3 ">
+              <h5>Challenge Submission</h5>
+              <p>05/21/22 07:00 AM +6</p>
+            </div>
+          </div>
+          <div className="col-lg-12 mb-3"></div>
+          <div className="col-lg-2 mb-2 d-flex justify-content-center align-items-center ">
+            <i className="fas fa-calendar text-muted text-center">
+              Not Started
+            </i>
+          </div>
+          <div className="col-lg-10">
+            <div className="card p-3 ">
+              <h5>Closing Period</h5>
+              <p>05/21/22 07:00 AM +6</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

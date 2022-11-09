@@ -9,19 +9,36 @@ const Resoucerses = () => {
       aria-labelledby="timelineTab">
       <div className="mb-md-5 mb-3">
         <h3 className="mb-3">Resources</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam feugiat
-          vulputate ullamcorper porta. Odio accumsan, cras commodo dignissim
-          amet vel. Gravida cursus duis nulla velit elit. Sit nunc ipsum quis
-          et. Non amet dignissim convallis in amet, proin pellentesque eget vel.
-          Varius at sit scelerisque gravida volutpat nulla id. Turpis sagittis
-          est vivamus eget. Potenti tortor arcu sit sapien faucibus vestibulum
-          tempor penatibus. Adipiscing vestibulum, quam convallis amet.
-          Scelerisque ultrices sit arcu bibendum dignissim pellentesque. Lectus
-          tellus nibh diam non tellus. Semper congue urna, vulputate nullam amet
-          consectetur mattis leo. Ultricies condimentum convallis vulputate a.
-          Et, cursus diam massa at feugiat.
-        </p>
+        <div className="row mb-3">
+          <div className="col-lg-3">
+            <div className="card p-3">
+              <i className="fas fa-file-pdf pdf-icon"></i>
+              <div className=" d-flex justify-content-between mt-5">
+                <small className="text-muted">Challenge Brief</small>
+                <small className="text-muted">10kb</small>
+              </div>
+              <div className="mt-3">
+                <a href="">
+                  Download <i className="fas fa-download"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-3">
+            <div className="card p-3">
+              <i className="fas fa-file-word word-icon"></i>
+              <div className=" d-flex justify-content-between mt-5">
+                <small className="text-muted">Challenge Brief</small>
+                <small className="text-muted">10kb</small>
+              </div>
+              <div className="mt-3">
+                <a href="">
+                  Download <i className="fas fa-download"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

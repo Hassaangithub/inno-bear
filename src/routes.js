@@ -24,6 +24,10 @@ import NotificationSetting from './Pages/notificationSetting';
 import Support from './Pages/support';
 import Messages from './Pages/messages';
 import AdminSettings from './Pages/adminSettings';
+import AllOngoingChallenges from './Pages/allOngoingChallenges';
+import ViewOngoingChallenge from './Pages/ViewOngoingChallenge';
+import ViewSubmittedSolution from './Pages/viewSubmittedSolution';
+import AllSubmittedSolutions from './Pages/allSubmittedSolutions';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -63,6 +67,17 @@ const Router = () => {
         <Route path="/support" element={<Support />} />
         <Route path="/dashboard/messages" element={<Messages />} />
         <Route path="/dashboard/admin-settings" element={<AdminSettings />} />
+        <Route path="/ongoing-challenges" element={<AllOngoingChallenges />} />
+        <Route path="/submitted-solution" element={<AllSubmittedSolutions />} />
+        <Route
+          path="/view-ongoing-challenge"
+          element={<ViewOngoingChallenge />}
+        />
+
+        <Route
+          path="/view-submitted-solution"
+          element={<ViewSubmittedSolution />}
+        />
       </Route>
       <Route path="/starter-kit" element={<StarterKit />} />
       <Route path="/faqs" element={<Faqs />} />

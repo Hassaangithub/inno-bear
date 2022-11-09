@@ -2,7 +2,6 @@ import React from 'react';
 import CelebPic from '../images/celeb.png';
 import EditIcon from '../images/edit-icon.png';
 import BinPic from '../images/bin.png';
-
 import FluentPeople from '../images/fluent-people.png';
 import OutlineWork from '../images/outline-work.png';
 import Vector from '../images/Vector.png';
@@ -12,11 +11,9 @@ import Vector4 from '../images/Vector-4.png';
 import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {fetchStats} from '../Services/dashboard';
-import TopContent from '../components/UserDashboard/TopContent';
 import DashboardSidebar from '../components/UserDashboard/DashboardSidebar';
 import MyChallenges from '../components/UserDashboard/MyChallenges';
 import SubmittedChallengesCard from '../components/UserDashboard/SubmittedChallengesCard';
-import OtherChallenges from '../components/UserDashboard/OtherChallengesCard';
 import OtherChallengesCard from '../components/UserDashboard/OtherChallengesCard';
 
 const sidebarlist = [
@@ -98,7 +95,7 @@ const UserDashboard = () => {
         <div
           className="col-md-4 col-sm-6 mb-md-0 mb-3"
           role="button"
-          onClick={() => navigate('/submitted-challenges')}>
+          onClick={() => navigate('/submitted-solution')}>
           <div className="block-mode">
             <a href="#" className="block-mode-icon block-mode-icon2">
               <img src={BinPic} alt="bin" />
