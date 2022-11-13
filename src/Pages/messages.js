@@ -6,9 +6,6 @@ import Vector from '../images/Vector.png';
 import Vector1 from '../images/Vector-1.png';
 import Vector3 from '../images/Vector-3.png';
 import Vector4 from '../images/Vector-4.png';
-import TopContent from '../components/UserDashboard/TopContent';
-import Ellipse3 from '../images/Ellipse-3.png';
-import Footer from '../components/Footer';
 import MessageBody from '../components/Messages';
 
 const Messages = () => {
@@ -19,7 +16,7 @@ const Messages = () => {
           {
             img: FluentPeople,
             title: 'Team',
-            path: '/team',
+            path: '/dashboard/team',
           },
           {
             img: OutlineWork,
@@ -39,7 +36,7 @@ const Messages = () => {
           {
             img: Vector3,
             title: 'Admin Settings',
-            path: '/admin-settings',
+            path: '/dashboard/admin-settings',
           },
           {
             img: Vector4,

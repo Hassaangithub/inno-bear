@@ -7,6 +7,9 @@ import signInStepSide from '../images/sign-in-step-side-img.png';
 import {login} from '../Services/auth';
 import {toast, ToastContainer} from 'react-toastify';
 import GoogleLogin from 'react-google-login';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {userData} from '../recoil/atom';
+import {contains} from 'jquery';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -17,6 +20,7 @@ const SignIn = () => {
     password: false,
   });
   const [loading, setLoading] = useState(false);
+  const setUserData = useSetRecoilState(userData);
 
   const handleEmail = e => {
     if (e.target.value) {
@@ -46,6 +50,9 @@ const SignIn = () => {
       if (response.successData) {
         localStorage.setItem('token', response.successData.user.accessToken);
         localStorage.setItem('userId', response.successData.user.id);
+        localStorage.setItem('email', response.successData.user.email);
+
+        setUserData(response.successData.user.email);
         setLoading(false);
         if (response.successData.user) {
           navigate('/dashboard');

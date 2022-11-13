@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import DashboardSidebar from '../components/UserDashboard/DashboardSidebar';
 import FluentPeople from '../images/fluent-people.png';
 import OutlineWork from '../images/outline-work.png';
@@ -7,18 +7,20 @@ import Vector1 from '../images/Vector-1.png';
 import Vector3 from '../images/Vector-3.png';
 import Vector4 from '../images/Vector-4.png';
 import compass from '../images/compas.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import MyChallenges from '../components/UserDashboard/MyChallenges';
 import editIcon from '../images/edit-icon.png';
 import Clarity from '../images/clarity-administrator-line.png';
 import ProjectAdmin from '../components/UserDashboard/ProjectAdmin';
 import SubmissionOverTime from '../components/UserDashboard/SubmissionOverTime';
+import {fetchStats, fetchSubmittedIdeas} from '../Services/dashboard';
+import {toast, ToastContainer} from 'react-toastify';
 
 const sidebarlist = [
   {
     img: FluentPeople,
     title: 'Team',
-    path: '/team',
+    path: '/dashboard/team',
   },
   {
     img: OutlineWork,
@@ -48,8 +50,45 @@ const sidebarlist = [
 ];
 
 const AdminSettings = () => {
+  const navigate = useNavigate();
+  const [data, setData] = useState();
+  const [dashboardStats, setDashboardStats] = useState();
+  useEffect(() => {
+    const getStats = async () => {
+      const response = await fetchStats();
+      if (response.successData) {
+        setDashboardStats(response.successData);
+      } else {
+        toast.error(response.response.data.message);
+      }
+    };
+
+    const getData = async () => {
+      const response = await fetchSubmittedIdeas();
+      if (response.successData) {
+        setData(response.successData);
+      } else {
+        toast.error(response.response.data.message);
+      }
+    };
+
+    getStats();
+    getData();
+  }, []);
   return (
     <DashboardSidebar list={sidebarlist}>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="pl-3">
         <Link to="/challenges">
           <div
@@ -63,7 +102,10 @@ const AdminSettings = () => {
           </div>
         </Link>
         <div className="row col-lg-11">
-          <div className="col-md-4 col-sm-6 mb-md-0 mb-3">
+          <div
+            role="button"
+            onClick={() => navigate('/user-challenges')}
+            className="col-md-4 col-sm-6 mb-md-0 mb-3">
             <div className="block-mode">
               <a href="#" className="block-mode-icon block-mode-icon1">
                 <img src={editIcon} alt="edit-icon" />
@@ -71,7 +113,9 @@ const AdminSettings = () => {
               <p className="my-2 d-flex align-items-center">
                 Total challenges <span className="fa fa-question ml-3"></span>
               </p>
-              <h2 className="font-IBM">24</h2>
+              <h2 className="font-IBM">
+                {dashboardStats?.totalUserChallenges}
+              </h2>
             </div>
           </div>
           <div className="col-md-4 col-sm-6 mb-md-0 mb-3">
@@ -90,7 +134,7 @@ const AdminSettings = () => {
           <SubmissionOverTime />
           <ProjectAdmin />
         </div>
-        <MyChallenges />
+        <MyChallenges myChallenges={data?.MyChallenges} />
       </div>
     </DashboardSidebar>
   );

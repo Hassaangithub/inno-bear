@@ -3,7 +3,7 @@ import Vector5 from '../../images/vector-5.png';
 import Vector6 from '../../images/vector-6.png';
 import Vector7 from '../../images/vector-7.png';
 
-const MyChallenges = () => {
+const MyChallenges = ({myChallenges}) => {
   return (
     <div className="row mx-0 col-12">
       <div className="col-12 my-4">
@@ -21,186 +21,44 @@ const MyChallenges = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div className="w-100 custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="chal1"
-                  />
-                  <label
-                    className="my-1 custom-control-label pass-below-text"
-                    htmlFor="chal1">
-                    AI NASA Challenge
-                  </label>
-                </div>
-              </td>
-              <td>1/7/2021</td>
-              <td>
-                <b>$54,000</b>
-              </td>
-              <td>
-                <a href="#" className="badge badge-in-progress">
-                  In-progress
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src={Vector5} alt="vector-5" />
-                </a>
-                <a href="#">
-                  <img src={Vector6} alt="vector-6" />
-                </a>
-                <a href="#">
-                  <img src={Vector7} alt="vector-7" />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="w-100 custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="chal2"
-                  />
-                  <label
-                    className="my-1 custom-control-label pass-below-text"
-                    htmlFor="chal2">
-                    AI NASA Challenge
-                  </label>
-                </div>
-              </td>
-              <td>1/7/2021</td>
-              <td>
-                <b>$54,000</b>
-              </td>
-              <td>
-                <a href="#" className="badge badge-closed">
-                  Closed
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src={Vector5} alt="vector-5" />
-                </a>
-                <a href="#">
-                  <img src={Vector6} alt="vector-6" />
-                </a>
-                <a href="#">
-                  <img src={Vector7} alt="vector-7" />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="w-100 custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="chal2"
-                  />
-                  <label
-                    className="my-1 custom-control-label pass-below-text"
-                    htmlFor="chal2">
-                    AI NASA Challenge
-                  </label>
-                </div>
-              </td>
-              <td>1/7/2021</td>
-              <td>
-                <b>$54,000</b>
-              </td>
-              <td>
-                <a href="#" className="badge badge-active">
-                  Active
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src={Vector5} alt="vector-5" />
-                </a>
-                <a href="#">
-                  <img src={Vector6} alt="vector-6" />
-                </a>
-                <a href="#">
-                  <img src={Vector7} alt="vector-7" />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="w-100 custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="chal2"
-                  />
-                  <label
-                    className="my-1 custom-control-label pass-below-text"
-                    htmlFor="chal2">
-                    AI NASA Challenge
-                  </label>
-                </div>
-              </td>
-              <td>1/7/2021</td>
-              <td>
-                <b>$54,000</b>
-              </td>
-              <td>
-                <a href="#" className="badge badge-closed">
-                  Closed
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src={Vector5} alt="vector-5" />
-                </a>
-                <a href="#">
-                  <img src={Vector6} alt="vector-6" />
-                </a>
-                <a href="#">
-                  <img src={Vector7} alt="vector-7" />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className="w-100 custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="chal2"
-                  />
-                  <label
-                    className="my-1 custom-control-label pass-below-text"
-                    htmlFor="chal2">
-                    AI NASA Challenge
-                  </label>
-                </div>
-              </td>
-              <td>1/7/2021</td>
-              <td>
-                <b>$54,000</b>
-              </td>
-              <td>
-                <a href="#" className="badge badge-active">
-                  Active
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img src={Vector5} alt="vector-5" />
-                </a>
-                <a href="#">
-                  <img src={Vector6} alt="vector-6" />
-                </a>
-                <a href="#">
-                  <img src={Vector7} alt="vector-7" />
-                </a>
-              </td>
-            </tr>
+            {myChallenges?.map(challenge => (
+              <tr key={challenge.id}>
+                <td>
+                  <div className="w-100 custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="chal1"
+                    />
+                    <label
+                      className="my-1 custom-control-label pass-below-text"
+                      htmlFor="chal1">
+                      {challenge.title}
+                    </label>
+                  </div>
+                </td>
+                <td>{challenge.cutOff_date}</td>
+                <td>
+                  <b>${challenge.award_prize}</b>
+                </td>
+                <td>
+                  <a href="#" className="badge badge-in-progress">
+                    {challenge.admin_status}
+                  </a>
+                </td>
+                <td>
+                  <a href="#">
+                    <img src={Vector5} alt="vector-5" />
+                  </a>
+                  <a href="#">
+                    <img src={Vector6} alt="vector-6" />
+                  </a>
+                  <a href="#">
+                    <img src={Vector7} alt="vector-7" />
+                  </a>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

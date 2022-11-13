@@ -3,6 +3,7 @@ import {Button} from 'react-bootstrap';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
 import profileImg from '../images/profile-img.png';
+import {userData} from '../recoil/atom';
 
 const TopNav = ({dashboard}) => {
   const navigate = useNavigate();
@@ -105,6 +106,11 @@ const TopNav = ({dashboard}) => {
                 <b className="text-muted text-uppercase d-block mb-2 user-name-text">
                   User Menu
                 </b>
+                <a
+                  className="dropdown-item"
+                  onClick={() => navigate('/dashboard')}>
+                  <span className="fa fa-user-alt mr-2"></span>Dashboard
+                </a>
                 <a
                   className="dropdown-item"
                   onClick={() => navigate('/edit-profile')}>

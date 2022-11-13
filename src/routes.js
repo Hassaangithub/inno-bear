@@ -28,6 +28,8 @@ import AllOngoingChallenges from './Pages/allOngoingChallenges';
 import ViewOngoingChallenge from './Pages/ViewOngoingChallenge';
 import ViewSubmittedSolution from './Pages/viewSubmittedSolution';
 import AllSubmittedSolutions from './Pages/allSubmittedSolutions';
+import CreateTeam from './Pages/createTeam';
+import AllCurrentChallenges from './Pages/allUserChallenges';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -58,7 +60,6 @@ const Router = () => {
           element={<CreateSolution />}
         />
         <Route path="/user-dashboard" element={<UserDashboard />} />
-
         <Route path="/host-Challenge" element={<HostChallenge />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/edit-profile" element={<EditProfile />} />
@@ -69,15 +70,16 @@ const Router = () => {
         <Route path="/dashboard/admin-settings" element={<AdminSettings />} />
         <Route path="/ongoing-challenges" element={<AllOngoingChallenges />} />
         <Route path="/submitted-solution" element={<AllSubmittedSolutions />} />
+        <Route path="/user-challenges" element={<AllCurrentChallenges />} />
         <Route
-          path="/view-ongoing-challenge"
+          path="/view-ongoing-challenge/:id"
           element={<ViewOngoingChallenge />}
         />
-
         <Route
-          path="/view-submitted-solution"
+          path="/view-submitted-solution:id"
           element={<ViewSubmittedSolution />}
         />
+        <Route path="/create-team" element={<CreateTeam />} />
       </Route>
       <Route path="/starter-kit" element={<StarterKit />} />
       <Route path="/faqs" element={<Faqs />} />

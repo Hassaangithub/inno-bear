@@ -1,13 +1,44 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {toast, ToastContainer} from 'react-toastify';
 import Banner from '../components/challengesDetail/Banner';
 import Footer from '../components/Footer';
 import TopNav from '../components/TopNav';
 import ellipse3 from '../images/Ellipse-3.png';
+import {fetchOngoingChallengesById} from '../Services/dashboard';
 
 const ViewOngoingChallenge = () => {
+  const [data, setData] = useState();
+  const {id} = useParams();
+  const solutionId = id.replace(':', '');
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetchOngoingChallengesById(solutionId);
+      if (response.successData) {
+        setData(response.successData.solution);
+      } else {
+        toast.error(response.response.data.message);
+      }
+    };
+
+    getData();
+  }, []);
   return (
     <>
       <TopNav dashboard={true} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Banner />
       <div className="page-main-content create-new-solution-pg px-md-5 px-3">
         <div className="row my-sm-5 my-3">

@@ -5,14 +5,17 @@ export const challengeAtom = atom({
   default: {},
 });
 
-
 export const challengeId = atom({
   key: 'challengeId',
   default: '',
 });
 
-
 export const currentChallenge = atom({
   key: 'currentChallenge',
+  default: {},
+});
+
+export const userData = atom({
+  key: 'user',
   default: {},
 });

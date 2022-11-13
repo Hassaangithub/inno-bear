@@ -3,7 +3,7 @@ import axios from 'axios';
 const login = async params =>
   axios({
     method: 'post',
-    url: `${process.env.REACT_APP_BASE_URL}/user-login`,
+    url: `https://azizsolutions.onecoderz.com/api/user-login`,
     data: params,
     headers: {'Content-Type': 'application/json'},
   })

@@ -5,3 +5,7 @@ export const handleLogout = () => {
   localStorage.removeItem('token');
   // navigate('/sign-in');
 };
+
+export const emailFirstLetter = () => {
+  return localStorage.getItem('email');
+};

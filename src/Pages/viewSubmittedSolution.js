@@ -1,14 +1,45 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {toast, ToastContainer} from 'react-toastify';
 import Banner from '../components/challengesDetail/Banner';
 import Footer from '../components/Footer';
 import TopNav from '../components/TopNav';
 import ellipse3 from '../images/Ellipse-3.png';
+import {fetchSolutionById} from '../Services/dashboard';
 
 const ViewSubmittedSolution = () => {
+  const [data, setData] = useState();
+  const {id} = useParams();
+  const solutionId = id.replace(':', '');
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetchSolutionById(solutionId);
+      if (response.successData) {
+        setData(response.successData.solution);
+      } else {
+        toast.error(response.response.data.message);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <>
       <TopNav dashboard={true} />
-      <Banner />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <Banner image={data?.challenge.header_image} title={data?.title} />
       <div className="page-main-content create-new-solution-pg px-md-5 px-3">
         <div className="mt-5 mb-3">
           <div className="col-lg-12 row flex align-items-center">
@@ -33,22 +64,10 @@ const ViewSubmittedSolution = () => {
             </div>
           </div>
         </div>
-        <p>16th August, 2022</p>
-        <div class="mt-5">
+        <p>{data?.created_at}</p>
+        <div className="mt-5">
           <h3>Description</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-            perspiciatis distinctio veritatis laudantium, velit voluptates
-            quaerat illo eius ipsam magni nulla illum tempore, officiis
-            reiciendis, assumenda ipsum minima iure delectus?Lorem, ipsum dolor
-            sit amet consectetur adipisicing elit. Quaerat expedita asperiores
-            laudantium commodi ullam minus voluptatum magnam maxime! Eum ipsa,
-            fugit unde eius quos est qui sed eaque odio pariatur?Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Provident dolor
-            inventore rerum voluptate omnis nihil debitis aliquid commodi
-            voluptas, repellat quae! Dolores molestias porro consequatur, eos
-            nobis est magnam architecto!
-          </p>
+          <p>{data?.discription}</p>
         </div>
         <div className="row mt-5 mb-5">
           <div className="col-12 d-flex flex-wrap justify-content-between my-4">
@@ -62,13 +81,13 @@ const ViewSubmittedSolution = () => {
                 <small className="text-muted">10kb</small>
               </div>
               <div className="mt-3">
-                <a href="">
+                <a href="" download>
                   Download <i className="fas fa-download"></i>
                 </a>
               </div>
             </div>
           </div>
-          <div className="col-lg-3">
+          {/* <div className="col-lg-3">
             <div className="card p-3">
               <i className="fas fa-file-word word-icon"></i>
               <div className=" d-flex justify-content-between mt-5">
@@ -81,7 +100,7 @@ const ViewSubmittedSolution = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />

@@ -10,17 +10,18 @@ import Vector3 from '../images/Vector-3.png';
 import Vector4 from '../images/Vector-4.png';
 import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from 'react';
-import {fetchStats} from '../Services/dashboard';
+import {fetchStats, fetchSubmittedIdeas} from '../Services/dashboard';
 import DashboardSidebar from '../components/UserDashboard/DashboardSidebar';
 import MyChallenges from '../components/UserDashboard/MyChallenges';
 import SubmittedChallengesCard from '../components/UserDashboard/SubmittedChallengesCard';
 import OtherChallengesCard from '../components/UserDashboard/OtherChallengesCard';
+import {toast, ToastContainer} from 'react-toastify';
 
 const sidebarlist = [
   {
     img: FluentPeople,
     title: 'Team',
-    path: '/team',
+    path: '/dashboard/create-team',
   },
   {
     img: OutlineWork,
@@ -50,20 +51,47 @@ const sidebarlist = [
 ];
 
 const UserDashboard = () => {
+  const [data, setData] = useState();
   const [dashboardStats, setDashboardStats] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getStats = async () => {
       const response = await fetchStats();
-
-      console.log(response);
+      if (response.successData) {
+        setDashboardStats(response.successData);
+      } else {
+        toast.error(response.response.data.message);
+      }
     };
+
+    const getData = async () => {
+      const response = await fetchSubmittedIdeas();
+      if (response.successData) {
+        setData(response.successData);
+      } else {
+        toast.error(response.response.data.message);
+      }
+    };
+
     getStats();
+    getData();
   }, []);
 
   return (
     <DashboardSidebar list={sidebarlist}>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="my-4 px-4 d-flex flex-wrap justify-content-between align-items-center">
         <h3 className="mb-0 user-name">
           Hello, Jennifer! <img src={CelebPic} alt="celeb" className="ml-3" />
@@ -81,7 +109,7 @@ const UserDashboard = () => {
         <div
           className="col-md-4 col-sm-6 mb-md-0 mb-3"
           role="button"
-          onClick={() => navigate('/challenges')}>
+          onClick={() => navigate('/user-challenges')}>
           <div className="block-mode">
             <a href="#" className="block-mode-icon block-mode-icon1">
               <img src={EditIcon} alt="edit-icon" />
@@ -89,7 +117,9 @@ const UserDashboard = () => {
             <p className="my-2 d-flex align-items-center">
               Total challenges <span className="fa fa-question ml-3"></span>
             </p>
-            <h2 className="font-unset">24</h2>
+            <h2 className="font-unset">
+              {dashboardStats?.totalUserChallenges}
+            </h2>
           </div>
         </div>
         <div
@@ -103,7 +133,7 @@ const UserDashboard = () => {
             <p className="my-2 d-flex align-items-center">
               Submitted Ideas <span className="fa fa-question ml-3"></span>
             </p>
-            <h2 className="font-unset">24</h2>
+            <h2 className="font-unset">{dashboardStats?.totalSubmitedIdeas}</h2>
           </div>
         </div>
         <div
@@ -117,18 +147,20 @@ const UserDashboard = () => {
             <p className="my-2 d-flex align-items-center">
               Ongoing Challenges <span className="fa fa-question ml-3"></span>
             </p>
-            <h2 className="font-unset">24</h2>
+            <h2 className="font-unset">
+              {dashboardStats?.totalOngoingChallenges}
+            </h2>
           </div>
         </div>
       </div>
       <div className="row mx-0">
         <div className="col-12 d-flex flex-wrap justify-content-between my-4">
-          <h5>Submitted Challenges</h5>
+          <h5>Submitted Ideas</h5>
           <a href="#" className="text-muted">
             View more
           </a>
         </div>
-        <SubmittedChallengesCard />
+        <SubmittedChallengesCard submittedIdea={data?.solutions} />
       </div>
       <div className="row mx-0">
         <div className="col-12 d-flex flex-wrap justify-content-between my-4">
@@ -137,9 +169,15 @@ const UserDashboard = () => {
             View more
           </a>
         </div>
-        <OtherChallengesCard />
+        {data?.favouriteChallenges.length ? (
+          <OtherChallengesCard likedChallenges={data?.favouriteChallenges} />
+        ) : (
+          <div className="ml-4 text-center w-100">
+            We donot have any liked challenge
+          </div>
+        )}
       </div>
-      <MyChallenges />
+      <MyChallenges myChallenges={data?.MyChallenges} />
     </DashboardSidebar>
   );
 };
