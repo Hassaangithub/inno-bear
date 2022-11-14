@@ -3,7 +3,7 @@ import axios from 'axios';
 const fetchStats = () =>
   axios({
     method: 'get',
-    url: `https://azizsolutions.onecoderz.com/api/dashboard-stats`,
+    url: `${process.env.REACT_APP_BASE_URL}/dashboard-stats`,
     headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
   })
     .then(response => {
@@ -16,7 +16,7 @@ const fetchStats = () =>
 const fetchSubmittedIdeas = () =>
   axios({
     method: 'get',
-    url: `https://azizsolutions.onecoderz.com/api/dashboard-challenges`,
+    url: `${process.env.REACT_APP_BASE_URL}/dashboard-challenges`,
     headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
   })
     .then(response => {
@@ -29,7 +29,7 @@ const fetchSubmittedIdeas = () =>
 const fetchAllSolutions = () =>
   axios({
     method: 'get',
-    url: `https://azizsolutions.onecoderz.com/api/user-submitted-solution`,
+    url: `${process.env.REACT_APP_BASE_URL}/user-submitted-solution`,
     headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
   })
     .then(response => {
@@ -42,7 +42,7 @@ const fetchAllSolutions = () =>
 const fetchSolutionById = id =>
   axios({
     method: 'get',
-    url: `https://azizsolutions.onecoderz.com/api/submitted-solution?solution_id=${id}`,
+    url: `${process.env.REACT_APP_BASE_URL}/submitted-solution?solution_id=${id}`,
     headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
   })
     .then(response => {
@@ -55,7 +55,7 @@ const fetchSolutionById = id =>
 const fetchOngoingChallenges = id =>
   axios({
     method: 'get',
-    url: `https://azizsolutions.onecoderz.com/api/ongoing-challenges`,
+    url: `${process.env.REACT_APP_BASE_URL}/ongoing-challenges`,
     headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
   })
     .then(response => {
@@ -68,7 +68,7 @@ const fetchOngoingChallenges = id =>
 const fetchOngoingChallengesById = id =>
   axios({
     method: 'get',
-    url: `https://azizsolutions.onecoderz.com/api/submitted-solution?solution_id=${id}`,
+    url: `${process.env.REACT_APP_BASE_URL}/submitted-solution?solution_id=${id}`,
     headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
   })
     .then(response => {
@@ -81,7 +81,7 @@ const fetchOngoingChallengesById = id =>
 const allUserChallenges = async =>
   axios({
     method: 'get',
-    url: `https://azizsolutions.onecoderz.com/api/user-challenges`,
+    url: `${process.env.REACT_APP_BASE_URL}/user-challenges`,
     headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
   })
     .then(response => {
