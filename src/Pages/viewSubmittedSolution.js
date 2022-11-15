@@ -27,18 +27,6 @@ const ViewSubmittedSolution = () => {
   return (
     <>
       <TopNav dashboard={true} />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <Banner image={data?.challenge.header_image} title={data?.title} />
       <div className="page-main-content create-new-solution-pg px-md-5 px-3">
         <div className="mt-5 mb-3">

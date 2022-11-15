@@ -134,7 +134,7 @@ const StarterKit = () => {
         <div className="row align-items-center mb-sm-5 mb-4">
           <div className="col-lg-6">
             <h2 className="mb-md-4 mb-3">
-              The <span className="h2 orange">InnoBearTM</span> Difference
+              The <span className="h2 orange">InnoBear</span> Difference
             </h2>
             <p>
               Shh…our secret sauce is in our proprietary Brilliance Participant

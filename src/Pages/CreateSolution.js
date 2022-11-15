@@ -83,18 +83,7 @@ const CreateSolution = () => {
         image={challengeData?.thumbnail_image}
         title={challengeData?.title}
       />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+
       <div className="page-main-content create-new-solution-pg px-md-5 px-3">
         <div className="row my-sm-5 my-3">
           <div className="col-lg-7">

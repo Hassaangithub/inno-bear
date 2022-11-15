@@ -80,18 +80,6 @@ const UserDashboard = () => {
 
   return (
     <DashboardSidebar list={sidebarlist}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <div className="my-4 px-4 d-flex flex-wrap justify-content-between align-items-center">
         <h3 className="mb-0 user-name">
           Hello, Jennifer! <img src={CelebPic} alt="celeb" className="ml-3" />

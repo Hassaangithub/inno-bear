@@ -27,18 +27,7 @@ const ViewOngoingChallenge = () => {
   return (
     <>
       <TopNav dashboard={true} />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+
       <Banner />
       <div className="page-main-content create-new-solution-pg px-md-5 px-3">
         <div className="row my-sm-5 my-3">

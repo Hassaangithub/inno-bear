@@ -7,7 +7,7 @@ import CustomModal from '../CustomModal';
 import Footer from '../Footer';
 import TopContent from './TopContent';
 
-const DashboardSidebar = ({list, footer, children}) => {
+const DashboardSidebar = ({list, footer, children, isProfile}) => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -63,7 +63,7 @@ const DashboardSidebar = ({list, footer, children}) => {
       <div
         className="right_main pr-lg-3 pt-4 pb-5"
         id="dashboardSidebarRightContent">
-        <TopContent />
+        <TopContent isProfile={isProfile} />
         {children}
       </div>
       {footer && <Footer />}

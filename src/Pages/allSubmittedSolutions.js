@@ -30,18 +30,6 @@ const AllSubmittedSolutions = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <TopNav dashboard={true} />
       <div className="page-main-content mt-3 px-md-5 px-3">
         <div className="row mx-0">

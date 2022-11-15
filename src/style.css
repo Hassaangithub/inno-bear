@@ -704,6 +704,9 @@ img[alt='account-auth-logo'] {
 .account-auth-pg .create-account-btn {
   width: 100%;
 }
+.cursor-na {
+  cursor: not-allowed !important;
+}
 .account-auth-pg .account-auth-btns {
   background: #ffffff;
   border: 1px solid #cdd0e6 !important;

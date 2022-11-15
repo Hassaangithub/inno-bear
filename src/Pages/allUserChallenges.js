@@ -28,18 +28,6 @@ const AllCurrentChallenges = () => {
 
   return (
     <Layout>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <div className="page-main-content mt-3 px-md-5 px-3">
         <h2 className="text-center">All Challenges ({data?.length})</h2>
 
