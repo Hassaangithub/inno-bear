@@ -15,13 +15,13 @@ const HostChallenge = () => {
     <Layout>
       <div className="page-main-content mt-3 px-md-5 px-3">
         <Heading />
-        {step === 1 && <Step1 setStep={setStep} />}
-        {step === 2 && <Step2 setStep={setStep} />}
-        {step === 3 && <Step3 setStep={setStep} />}
-        {step === 4 && <Step4 setStep={setStep} />}
-        {step === 5 && <Step5 setStep={setStep} />}
-        {step === 6 && <Step6 setStep={setStep} />}
-        {step === 7 && <Step7 setStep={setStep} />}
+        {step === 1 && <Step1 setStep={setStep} step={step} />}
+        {step === 2 && <Step2 setStep={setStep} step={step} />}
+        {step === 3 && <Step3 setStep={setStep} step={step} />}
+        {step === 4 && <Step4 setStep={setStep} step={step} />}
+        {step === 5 && <Step5 setStep={setStep} step={step} />}
+        {step === 6 && <Step6 setStep={setStep} step={step} />}
+        {step === 7 && <Step7 setStep={setStep} step={step} />}
       </div>
     </Layout>
   );

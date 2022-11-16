@@ -48,11 +48,10 @@ const saveChallenge1 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      console.log('created', response);
-      return response;
+      return response.data;
     })
     .catch(error => {
-      console.log(error);
+      return error.response;
     });
 
 const saveChallenge2 = async data =>
@@ -63,11 +62,10 @@ const saveChallenge2 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      console.log('created', response);
-      return response;
+      return response.data;
     })
     .catch(error => {
-      console.log(error);
+      return error.response;
     });
 
 const saveChallenge3 = async data =>
@@ -78,7 +76,6 @@ const saveChallenge3 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      console.log('created', response);
       return response;
     })
     .catch(error => {
@@ -93,7 +90,6 @@ const saveChallenge4 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      console.log('created', response);
       return response;
     })
     .catch(error => {
@@ -108,7 +104,6 @@ const saveChallenge5 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      console.log('created', response);
       return response;
     })
     .catch(error => {
@@ -123,7 +118,6 @@ const saveChallenge6 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      console.log('created', response);
       return response;
     })
     .catch(error => {
@@ -137,7 +131,6 @@ const saveChallenge7 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      console.log('created', response);
       return response;
     })
     .catch(error => {

@@ -55,7 +55,7 @@ const EditProfile = () => {
   const fetchProfile = async () => {
     const response = await getProfileData();
     if (response.successData) {
-      console.log(response.successData.user);
+      // console.log(response.successData.user);
       setFirstNm(response.successData.user.fname);
       setLastNm(response.successData.user.lname);
       setEmail(response.successData.user.email);
@@ -155,7 +155,7 @@ const EditProfile = () => {
       setLoading(false);
     }
   };
-  console.log('help help', country, city);
+  // console.log('help help', country, city);
   return (
     <>
       <DashboardSidebar list={list} isProfile={true}>

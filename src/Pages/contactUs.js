@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
+import {toast} from 'react-toastify';
 import Layout from '../components/Layout';
+import {contactUs} from '../Services/contactus';
 
 const ContactUs = () => {
   const [firstNm, setFirstNm] = useState('');
   const [lastNm, setLastNm] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleFirstNm = e => {
     setFirstNm(e.target.value);
@@ -20,8 +23,25 @@ const ContactUs = () => {
     setMessage(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
+    setLoading(true);
+    const response = await contactUs({
+      first_name: firstNm,
+      last_name: lastNm,
+      email: email,
+      description: message,
+    });
+
+    if (response.status === 200) {
+      setLoading(false);
+      toast.success(response.message);
+      setLoading(false);
+    } else {
+      setLoading(false);
+      toast.error(response.data.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,7 +85,7 @@ const ContactUs = () => {
           <form>
             <div className="form-row">
               <div className="form-group col-lg-6">
-                <label for="firstName">First name</label>
+                <label htmlFor="firstName">First name</label>
                 <input
                   required
                   type="text"
@@ -77,9 +97,8 @@ const ContactUs = () => {
                 />
               </div>
               <div className="form-group col-lg-6">
-                <label for="firstName">Last name</label>
+                <label htmlFor="firstName">Last name</label>
                 <input
-                  required
                   type="text"
                   className="form-control"
                   id="lastName"
@@ -91,7 +110,7 @@ const ContactUs = () => {
             </div>
             <div className="form-row my-lg-4">
               <div className="form-group col-lg-12">
-                <label for="Country">Email</label>
+                <label htmlFor="Country">Email</label>
                 <input
                   required
                   type="email"
@@ -103,7 +122,7 @@ const ContactUs = () => {
                 />
               </div>
               <div className="form-group col-lg-12">
-                <label for="City">Message</label>
+                <label htmlFor="City">Message</label>
                 <textarea
                   required
                   name=""
@@ -120,7 +139,13 @@ const ContactUs = () => {
               type="submit"
               onClick={handleSubmit}
               className="btn create-account-btn w-100 text-white">
-              Submit
+              {loading ? (
+                <div
+                  className="spinner-border text-primary"
+                  role="status"></div>
+              ) : (
+                'Submit'
+              )}
             </button>
           </form>
         </div>

@@ -4,6 +4,7 @@ import AddUpdateModal from '../AddUpdateModal';
 import InputModal from '../InputModal';
 import {challengeAtom} from '../../recoil/atom';
 import {saveChallenge1} from '../../Services/challanges';
+import {toast} from 'react-toastify';
 
 const inputData = [
   {title: 'Ideation', text: 'I want to generate new ideas', id: '1'},
@@ -68,7 +69,7 @@ const keywordData = [
   },
 ];
 
-const Step1 = ({setStep}) => {
+const Step1 = ({setStep, step}) => {
   const [title, setTitle] = useState('');
   const [challengeType, setChallengeType] = useState('');
   const [keywords, setKeywords] = useState(keywordData);
@@ -117,12 +118,15 @@ const Step1 = ({setStep}) => {
     }
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const keywordList = keywords
+  const getKeywordList = () =>
+    keywords
       .filter(item => item.status === true)
       .map(item => item.value)
       .toString();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const keywordList = getKeywordList();
     if (title && challengeType && keywordList) {
       setChallenge({
         ...challenge,
@@ -134,13 +138,22 @@ const Step1 = ({setStep}) => {
     }
   };
 
-  const handleSave = e => {
+  const handleSave = async e => {
     e.preventDefault();
-    // saveChallenge1({
-    //   title: title,
-    //   challenge_type: challengeType,
-    //   keywords: keywordList,
-    // });
+    const keywordList = getKeywordList();
+
+    const response = await saveChallenge1({
+      title: title,
+      user_id: localStorage.getItem('userId'),
+      keywords: keywordList,
+      step: step,
+      challenge_type: challengeType,
+    });
+    if (response.successData) {
+      toast.success(response.message);
+    } else {
+      toast.error(response.data.message);
+    }
   };
 
   return (
@@ -178,7 +191,7 @@ const Step1 = ({setStep}) => {
             </div>
             <h6 className="mt-lg-4 my-3">What Type of Challenge will it Be?</h6>
 
-            {inputData.map((item, index) => (
+            {inputData.map(item => (
               <div
                 className="w-100 custom-control custom-checkbox"
                 key={item.id}
@@ -188,6 +201,7 @@ const Step1 = ({setStep}) => {
                   type="radio"
                   className="custom-control-input"
                   id={item.id}
+                  value={item.title}
                 />
                 <label
                   className="my-1 custom-control-label pass-below-text"

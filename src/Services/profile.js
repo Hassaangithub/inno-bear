@@ -54,4 +54,24 @@ const getCities = data =>
       return error;
     });
 
-export {getProfileData, postUpdatedData, getCountries, getCities};
+const changePassword = data =>
+  axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/change-password`,
+    headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+    data: data,
+  })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      return error.response;
+    });
+
+export {
+  getProfileData,
+  postUpdatedData,
+  getCountries,
+  getCities,
+  changePassword,
+};
