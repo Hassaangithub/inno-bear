@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import NotificationBing from '../../images/notification-bing.png';
-import UserPic from '../../images/profile-img.png';
 import {useNavigate} from 'react-router-dom';
 import {handleLogout} from '../../utility';
 import CustomModal from '../CustomModal';
 
 const TopContent = ({isProfile}) => {
+  const profileImg = localStorage.getItem('image');
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -43,12 +43,32 @@ const TopContent = ({isProfile}) => {
       <div className="navbar p-0">
         <div className="dropdown ml-auto">
           <a
-            className="p-0 dropdown-toggle"
+            className="p-0 dropdown-toggle text-decoration-none"
             role="button"
             id="profContentBtn"
             data-toggle="dropdown"
             aria-expanded="false">
-            <img src={UserPic} className="profile-user-pic" />
+            {/* {profileImg ? (
+              <img src={profileImg} className="profile-user-pic" />
+            ) : (
+              <div
+                className="profile-user-pic d-flex align-items-center justify-content-center text-white"
+                style={{
+                  background: '#9e9e9e',
+                  fontSize: '20px',
+                }}>
+                {localStorage.getItem('email')[0].toUpperCase()}
+              </div>
+
+            )} */}
+            <div
+              className="profile-user-pic d-flex align-items-center justify-content-center text-white"
+              style={{
+                background: '#9e9e9e',
+                fontSize: '20px',
+              }}>
+              {localStorage.getItem('email')[0]?.toUpperCase()}
+            </div>
           </a>
           <div className="dropdown-menu dropdown-menu-right animated-dropdown slideIn w-100 border-0 dark-box-shadow">
             <b className="text-muted text-uppercase d-block mb-2 user-name-text">

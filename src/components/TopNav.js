@@ -1,15 +1,13 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import accountAuth from '../images/account-auth-logo.png';
-import profileImg from '../images/profile-img.png';
-import {userData} from '../recoil/atom';
 
 const TopNav = ({dashboard}) => {
   const navigate = useNavigate();
   let location = useLocation();
   const pathName = '/' + location.pathname.split('/')[1];
   const user = localStorage.getItem('token');
+  const profileImg = localStorage.getItem('image');
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -95,12 +93,32 @@ const TopNav = ({dashboard}) => {
             style={{marginLeft: 'auto'}}>
             <div className="dropdown ml-auto">
               <a
-                className="p-0 dropdown-toggle"
+                className="p-0 dropdown-toggle text-decoration-none"
                 role="button"
                 id="profContentBtn"
                 data-toggle="dropdown"
                 aria-expanded="false">
-                <img src={profileImg} className="profile-user-pic" />
+                {/* {profileImg ? (
+                  <img src={profileImg} className="profile-user-pic" />
+                ) : (
+                  <div
+                    className="profile-user-pic d-flex align-items-center justify-content-center text-white"
+                    style={{
+                      background: '#9e9e9e',
+                      fontSize: '26px',
+                    }}>
+                    {localStorage.getItem('email')[0].toUpperCase()}
+                  </div>
+                )} */}
+
+                <div
+                  className="profile-user-pic d-flex align-items-center justify-content-center text-white"
+                  style={{
+                    background: '#9e9e9e',
+                    fontSize: '20px',
+                  }}>
+                  {localStorage.getItem('email')[0]?.toUpperCase()}
+                </div>
               </a>
               <div className="dropdown-menu dropdown-menu-right animated-dropdown slideIn w-100 border-0 dark-box-shadow">
                 <b className="text-muted text-uppercase d-block mb-2 user-name-text">

@@ -70,10 +70,10 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
         <p className="beneath-main-heading">
           Create an account and let the innovation flow.
         </p>
-        <div className="my-lg-4 my-2 d-flex flex-wrap justify-content-between">
+        {/* <div className="my-lg-4 my-2 d-flex flex-wrap justify-content-between">
           <button className="account-auth-btns">Sign up with Google</button>
           <button className="account-auth-btns">Sign up with Facebook</button>
-        </div>
+        </div> */}
         <form>
           <div className="form-group  mb-lg-4">
             <label htmlFor="userEmail">Email Address</label>

@@ -82,7 +82,8 @@ const UserDashboard = () => {
     <DashboardSidebar list={sidebarlist}>
       <div className="my-4 px-4 d-flex flex-wrap justify-content-between align-items-center">
         <h3 className="mb-0 user-name">
-          Hello, Jennifer! <img src={CelebPic} alt="celeb" className="ml-3" />
+          Hello, {localStorage.getItem('username')?.toUpperCase()}
+          <img src={CelebPic} alt="celeb" className="ml-3" />
         </h3>
         <button
           className="btn text-white"

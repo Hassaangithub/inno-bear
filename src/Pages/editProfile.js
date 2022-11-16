@@ -62,11 +62,13 @@ const EditProfile = () => {
       setPhone(response.successData.user.phone);
       setCountry(response.successData.user.country);
       setCity(response.successData.user.city);
-      // setProfileImg(response.successData.user.image);
+      setProfileImg(response.successData.user.image);
     } else {
       toast.error(response.response.data.message);
     }
   };
+
+  console.log(profileImg);
 
   const fetchCountries = async () => {
     const response = await getCountries();
@@ -163,32 +165,37 @@ const EditProfile = () => {
           <div className="profile m-5">
             <div className="profileInner m-5">
               <h1>Profile</h1>
-              <div className="profileEditImage">
-                <a href="">
-                  {profileImg ? (
-                    <img src={profileImg} alt="profile" />
-                  ) : (
-                    <div
-                      style={{
-                        width: '144px',
-                        height: '144px',
-                        background: '#9e9e9e',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontSize: '50px',
-                      }}>
-                      K
-                    </div>
-                  )}
-                </a>
-                <a href="" className="profileEdit">
-                  <img src={editIcon} alt="" />
 
-                  {/* <input type="file" onChange={handleImage}></input> */}
-                </a>
+              <div className="profileEditImage ">
+                {profileImg ? (
+                  <img
+                    src={profileImg}
+                    alt="profile"
+                    style={{
+                      width: '144px',
+                      height: '144px',
+                      borderRadius: '50%',
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: '144px',
+                      height: '144px',
+                      background: '#9e9e9e',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'white',
+                      fontSize: '50px',
+                    }}>
+                    K
+                  </div>
+                )}
+                <div className="upload-image">
+                  <input type="file" onChange={handleImage} />
+                </div>
               </div>
 
               <form className="m-5 profileForm">
@@ -240,7 +247,7 @@ const EditProfile = () => {
                       className="form-control"
                       onChange={handleCountry}
                       defaultValue={country}>
-                      <option disabled>--Please Select--</option>
+                      <option value={null}>--Please Select--</option>
                       {allCountries?.map((item, index) => (
                         <option key={index} value={JSON.stringify(item)}>
                           {item.name}

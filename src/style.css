@@ -1140,6 +1140,7 @@ a,
   object-fit: contain;
   width: 45px;
 }
+
 .right_main .notifications-holder {
   width: 58px;
   height: 38px;
@@ -1898,4 +1899,25 @@ div.switcher label input:checked + span small {
     height: 150px;
     object-position: center;
   }
+}
+
+.upload-image input {
+  display: block !important;
+  width: 158px !important;
+  height: 45px !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+}
+.upload-image {
+  cursor: pointer;
+  width: 158px;
+  height: 45px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url('./images/profileedit.png');
+  background-size: 40px 40px;
+  margin-top: 85px;
+  margin-left: -35px;
 }

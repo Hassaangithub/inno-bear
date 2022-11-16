@@ -51,8 +51,9 @@ const SignIn = () => {
         localStorage.setItem('token', response.successData.user.accessToken);
         localStorage.setItem('userId', response.successData.user.id);
         localStorage.setItem('email', response.successData.user.email);
-
-        setUserData(response.successData.user.email);
+        localStorage.setItem('image', response.successData.user.image);
+        localStorage.setItem('username', response.successData.user.fname);
+        setUserData(response.successData.user);
         setLoading(false);
         if (response.successData.user) {
           navigate('/dashboard');
@@ -113,7 +114,7 @@ const SignIn = () => {
           <p className="beneath-main-heading">
             Please sign into your account to continue with your project
           </p>
-          <div className="my-lg-4 my-2 d-flex flex-wrap justify-content-between">
+          {/* <div className="my-lg-4 my-2 d-flex flex-wrap justify-content-between">
             <GoogleLogin
               className="account-auth-btns"
               clientId="1024862251961-c69lv4b0lj6q0oi8shr01cn9vvqt30vg.apps.googleusercontent.com"
@@ -123,7 +124,7 @@ const SignIn = () => {
               cookiePolicy={'single_host_origin'}
             />
             <button className="account-auth-btns">Sign up with Facebook</button>
-          </div>
+          </div> */}
           <form>
             <div className="form-group mb-lg-4">
               <label htmlFor="userEmail">Email Address</label>
