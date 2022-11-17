@@ -5,7 +5,6 @@ import Vector from '../images/Vector.png';
 import Vector1 from '../images/Vector-1.png';
 import {useNavigate} from 'react-router-dom';
 import DashboardSidebar from '../components/UserDashboard/DashboardSidebar';
-import editIcon from '../images/profileedit.png';
 import {useState} from 'react';
 import {
   getCities,
@@ -50,12 +49,12 @@ const EditProfile = () => {
   const [city, setCity] = useState();
   const [pass, setPass] = useState();
   const [profileImg, setProfileImg] = useState();
+  const [imgUrl, setImgUrl] = useState();
   const [loading, setLoading] = useState(false);
   const [disableInput, setDisableInput] = useState(false);
   const fetchProfile = async () => {
     const response = await getProfileData();
     if (response.successData) {
-      // console.log(response.successData.user);
       setFirstNm(response.successData.user.fname);
       setLastNm(response.successData.user.lname);
       setEmail(response.successData.user.email);
@@ -67,8 +66,6 @@ const EditProfile = () => {
       toast.error(response.response.data.message);
     }
   };
-
-  console.log(profileImg);
 
   const fetchCountries = async () => {
     const response = await getCountries();
@@ -101,8 +98,27 @@ const EditProfile = () => {
     fetchCountries();
   }, []);
 
+  // function getBase64(file, cb) {
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = function () {
+  //     cb(reader.result);
+  //   };
+  //   reader.onerror = function (error) {
+  //     console.log('Error: ', error);
+  //   };
+  // }
+
   const handleImage = e => {
+    console.log('hello');
     setProfileImg(URL.createObjectURL(e.target.files[0]));
+    setImgUrl(e.target.files[0]);
+    // let idCardBase64 = '';
+    // getBase64(e.target.files[0], result => {
+    //   idCardBase64 = result;
+    //   console.log('64', result);
+    //   setImgUrl(result);
+    // });
   };
   const handleFirstNm = e => {
     setFirstNm(e.target.value);
@@ -145,19 +161,21 @@ const EditProfile = () => {
       country: country,
       city: city,
       password: pass,
-      image: profileImg,
+      image: imgUrl,
     };
+    console.log('data', data);
 
     const response = await postUpdatedData(data);
     if (response.successData) {
       toast.success('Successfully Updated');
       setLoading(false);
     } else {
-      toast.error(response.response.data.message);
+      toast.error(response.data.message);
       setLoading(false);
     }
   };
-  // console.log('help help', country, city);
+
+  // console.log('help', imgUrl);
   return (
     <>
       <DashboardSidebar list={list} isProfile={true}>
@@ -166,7 +184,7 @@ const EditProfile = () => {
             <div className="profileInner m-5">
               <h1>Profile</h1>
 
-              <div className="profileEditImage ">
+              <div className="profileEditImage">
                 {profileImg ? (
                   <img
                     src={profileImg}
@@ -190,7 +208,7 @@ const EditProfile = () => {
                       color: 'white',
                       fontSize: '50px',
                     }}>
-                    K
+                    {localStorage.getItem('email')[0]?.toUpperCase()}
                   </div>
                 )}
                 <div className="upload-image">

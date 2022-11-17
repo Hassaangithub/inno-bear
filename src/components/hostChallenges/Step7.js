@@ -4,10 +4,10 @@ import {useNavigate} from 'react-router-dom';
 import {useRecoilState} from 'recoil';
 // import {storage} from '../../Firebase/firebase';
 import {challengeAtom} from '../../recoil/atom';
-import {toast, ToastContainer} from 'react-toastify';
-import {createChallenge} from '../../Services/challanges';
+import {toast} from 'react-toastify';
+import {createChallenge, saveChallenge7} from '../../Services/challanges';
 
-const Step7 = () => {
+const Step7 = ({challengeId, step}) => {
   const navigate = useNavigate();
 
   const [imagePath, setImagesPaths] = useState({
@@ -19,6 +19,7 @@ const Step7 = () => {
   const [file, setFile] = useState();
   const [thumbnailImage, setThumbnailImage] = useState();
   const [challenge, setChallenge] = useRecoilState(challengeAtom);
+  const [drafLoading, setDraftLoading] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleFile = e => {
@@ -74,20 +75,30 @@ const Step7 = () => {
     }
   };
 
+  const handleDraft = async e => {
+    e.preventDefault();
+    setDraftLoading(true);
+
+    const response = await saveChallenge7({
+      user_id: localStorage.getItem('userId'),
+      step: step,
+      challenge_id: challengeId,
+      attachment_description: description,
+      attachment: file,
+      header_image: imagePath.header,
+      thumbnail_image: imagePath.thumbnail,
+    });
+    if (response.status === 200) {
+      toast.success(response.message);
+      setDraftLoading(false);
+    } else {
+      toast.error(response.data.message);
+      setDraftLoading(false);
+    }
+  };
+
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <div className="col-xl-7 mb-md-5 mb-3 mx-auto steps-model">
         <p className="text-muted mb-2 steps-label">STEP 7 OF 7</p>
         <div className="d-flex flex-wrap mb-3">
@@ -210,8 +221,15 @@ const Step7 = () => {
             <button
               type="submit"
               className="px-md-5 white-btn btn"
-              onClick={handleSubmit}>
-              Save as Draft
+              onClick={handleDraft}>
+              {drafLoading ? (
+                <div
+                  className="spinner-border text-primary spinner-border-md "
+                  role="status"
+                />
+              ) : (
+                'Save as Draft'
+              )}
             </button>
             <button
               type="submit"
@@ -223,7 +241,7 @@ const Step7 = () => {
                   role="status"
                 />
               ) : (
-                ' Make it Live'
+                'Make it Live'
               )}
             </button>
           </div>

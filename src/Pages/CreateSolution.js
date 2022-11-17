@@ -59,7 +59,6 @@ const CreateSolution = () => {
         setCharacter('');
         navigate(`/challenges/detail:${id}`);
       } else {
-        console.log('error');
         setLoading(false);
         toast.error(response.response.data.message);
       }

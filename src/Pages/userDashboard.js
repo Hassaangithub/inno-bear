@@ -158,7 +158,7 @@ const UserDashboard = () => {
             View more
           </a>
         </div>
-        {data?.favouriteChallenges.length ? (
+        {data?.favouriteChallenges?.length ? (
           <OtherChallengesCard likedChallenges={data?.favouriteChallenges} />
         ) : (
           <div className="ml-4 text-center w-100">

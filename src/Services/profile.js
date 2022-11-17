@@ -24,7 +24,7 @@ const postUpdatedData = data =>
       return response.data;
     })
     .catch(error => {
-      return error;
+      return error.response;
     });
 
 const getCountries = () =>

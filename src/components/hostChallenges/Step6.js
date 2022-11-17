@@ -4,8 +4,10 @@ import pencilIcon from '../../images/Pencil-alt.png';
 import minusIcon from '../../images/minus-icon.png';
 import {challengeAtom} from '../../recoil/atom';
 import {useRecoilState} from 'recoil';
+import {saveChallenge6} from '../../Services/challanges';
+import {toast} from 'react-toastify';
 
-const Step6 = ({setStep}) => {
+const Step6 = ({setStep, challengeId, step}) => {
   const data = [
     {
       id: 1,
@@ -18,28 +20,24 @@ const Step6 = ({setStep}) => {
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
       readOnly: true,
-
     },
     {
       id: 3,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
       readOnly: true,
-
     },
     {
       id: 4,
       status: false,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
       readOnly: true,
-
     },
     {
       id: 5,
       status: true,
       text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
       readOnly: true,
-
     },
   ];
 
@@ -53,6 +51,8 @@ const Step6 = ({setStep}) => {
 
   const [addRule, setAddRule] = useState(false);
   const [editFeild, setEditFeild] = useState(true);
+  const [loading, setLoading] = useState(false);
+
   const toggleAdd = position => {
     setRules(
       [...rules].map((object, index) => {
@@ -68,47 +68,49 @@ const Step6 = ({setStep}) => {
 
   const handleEdit = id => {
     setRules(
-      [...rules].map((obj, index)=>{
-        if(obj.id === id){
-          return{
+      [...rules].map((obj, index) => {
+        if (obj.id === id) {
+          return {
             ...obj,
-            readOnly: false
+            readOnly: false,
           };
-        }else return obj;
+        } else return obj;
       }),
-    )
+    );
   };
 
-  const handleInputText =(e, id) => {
+  const handleInputText = (e, id) => {
     setRules(
-      [...rules].map((obj, index)=>{
-        if(obj.id === id){
-          return{
+      [...rules].map((obj, index) => {
+        if (obj.id === id) {
+          return {
             ...obj,
-            text: e.target.value
+            text: e.target.value,
           };
-        }else return obj;
+        } else return obj;
       }),
-    )
-  }
+    );
+  };
 
-const handleAddRule = (e) =>{
-  e.preventDefault();
-setRules(
-  [...rules, {
-    readOnly: false,
-    text:"",
-    status: true,
-    id: rules.length + 1
-  }]
-)
-}
+  const handleAddRule = e => {
+    e.preventDefault();
+    setRules([
+      ...rules,
+      {
+        readOnly: false,
+        text: '',
+        status: true,
+        id: rules.length + 1,
+      },
+    ]);
+  };
+
+  const getFilteredRules = () =>
+    rules?.filter(item => item.status)?.map(rule => rule.text);
 
   const handleSubmit = e => {
     e.preventDefault();
-    const filteredRules = rules
-      ?.filter(item => item.status)
-      ?.map(rule => rule.text);
+    const filteredRules = getFilteredRules();
 
     if (filteredRules.length) {
       setChallenge({
@@ -116,6 +118,27 @@ setRules(
         wining_rule: filteredRules,
       });
       setStep(7);
+    }
+  };
+
+  const handleDraft = async e => {
+    e.preventDefault();
+
+    setLoading(true);
+    const filteredRules = getFilteredRules();
+
+    const response = await saveChallenge6({
+      user_id: localStorage.getItem('userId'),
+      step: step,
+      challenge_id: challengeId,
+      rule: filteredRules,
+    });
+    if (response.status === 200) {
+      toast.success(response.message);
+      setLoading(false);
+    } else {
+      toast.error(response.data.message);
+      setLoading(false);
     }
   };
 
@@ -151,7 +174,7 @@ setRules(
                   className="mb-0"
                   type="text"
                   value={item.text}
-                  onChange={(e) => handleInputText(e,item.id)}
+                  onChange={e => handleInputText(e, item.id)}
                   readOnly={item.readOnly}
                 />
                 <img
@@ -163,12 +186,22 @@ setRules(
               </div>
             ))}
           </div>
-          <button className="theme-link" onClick={ handleAddRule}>
+          <button className="theme-link" onClick={handleAddRule}>
             <span className="mr-2 fa fa-plus"></span>Add Additional Criteria
           </button>
           <div className="mt-xl-5 mt-sm-4 mt-3">
-            <button type="submit" className="px-md-5 white-btn btn">
-              Save as Draft
+            <button
+              type="submit"
+              className="px-md-5 white-btn btn"
+              onClick={handleDraft}>
+              {loading ? (
+                <div
+                  className="spinner-border text-primary spinner-border-md"
+                  role="status"
+                />
+              ) : (
+                'Save as Draft'
+              )}
             </button>
             <button
               onClick={handleSubmit}

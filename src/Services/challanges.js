@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const allChallenges = async =>
+const allChallenges = () =>
   axios({
     method: 'get',
     url: `${process.env.REACT_APP_BASE_URL}/challenges`,
@@ -13,7 +13,7 @@ const allChallenges = async =>
       console.log(error);
     });
 
-const singleChallenge = async id =>
+const singleChallenge = id =>
   axios({
     method: 'get',
     url: `${process.env.REACT_APP_BASE_URL}/challenge?challenge_id=${id}`,
@@ -26,7 +26,7 @@ const singleChallenge = async id =>
       return error;
     });
 
-const createChallenge = async data =>
+const createChallenge = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/create-challenge`,
@@ -40,7 +40,7 @@ const createChallenge = async data =>
       return error;
     });
 
-const saveChallenge1 = async data =>
+const saveChallenge1 = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-1`,
@@ -54,7 +54,7 @@ const saveChallenge1 = async data =>
       return error.response;
     });
 
-const saveChallenge2 = async data =>
+const saveChallenge2 = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-2`,
@@ -68,7 +68,7 @@ const saveChallenge2 = async data =>
       return error.response;
     });
 
-const saveChallenge3 = async data =>
+const saveChallenge3 = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-3`,
@@ -76,13 +76,13 @@ const saveChallenge3 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      return response;
+      return response.data;
     })
     .catch(error => {
-      console.log(error);
+      return error.response;
     });
 
-const saveChallenge4 = async data =>
+const saveChallenge4 = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-4`,
@@ -90,13 +90,13 @@ const saveChallenge4 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      return response;
+      return response.data;
     })
     .catch(error => {
-      console.log(error);
+      return error.response;
     });
 
-const saveChallenge5 = async data =>
+const saveChallenge5 = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-5`,
@@ -104,13 +104,13 @@ const saveChallenge5 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      return response;
+      return response.data;
     })
     .catch(error => {
-      console.log(error);
+      return error.response;
     });
 
-const saveChallenge6 = async data =>
+const saveChallenge6 = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-6`,
@@ -118,23 +118,24 @@ const saveChallenge6 = async data =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      return response;
+      return response.data;
     })
     .catch(error => {
-      console.log(error);
+      return error.response;
     });
-const saveChallenge7 = async data =>
+
+const saveChallenge7 = data =>
   axios({
     method: 'post',
-    url: `${process.env.REACT_APP_BASE_URL}/api/save-challenge-step-7`,
+    url: `${process.env.REACT_APP_BASE_URL}/save-challenge-step-7`,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(response => {
-      return response;
+      return response.data;
     })
     .catch(error => {
-      console.log(error);
+      return error.response;
     });
 
 export {
@@ -143,6 +144,7 @@ export {
   saveChallenge1,
   saveChallenge2,
   saveChallenge3,
+  saveChallenge4,
   saveChallenge5,
   saveChallenge6,
   saveChallenge7,

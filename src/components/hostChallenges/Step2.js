@@ -4,12 +4,13 @@ import {useRecoilState} from 'recoil';
 import {challengeAtom} from '../../recoil/atom';
 import {saveChallenge2} from '../../Services/challanges';
 
-const Step2 = ({setStep, step}) => {
+const Step2 = ({setStep, step, challengeId}) => {
   const [start, setStart] = useState('');
   const [deadline, setDeadline] = useState('');
   const [question, setQestion] = useState('');
   const [isQA, setIsQA] = useState('');
   const [challenge, setChallenge] = useRecoilState(challengeAtom);
+  const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState({
     start: false,
@@ -43,35 +44,31 @@ const Step2 = ({setStep, step}) => {
         submission_date: deadline,
         Q_A: isQA,
       });
-      // console.log({
-      //   start_date: start,
-      //   cutOff_date: question,
-      //   submission_date: deadline,
-      //   Q_A: isQA,
-      // });
+
       setStep(3);
     }
   };
-  console.log(error);
-  console.log({
-    start_date: start,
-    cutOff_date: question,
-    submission_date: deadline,
-    Q_A: isQA,
-  });
 
   const handleDraft = async e => {
     e.preventDefault();
+    setLoading(true);
+
     const response = await saveChallenge2({
       user_id: localStorage.getItem('userId'),
       step: step,
       cutOff_date: question,
       Q_A: isQA,
+      start_date: start,
+      submission_date: deadline,
+      challenge_id: challengeId,
     });
+
     if (response.successData) {
       toast.success(response.message);
+      setLoading(false);
     } else {
       toast.error(response.data.message);
+      setLoading(false);
     }
   };
 
@@ -108,6 +105,7 @@ const Step2 = ({setStep, step}) => {
           <div className="form-group col-sm-6 my-sm-0 my-3">
             <h6>When will the submission deadline be?</h6>
             <input
+              min={start}
               type="date"
               className={`form-control ${error.deadline && 'border-danger'}`}
               onChange={e => {
@@ -122,6 +120,7 @@ const Step2 = ({setStep, step}) => {
           <div className="w-100">
             <h6>What is the cutoff date for questions?</h6>
             <input
+              min={deadline}
               type="date"
               className={`form-control ${error.question && 'border-danger'}`}
               onChange={e => {
@@ -168,7 +167,14 @@ const Step2 = ({setStep, step}) => {
             type="submit"
             className="px-md-5 white-btn btn"
             onClick={handleDraft}>
-            Save as Draft
+            {loading ? (
+              <div
+                className="spinner-border text-primary spinner-border-md"
+                role="status"
+              />
+            ) : (
+              'Save as Draft'
+            )}
           </button>
           <button
             type="submit"

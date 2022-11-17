@@ -69,13 +69,14 @@ const keywordData = [
   },
 ];
 
-const Step1 = ({setStep, step}) => {
+const Step1 = ({setStep, step, updateId}) => {
   const [title, setTitle] = useState('');
   const [challengeType, setChallengeType] = useState('');
   const [keywords, setKeywords] = useState(keywordData);
   const [editTag, setEditTag] = useState(false);
   const [newKeyword, setNewKeyword] = useState(undefined);
   const [challenge, setChallenge] = useRecoilState(challengeAtom);
+  const [loading, setLoading] = useState(false);
 
   const handleTitle = e => {
     setTitle(e.target.value);
@@ -141,6 +142,7 @@ const Step1 = ({setStep, step}) => {
   const handleSave = async e => {
     e.preventDefault();
     const keywordList = getKeywordList();
+    setLoading(true);
 
     const response = await saveChallenge1({
       title: title,
@@ -149,10 +151,14 @@ const Step1 = ({setStep, step}) => {
       step: step,
       challenge_type: challengeType,
     });
+
     if (response.successData) {
+      updateId(response.successData.getChallenge.id);
       toast.success(response.message);
+      setLoading(false);
     } else {
       toast.error(response.data.message);
+      setLoading(false);
     }
   };
 
@@ -236,7 +242,14 @@ const Step1 = ({setStep, step}) => {
               type="submit"
               className="px-md-5 white-btn btn"
               onClick={handleSave}>
-              Save as Draft
+              {loading ? (
+                <div
+                  className="spinner-border text-primary spinner-border-md"
+                  role="status"
+                />
+              ) : (
+                'Save as Draft'
+              )}
             </button>
             <button
               onClick={handleSubmit}

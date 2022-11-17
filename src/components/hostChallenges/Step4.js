@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
+import {toast} from 'react-toastify';
 import {useRecoilState} from 'recoil';
 import {challengeAtom} from '../../recoil/atom';
+import {saveChallenge4} from '../../Services/challanges';
 
-const Step4 = ({setStep}) => {
+const Step4 = ({setStep, challengeId, step}) => {
   const [background, setBackground] = useState('');
   const [goal, setGoal] = useState('');
   const [challenge, setChallenge] = useRecoilState(challengeAtom);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -18,6 +21,27 @@ const Step4 = ({setStep}) => {
       });
 
       setStep(5);
+    }
+  };
+
+  const handleDraft = async e => {
+    e.preventDefault();
+
+    setLoading(true);
+    const response = await saveChallenge4({
+      user_id: localStorage.getItem('userId'),
+      step: step,
+      challenge_id: challengeId,
+      description_about_challenge: background,
+      end_goal: goal,
+    });
+
+    if (response.status === 200) {
+      toast.success(response.message);
+      setLoading(false);
+    } else {
+      toast.error(response.data.message);
+      setLoading(false);
     }
   };
 
@@ -61,8 +85,18 @@ const Step4 = ({setStep}) => {
           </div>
         </div>
         <div className="mt-xl-5 mt-sm-4 mt-3">
-          <button type="submit" className="px-md-5 white-btn btn">
-            Save as Draft
+          <button
+            type="submit"
+            className="px-md-5 white-btn btn"
+            onClick={handleDraft}>
+            {loading ? (
+              <div
+                className="spinner-border text-primary spinner-border-md"
+                role="status"
+              />
+            ) : (
+              'Save as Draft'
+            )}
           </button>
           <button
             type="submit"
