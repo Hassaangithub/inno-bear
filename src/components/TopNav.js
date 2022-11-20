@@ -20,7 +20,6 @@ const TopNav = ({dashboard}) => {
     localStorage.clear();
     navigate('/sign-in');
   };
-  console.log('hello');
   const navItems = [
     {
       path: '/home',

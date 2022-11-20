@@ -53,30 +53,27 @@ const ContactUs = () => {
               Get a question for us <br /> today? Lets talk!
             </h2>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
-              possimus architecto temporibus libero sed ab tempore amet
-              laudantium alias cum.
+              We’re here for you. Let us know what you need and how we can be of
+              service. Someone will get back to you as soon as humanly possible
             </p>
             <div className="mt-3">
               <span>
                 <i className="fas fa-map-marker-alt"></i>{' '}
-                <span className="mx-3">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                </span>{' '}
+                <span className="mx-3">Happy teammates around the globe</span>{' '}
               </span>
             </div>
             <div className="mt-3">
               <span>
                 {' '}
                 <i className="fas fa-phone"></i>{' '}
-                <span className="mx-3">1234567</span>
+                <span className="mx-3">We’re more into texting</span>
               </span>
             </div>
             <div className="mt-3">
               <span>
                 {' '}
                 <i className="fas fa-envelope"></i>{' '}
-                <span className="mx-3">joan@gmail.com</span>
+                <span className="mx-3">InnoBear@floor23digital.com</span>
               </span>
             </div>
           </div>
