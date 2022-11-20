@@ -109,7 +109,7 @@ const Step5 = ({setStep, challengeId, step}) => {
     if (filteredRules.length) {
       setChallenge({
         ...challenge,
-        winning_rule: filteredRules,
+        rules: filteredRules,
       });
       setStep(6);
     }
@@ -125,7 +125,7 @@ const Step5 = ({setStep, challengeId, step}) => {
       user_id: localStorage.getItem('userId'),
       step: step,
       challenge_id: challengeId,
-      winning_rule: filteredRules,
+      rules: filteredRules,
     });
 
     if (response.status === 200) {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Rules = () => {
+const Rules = ({rules}) => {
   return (
     <div
       className="py-md-4 py-3"
@@ -9,14 +9,11 @@ const Rules = () => {
       aria-labelledby="rulesTab">
       <div className="mb-md-5 mb-3">
         <h3 className="mb-3">Rules</h3>
-        <li className="rules-border">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-          voluptate qui delectus cumque perferendis, rem dolor illo aperiamt.
-        </li>
-        <li className="rules-border">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-          voluptate qui delectus cumque perferendis, rem dolor illo aperiamt.
-        </li>
+        {rules?.map((item, index) => (
+          <li className="rules-border" key={item.id}>
+            {item.rule}
+          </li>
+        ))}
       </div>
     </div>
   );

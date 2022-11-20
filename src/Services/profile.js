@@ -17,7 +17,10 @@ const postUpdatedData = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/update-profile`,
-    headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'multipart/form-data',
+    },
     data: data,
   })
     .then(response => {

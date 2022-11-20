@@ -1,13 +1,28 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import NotificationBing from '../../images/notification-bing.png';
 import {useNavigate} from 'react-router-dom';
 import {handleLogout} from '../../utility';
 import CustomModal from '../CustomModal';
+import {getProfileData} from '../../Services/profile';
+import {toast} from 'react-toastify';
 
 const TopContent = ({isProfile}) => {
-  const profileImg = localStorage.getItem('image');
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const [profileImg, setProfileImg] = useState();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const response = await getProfileData();
+      if (response.successData) {
+        setProfileImg(response.successData.user.image);
+      } else {
+        toast.error(response.response.data.message);
+      }
+    };
+    fetchProfile();
+  }, []);
+
   const handleClose = () => {
     setShow(false);
   };
@@ -48,7 +63,7 @@ const TopContent = ({isProfile}) => {
             id="profContentBtn"
             data-toggle="dropdown"
             aria-expanded="false">
-            {/* {profileImg ? (
+            {profileImg ? (
               <img src={profileImg} className="profile-user-pic" />
             ) : (
               <div
@@ -59,16 +74,7 @@ const TopContent = ({isProfile}) => {
                 }}>
                 {localStorage.getItem('email')[0].toUpperCase()}
               </div>
-
-            )} */}
-            <div
-              className="profile-user-pic d-flex align-items-center justify-content-center text-white"
-              style={{
-                background: '#9e9e9e',
-                fontSize: '20px',
-              }}>
-              {localStorage.getItem('email')[0]?.toUpperCase()}
-            </div>
+            )}
           </a>
           <div className="dropdown-menu dropdown-menu-right animated-dropdown slideIn w-100 border-0 dark-box-shadow">
             <b className="text-muted text-uppercase d-block mb-2 user-name-text">

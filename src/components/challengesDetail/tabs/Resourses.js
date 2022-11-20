@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Resoucerses = () => {
+const Resoucerses = ({resources}) => {
   return (
     <div
       className="py-md-4 py-3"
@@ -18,13 +18,13 @@ const Resoucerses = () => {
                 <small className="text-muted">10kb</small>
               </div>
               <div className="mt-3">
-                <a href="">
+                <a href={`/${resources}`} download>
                   Download <i className="fas fa-download"></i>
                 </a>
               </div>
             </div>
           </div>
-          <div className="col-lg-3">
+          {/* <div className="col-lg-3">
             <div className="card p-3">
               <i className="fas fa-file-word word-icon"></i>
               <div className=" d-flex justify-content-between mt-5">
@@ -37,7 +37,7 @@ const Resoucerses = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -131,7 +131,7 @@ const Step6 = ({setStep, challengeId, step}) => {
       user_id: localStorage.getItem('userId'),
       step: step,
       challenge_id: challengeId,
-      rule: filteredRules,
+      wining_rule: filteredRules,
     });
     if (response.status === 200) {
       toast.success(response.message);

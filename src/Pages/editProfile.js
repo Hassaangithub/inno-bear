@@ -98,27 +98,9 @@ const EditProfile = () => {
     fetchCountries();
   }, []);
 
-  // function getBase64(file, cb) {
-  //   let reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onload = function () {
-  //     cb(reader.result);
-  //   };
-  //   reader.onerror = function (error) {
-  //     console.log('Error: ', error);
-  //   };
-  // }
-
   const handleImage = e => {
-    console.log('hello');
     setProfileImg(URL.createObjectURL(e.target.files[0]));
     setImgUrl(e.target.files[0]);
-    // let idCardBase64 = '';
-    // getBase64(e.target.files[0], result => {
-    //   idCardBase64 = result;
-    //   console.log('64', result);
-    //   setImgUrl(result);
-    // });
   };
   const handleFirstNm = e => {
     setFirstNm(e.target.value);
@@ -163,7 +145,6 @@ const EditProfile = () => {
       password: pass,
       image: imgUrl,
     };
-    console.log('data', data);
 
     const response = await postUpdatedData(data);
     if (response.successData) {
@@ -175,7 +156,6 @@ const EditProfile = () => {
     }
   };
 
-  // console.log('help', imgUrl);
   return (
     <>
       <DashboardSidebar list={list} isProfile={true}>

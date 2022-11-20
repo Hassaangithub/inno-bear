@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Prizes = () => {
+const Prizes = ({awards, prize}) => {
   return (
     <div
       className="py-md-4 py-3"
@@ -12,11 +12,11 @@ const Prizes = () => {
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
           similique et dolor eius sunt natus, accusantium placeat corporis
-          beatae <strong>75,000 USD</strong>
+          beatae <strong>${prize}</strong>
         </p>
       </div>
-      <div class="mb-3">
-        <table class="table table-striped table-borderless table-responsive">
+      <div className="mb-3">
+        <table className="table table-striped table-borderless table-responsive">
           <thead>
             <tr>
               <th>Award</th>
@@ -26,28 +26,18 @@ const Prizes = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>USD</td>
-              <td>35,000</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>USD</td>
-              <td>10,000</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>USD</td>
-              <td>5,000</td>
-              <td>3</td>
-            </tr>
+            {awards.map((item, index) => (
+              <tr key={item.id}>
+                <td>{index + 1}</td>
+                <td>USD</td>
+                <td>{item.price}</td>
+                <td>{item.number_of_awards}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      <div class="mb-3">
+      <div className="mb-3">
         <h3>Aditional Prize Information</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ea

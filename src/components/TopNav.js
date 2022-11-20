@@ -1,19 +1,26 @@
 import React from 'react';
+import {useState} from 'react';
+import {useEffect} from 'react';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {toast} from 'react-toastify';
 import accountAuth from '../images/account-auth-logo.png';
+import {getProfileData} from '../Services/profile';
 
 const TopNav = ({dashboard}) => {
   const navigate = useNavigate();
+
   let location = useLocation();
   const pathName = '/' + location.pathname.split('/')[1];
   const user = localStorage.getItem('token');
-  const profileImg = localStorage.getItem('image');
+  // const profileImg = localStorage.getItem('image');
+  const [profileImg, setProfileImg] = useState();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.clear();
     navigate('/sign-in');
   };
-
+  console.log('hello');
   const navItems = [
     {
       path: '/home',
@@ -46,6 +53,18 @@ const TopNav = ({dashboard}) => {
       key: '6',
     },
   ];
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const response = await getProfileData();
+      if (response.successData) {
+        setProfileImg(response.successData.user.image);
+      } else {
+        toast.error(response.response.data.message);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light px-sm-4 px-3 py-sm-3 py-2 header-navbar">
@@ -98,7 +117,7 @@ const TopNav = ({dashboard}) => {
                 id="profContentBtn"
                 data-toggle="dropdown"
                 aria-expanded="false">
-                {/* {profileImg ? (
+                {profileImg ? (
                   <img src={profileImg} className="profile-user-pic" />
                 ) : (
                   <div
@@ -109,16 +128,7 @@ const TopNav = ({dashboard}) => {
                     }}>
                     {localStorage.getItem('email')[0].toUpperCase()}
                   </div>
-                )} */}
-
-                <div
-                  className="profile-user-pic d-flex align-items-center justify-content-center text-white"
-                  style={{
-                    background: '#9e9e9e',
-                    fontSize: '20px',
-                  }}>
-                  {localStorage.getItem('email')[0]?.toUpperCase()}
-                </div>
+                )}
               </a>
               <div className="dropdown-menu dropdown-menu-right animated-dropdown slideIn w-100 border-0 dark-box-shadow">
                 <b className="text-muted text-uppercase d-block mb-2 user-name-text">

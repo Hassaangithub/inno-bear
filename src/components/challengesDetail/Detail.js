@@ -16,9 +16,8 @@ import WinningCriteria from './tabs/WinningCriteria';
 import Teams from './Teams';
 import {challengeId, challengeAtom, currentChallenge} from '../../recoil/atom';
 import {useSetRecoilState} from 'recoil';
-import { toast, ToastContainer } from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 import {useRecoilValue} from 'recoil';
-
 
 const Detail = () => {
   const param = useParams();
@@ -27,18 +26,18 @@ const Detail = () => {
   const [activeTab, setActiveTab] = useState('');
   const [data, setData] = useState();
   const [loading, setLoading] = useState();
-  const setChallengeId = useSetRecoilState(challengeId)
-  const allChallenges = useRecoilValue(challengeAtom)
-  const setCurrentChallenge = useSetRecoilState(currentChallenge)
+  const setChallengeId = useSetRecoilState(challengeId);
+  const allChallenges = useRecoilValue(challengeAtom);
+  const setCurrentChallenge = useSetRecoilState(currentChallenge);
 
   useEffect(() => {
     const getChallenge = async () => {
       setLoading(true);
-      const id = param.id.replace(":","");
-      setChallengeId(id)
+      const id = param.id.replace(':', '');
+      setChallengeId(id);
       const response = await singleChallenge(id);
       if (response) {
-        toast.success(response.data.message);
+        // toast.success(response.data.message);
         setData(response.data.successData.data);
         setCurrentChallenge(response.data.successData.data);
         setLoading(false);
@@ -49,11 +48,11 @@ const Detail = () => {
     };
     getChallenge();
   }, []);
-
+  // console.log('data', data);
   return (
     <>
-        <ToastContainer
-        position='top-right'
+      <ToastContainer
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -62,9 +61,9 @@ const Detail = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme='light'
+        theme="light"
       />
-      <Banner image={data?.thumbnail_image} title={data?.title}/>
+      <Banner image={data?.thumbnail_image} title={data?.title} />
       <div className="challenges-pg px-md-5 px-3">
         <div className="my-4 d-flex flex-wrap flex-md-row flex-column flex-column-reverse justify-content-between team-project-section">
           <div className="breadcrumbs">
@@ -96,20 +95,50 @@ const Detail = () => {
           </div>
         </div>
         <div className="tab-content" id="challengeTypeTabContent">
-          {view === 'overview' && <Overview cashPrize={data?.award_prize} type={data?.keywords} submission={data?.submission_date} close={data?.cutOff_date} />}
-          {view === 'teams' && <Teams description={data?.description_about_challenge} type={data?.challenge_type} keyword={data?.keywords} />}
+          {view === 'overview' && (
+            <Overview
+              cashPrize={data?.award_prize}
+              type={data?.keywords}
+              submission={data?.submission_date}
+              close={data?.cutOff_date}
+            />
+          )}
+          {view === 'teams' && (
+            <Teams
+              description={data?.description_about_challenge}
+              type={data?.challenge_type}
+              keyword={data?.keywords}
+            />
+          )}
           <Navbar
             tab={view}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
-          {activeTab === 'Overview' && <OverviewTab  />}
-          {activeTab === 'Rules' && <Rules />}
-          {activeTab === 'Timeline' && <Timelines />}
-          {activeTab === 'Prizes' && <Prizes />}
-          {activeTab === 'Winning Criteria' && <WinningCriteria />}
+          {activeTab === 'Overview' && (
+            <OverviewTab
+              goal={data?.end_goal}
+              background={data?.description_about_challenge}
+            />
+          )}
+          {activeTab === 'Rules' && <Rules rules={data?.rules} />}
+          {activeTab === 'Timeline' && (
+            <Timelines
+              launch={data?.created_at}
+              closing={data?.cutOff_date}
+              submission={data?.submission_date}
+            />
+          )}
+          {activeTab === 'Prizes' && (
+            <Prizes awards={data?.awards} prize={data?.award_prize} />
+          )}
+          {activeTab === 'Winning Criteria' && (
+            <WinningCriteria winningRule={data?.determines} />
+          )}
           {activeTab === 'Participants' && <Participants />}
-          {activeTab === 'Resources' && <Resoucerses />}
+          {activeTab === 'Resources' && (
+            <Resoucerses resources={data?.attachment} />
+          )}
           {activeTab === 'Updates' && <Updates />}
           {activeTab === 'Community' && <Community />}
         </div>
