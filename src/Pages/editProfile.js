@@ -37,7 +37,7 @@ const list = [
   },
 ];
 const EditProfile = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [firstNm, setFirstNm] = useState();
   const [lastNm, setLastNm] = useState();
@@ -244,13 +244,19 @@ const EditProfile = () => {
                     <select
                       className="form-control"
                       onChange={handleCountry}
-                      defaultValue={country}>
+                      // defaultValue={country}
+
+                      value="bus">
                       <option value={null}>--Please Select--</option>
-                      {allCountries?.map((item, index) => (
+                      {/* {allCountries?.map((item, index) => (
                         <option key={index} value={JSON.stringify(item)}>
                           {item.name}
                         </option>
-                      ))}
+                      ))} */}
+
+                      <option>car</option>
+                      <option>bus</option>
+                      <option>bike</option>
                     </select>
                   </div>
 

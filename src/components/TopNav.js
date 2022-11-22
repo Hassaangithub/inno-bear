@@ -58,9 +58,10 @@ const TopNav = ({dashboard}) => {
       const response = await getProfileData();
       if (response.successData) {
         setProfileImg(response.successData.user.image);
-      } else {
-        toast.error(response.response.data.message);
       }
+      // else {
+      //   toast.error(response.response.data.message);
+      // }
     };
     fetchProfile();
   }, []);

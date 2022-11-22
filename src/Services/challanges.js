@@ -138,6 +138,56 @@ const saveChallenge7 = data =>
       return error.response;
     });
 
+const getCommunity = data =>
+  axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/challenge-topic`,
+    data: data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      return error.response;
+    });
+
+const getUpdates = data =>
+  axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/challenge-updates`,
+    data: data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      return error.response;
+    });
+
+const postComment = data =>
+  axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/challenge-topica-dd-answer`,
+    data: data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      return error.response;
+    });
+
 export {
   allChallenges,
   createChallenge,
@@ -149,4 +199,7 @@ export {
   saveChallenge6,
   saveChallenge7,
   singleChallenge,
+  getUpdates,
+  getCommunity,
+  postComment,
 };

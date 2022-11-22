@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {singleChallenge} from '../../Services/challanges';
+import {
+  getCommunity,
+  getUpdates,
+  singleChallenge,
+} from '../../Services/challanges';
 import Banner from './Banner';
 import Navbar from './Navbar';
 import Overview from './Overview';
@@ -21,34 +25,54 @@ import {useRecoilValue} from 'recoil';
 
 const Detail = () => {
   const param = useParams();
+  const id = param.id.replace(':', '');
   const navigate = useNavigate();
   const [view, setView] = useState('overview');
   const [activeTab, setActiveTab] = useState('');
   const [data, setData] = useState();
   const [loading, setLoading] = useState();
+  const [updates, setUpdates] = useState();
+  const [communityPost, setCommunityPost] = useState();
+
   const setChallengeId = useSetRecoilState(challengeId);
   const allChallenges = useRecoilValue(challengeAtom);
   const setCurrentChallenge = useSetRecoilState(currentChallenge);
 
+  const getChallenge = async id => {
+    setLoading(true);
+    const response = await singleChallenge(id);
+    if (response) {
+      // toast.success(response.data.message);
+      setData(response.data.successData.data);
+      setCurrentChallenge(response.data.successData.data);
+      setLoading(false);
+    } else {
+      toast.error(response.response.data.message);
+      setLoading(false);
+    }
+  };
+
+  const fetchUpdates = async id => {
+    const response = await getUpdates({challenge_id: Number(id)});
+    if (response.successData) {
+      setUpdates(response.successData?.data);
+    }
+  };
+
+  const fetchCommunityPosts = async id => {
+    const response = await getCommunity({challenge_id: Number(id)});
+    // console.log(response);
+    if (response.successData) {
+      setCommunityPost(response.successData?.challengeTopic);
+    }
+  };
   useEffect(() => {
-    const getChallenge = async () => {
-      setLoading(true);
-      const id = param.id.replace(':', '');
-      setChallengeId(id);
-      const response = await singleChallenge(id);
-      if (response) {
-        // toast.success(response.data.message);
-        setData(response.data.successData.data);
-        setCurrentChallenge(response.data.successData.data);
-        setLoading(false);
-      } else {
-        toast.error(response.response.data.message);
-        setLoading(false);
-      }
-    };
-    getChallenge();
+    setChallengeId(id);
+    getChallenge(id);
+    fetchUpdates(id);
+    fetchCommunityPosts(id);
   }, []);
-  // console.log('data', data);
+  // console.log('communitydata', communityPost);
   return (
     <>
       <ToastContainer
@@ -139,8 +163,10 @@ const Detail = () => {
           {activeTab === 'Resources' && (
             <Resoucerses resources={data?.attachment} />
           )}
-          {activeTab === 'Updates' && <Updates />}
-          {activeTab === 'Community' && <Community />}
+          {activeTab === 'Updates' && <Updates updates={updates} />}
+          {activeTab === 'Community' && (
+            <Community communityPost={communityPost} />
+          )}
         </div>
       </div>
     </>

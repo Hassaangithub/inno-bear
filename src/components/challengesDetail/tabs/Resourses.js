@@ -1,6 +1,32 @@
 import React from 'react';
+import fileDownload from 'js-file-download';
+import axios from 'axios';
+import {saveAs} from 'file-saver';
 
 const Resoucerses = ({resources}) => {
+  // function downloadFile(url, fileName) {
+  //   fetch(url, {method: 'get', mode: 'no-cors', referrerPolicy: 'no-referrer'})
+  //     .then(res => res.blob())
+  //     .then(res => {
+  //       const aElement = document.createElement('a');
+  //       aElement.setAttribute('download', fileName);
+  //       const href = URL.createObjectURL(res);
+  //       aElement.href = href;
+  //       aElement.setAttribute('target', '_blank');
+  //       aElement.click();
+  //       URL.revokeObjectURL(href);
+  //     });
+  // }
+
+  const handleDownload = (url, filename) => {
+    axios
+      .get(url, {
+        responseType: 'blob',
+      })
+      .then(res => {
+        saveAs(res.data, filename);
+      });
+  };
   return (
     <div
       className="py-md-4 py-3"
@@ -18,7 +44,7 @@ const Resoucerses = ({resources}) => {
                 <small className="text-muted">10kb</small>
               </div>
               <div className="mt-3">
-                <a href={`/${resources}`} download>
+                <a download="file" href={resources}>
                   Download <i className="fas fa-download"></i>
                 </a>
               </div>
