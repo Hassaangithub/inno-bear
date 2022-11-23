@@ -61,7 +61,6 @@ const Detail = () => {
 
   const fetchCommunityPosts = async id => {
     const response = await getCommunity({challenge_id: Number(id)});
-    // console.log(response);
     if (response.successData) {
       setCommunityPost(response.successData?.challengeTopic);
     }
@@ -72,7 +71,7 @@ const Detail = () => {
     fetchUpdates(id);
     fetchCommunityPosts(id);
   }, []);
-  // console.log('communitydata', communityPost);
+  console.log('communitydata', communityPost);
   return (
     <>
       <ToastContainer
