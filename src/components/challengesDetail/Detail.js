@@ -33,6 +33,7 @@ const Detail = () => {
   const [loading, setLoading] = useState();
   const [updates, setUpdates] = useState();
   const [communityPost, setCommunityPost] = useState();
+  const [message, setMessage] = useState();
 
   const setChallengeId = useSetRecoilState(challengeId);
   const allChallenges = useRecoilValue(challengeAtom);
@@ -69,9 +70,11 @@ const Detail = () => {
     setChallengeId(id);
     getChallenge(id);
     fetchUpdates(id);
-    fetchCommunityPosts(id);
   }, []);
-  console.log('communitydata', communityPost);
+
+  useEffect(() => {
+    fetchCommunityPosts(id);
+  }, [message]);
   return (
     <>
       <ToastContainer
@@ -164,7 +167,11 @@ const Detail = () => {
           )}
           {activeTab === 'Updates' && <Updates updates={updates} />}
           {activeTab === 'Community' && (
-            <Community communityPost={communityPost} />
+            <Community
+              communityPost={communityPost}
+              message={message}
+              setMessage={setMessage}
+            />
           )}
         </div>
       </div>

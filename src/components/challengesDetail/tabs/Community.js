@@ -1,25 +1,36 @@
 import moment from 'moment';
 import React, {useState} from 'react';
+import {useEffect} from 'react';
 import {toast} from 'react-toastify';
 import ellipse3 from '../../../images/Ellipse-3.png';
 import {postComment} from '../../../Services/challanges';
 
-const Community = ({communityPost}) => {
-  const [message, setMessage] = useState();
+const Community = ({communityPost, message, setMessage}) => {
   const [loading, setLoading] = useState(false);
   const [toggleComment, setToggleComment] = useState('');
   const [answersToggle, setAnswersToggle] = useState('');
+  const [filteredData, setFilteredData] = useState();
 
-  const handleComment = async (e, topicId) => {
+  const handleComment = async (e, id) => {
     setLoading(true);
     const response = await postComment({
-      challenge_topic_id: Number(topicId),
+      challenge_topics_id: Number(id),
       message: message,
     });
     if (response.data) {
       setLoading(false);
       toast.error(response.data.message);
+    } else {
+      setMessage('');
+      setLoading(false);
+      toast.success(response.message);
     }
+  };
+  const handleSearch = e => {
+    const filteredPosts = communityPost?.filter(post => {
+      return post.title.includes(e.target.value);
+    });
+    setFilteredData(filteredPosts);
   };
 
   const getRelatveDays = currentDate => {
@@ -43,7 +54,11 @@ const Community = ({communityPost}) => {
   const handleAnswer = id => {
     setAnswersToggle(id);
   };
-  console.log(communityPost);
+
+  useEffect(() => {
+    setFilteredData(communityPost);
+  }, []);
+
   return (
     <div
       className="py-md-4 py-3"
@@ -58,12 +73,13 @@ const Community = ({communityPost}) => {
       text"
             className="form-control search-field w-50"
             placeholder="Search Community"
+            onChange={handleSearch}
           />
           <button className=" btn-edit d-none">
             Add a new topic <i className="fas fa-plus"></i>
           </button>
         </div>
-        {communityPost.map((item, index) => (
+        {filteredData?.map((item, index) => (
           <div key={item.id}>
             <div className="hr mt-3"></div>
             <div className="mt-3 col-lg-12">
@@ -137,9 +153,7 @@ const Community = ({communityPost}) => {
                 <div className="mt-3">
                   <button
                     className=" btn-post "
-                    onClick={e =>
-                      handleComment(e, item?.answers.challenge_topics_id)
-                    }>
+                    onClick={e => handleComment(e, item?.id)}>
                     {loading ? (
                       <div
                         className="spinner-border text-primary spinner-border-md"
