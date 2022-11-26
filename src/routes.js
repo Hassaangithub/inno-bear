@@ -30,6 +30,7 @@ import ViewSubmittedSolution from './Pages/viewSubmittedSolution';
 import AllSubmittedSolutions from './Pages/allSubmittedSolutions';
 import CreateTeam from './Pages/createTeam';
 import AllCurrentChallenges from './Pages/allUserChallenges';
+import InnovationLibrary from './Pages/innovationLibrary';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -86,6 +87,7 @@ const Router = () => {
       <Route path="/help" element={<Help />} />
       <Route path="/privacy-&-policy" element={<PrivacyAndPolicy />} />
       <Route path="/about-us" element={<AboutUs />} />
+      <Route path="/innovation-library" element={<InnovationLibrary />} />
     </Routes>
   );
 };

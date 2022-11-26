@@ -311,7 +311,7 @@ const EditProfile = () => {
                           className="spinner-border text-primary"
                           role="status"></div>
                       ) : (
-                        'Change'
+                        'Update Profile'
                       )}
                     </button>
                   </div>

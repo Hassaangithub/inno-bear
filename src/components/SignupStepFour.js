@@ -49,11 +49,11 @@ const keywordData = [
 ];
 
 const challanges = [
-  'Challenges where i can generate new ideas',
-  'Challenges where i can build a solution to a problem',
-  'Challenges where i can grow or educate a community',
-  'Challenges where i can make sense of data',
-  'Challenges where i can scale up a prototype',
+  'Challenges where I can generate new ideas',
+  'Challenges where I can build a solution to a problem',
+  'Challenges where I can grow or educate a community',
+  'Challenges where I can make sense of data',
+  'Challenges where I can scale up a prototype',
 ];
 
 const SignupStepFour = ({setFormData, formData}) => {

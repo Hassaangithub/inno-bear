@@ -1,7 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from '../components/Layout';
+import {getFaqs} from '../Services/contactus';
+import ReactHtmlParser from 'react-html-parser';
 
 const Faqs = () => {
+  const [challengeSolver, setChallengeSolver] = useState();
+  const [challengeHosts, setChallengeHosts] = useState();
+
+  const fetchFaqs = async () => {
+    const response = await getFaqs();
+    if (response.successData) {
+      setChallengeSolver(response.successData.solver);
+      setChallengeHosts(response.successData.host);
+    }
+  };
+
+  useEffect(() => {
+    fetchFaqs();
+  }, []);
+
   return (
     <Layout>
       <div className="container mt-5">
@@ -11,15 +28,15 @@ const Faqs = () => {
           Challenge Hosts.
         </strong>
         <h2>Challenge Solvers</h2>
-        <strong>
-          How do I know if I’m eligible or qualified to solve a challenge?
-        </strong>
-        <p>
-          There is no one-size-fits-all answer to this question - it depends on
-          the specific challenge and what the requirements are. However, here
-          are some general tips to keep in mind:
-        </p>
-        <ul style={{listStyle: 'none'}}>
+
+        {challengeSolver?.map((solver, index) => (
+          <div key={index}>
+            <strong>{ReactHtmlParser(solver.question)}</strong>
+            <div>{ReactHtmlParser(solver.answer)}</div>
+          </div>
+        ))}
+
+        {/* <ul style={{listStyle: 'none'}}>
           <li>
             - First, make sure you understand the problem that the challenge is
             trying to solve. This will help you determine if your skills and
@@ -42,7 +59,7 @@ const Faqs = () => {
           Can I find people to solve a challenge with me as a team?
         </strong>
 
-        <p>
+         <p>
           Yes! You can find people to solve a challenge with you as a team by
           creating a team and indicating that you’re looking for members,
           searching for a team in the teams forum that is looking for members,
@@ -62,9 +79,17 @@ const Faqs = () => {
         <p>
           No, there is no limit to the number of challenges you can participate
           in.
-        </p>
+        </p> */}
         <h2>Challenge Hosts</h2>
-        <strong>Can I host a challenge that doesn’t award a cash prize?</strong>
+
+        {challengeHosts?.map((host, index) => (
+          <div key={index}>
+            <strong>{ReactHtmlParser(host.question)}</strong>
+            <div>{ReactHtmlParser(host.answer)}</div>
+          </div>
+        ))}
+
+        {/* <strong>Can I host a challenge that doesn’t award a cash prize?</strong>
         <p>
           At this time we only enable the ability to host a challenge without a
           cash prize in conjunction with our support to design and manage the
@@ -124,7 +149,7 @@ const Faqs = () => {
           produces unthinkable outcomes and we’re here to facilitate that
           brainpower value exchange. <br />
           Learn more about Floor23 on the Floor23digital.com homepage.
-        </p>
+        </p> */}
       </div>
     </Layout>
   );
