@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import {registerUserStep1} from '../Services/auth';
 import {toast, ToastContainer} from 'react-toastify';
+import {Link} from 'react-router-dom';
 
 const SignupStepOne = ({setFormData, formData, setStep}) => {
   const [formError, setFormError] = useState({email: false, password: false});
@@ -131,9 +132,9 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
           </button>
           <p className="mt-lg-4 mt-3 mb-0">
             By signing up. you agree to all of our
-            <a href="#" className="theme-link">
+            <Link to="/term&conditions" className="theme-link">
               Terms and Conditions
-            </a>
+            </Link>
           </p>
         </form>
       </div>

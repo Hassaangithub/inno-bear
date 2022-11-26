@@ -52,4 +52,22 @@ const getPrivacyPolicy = () =>
       return error.response;
     });
 
-export {contactUs, userContact, getFaqs, getPrivacyPolicy};
+const getTermAndConditions = () =>
+  axios({
+    method: 'get',
+    url: `${process.env.REACT_APP_BASE_URL}/term-of-use`,
+  })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      return error.response;
+    });
+
+export {
+  contactUs,
+  userContact,
+  getFaqs,
+  getPrivacyPolicy,
+  getTermAndConditions,
+};

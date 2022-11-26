@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Resetpassword = () => {
+  const [pass] = useState();
   return (
     <div className="row mx-0 mb-lg-0 mb-4 pr-lg-4 account-auth-pg account-auth-step-2">
       <div className="col-lg-6  side-look-img">

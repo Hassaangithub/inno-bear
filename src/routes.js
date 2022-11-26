@@ -19,7 +19,6 @@ import ViewTeams from './Pages/viewTeams';
 import CreateSolution from './Pages/CreateSolution';
 import FundingSource from './Pages/FundingSource';
 import EditProfile from './Pages/editProfile';
-import ResetPassword from './Pages/resetPassword';
 import NotificationSetting from './Pages/notificationSetting';
 import Support from './Pages/support';
 import Messages from './Pages/messages';
@@ -31,6 +30,8 @@ import AllSubmittedSolutions from './Pages/allSubmittedSolutions';
 import CreateTeam from './Pages/createTeam';
 import AllCurrentChallenges from './Pages/allUserChallenges';
 import InnovationLibrary from './Pages/innovationLibrary';
+import Resetpassword from './Pages/resetpassword';
+import TermAndCondition from './Pages/termAndCondition';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -64,7 +65,6 @@ const Router = () => {
         <Route path="/host-Challenge" element={<HostChallenge />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/notification-setting" element={<NotificationSetting />} />
         <Route path="/support" element={<Support />} />
         <Route path="/dashboard/messages" element={<Messages />} />
@@ -88,6 +88,8 @@ const Router = () => {
       <Route path="/privacy-&-policy" element={<PrivacyAndPolicy />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/innovation-library" element={<InnovationLibrary />} />
+      <Route path="/reset-password" element={<Resetpassword />} />
+      <Route path="/term&conditions" element={<TermAndCondition />} />
     </Routes>
   );
 };

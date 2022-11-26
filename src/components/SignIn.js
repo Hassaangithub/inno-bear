@@ -158,9 +158,9 @@ const SignIn = () => {
             </div>
             <p className="mt-2 mb-lg-4 mb-3">
               Forgot Password?{' '}
-              <a href="#" className="theme-link">
+              <Link to="/reset-password" className="theme-link">
                 Click here to reset password
-              </a>
+              </Link>
             </p>
             <button
               className="btn create-account-btn text-white"
