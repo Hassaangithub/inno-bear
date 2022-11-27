@@ -50,7 +50,7 @@ const ContactUs = () => {
         <div className="col-lg-6 p-0">
           <div className="contacr-details  side-contact-block">
             <h2>
-              Get a question for us <br /> today? Lets talk!
+              Got a question for us <br /> today? Lets talk!
             </h2>
             <p>
               We’re here for you. Let us know what you need and how we can be of
@@ -66,7 +66,7 @@ const ContactUs = () => {
               <span>
                 {' '}
                 <i className="fas fa-phone"></i>{' '}
-                <span className="mx-3">We’re more into texting</span>
+                <span className="mx-3">We’re more into texting &#128522;</span>
               </span>
             </div>
             <div className="mt-3">

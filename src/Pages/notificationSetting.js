@@ -67,10 +67,10 @@ const NotificationSetting = () => {
                     <span>
                       <small></small>
                     </span>
-                    <h5>Team Invitations</h5>
+                    <h5>Challenge Updates</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get emals when a participating challenge update is posted
                   </p>
                 </div>
               </div>
@@ -82,10 +82,10 @@ const NotificationSetting = () => {
                     <span>
                       <small></small>
                     </span>
-                    <h5>Team Invitations</h5>
+                    <h5>New Message</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get emails when someone sends you a new message
                   </p>
                 </div>
               </div>
@@ -97,10 +97,10 @@ const NotificationSetting = () => {
                     <span>
                       <small></small>
                     </span>
-                    <h5>Team Invitations</h5>
+                    <h5>Replies to Community Discussion</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get emails when a reply is received on your topic
                   </p>
                 </div>
               </div>
@@ -112,20 +112,20 @@ const NotificationSetting = () => {
                     <span>
                       <small></small>
                     </span>
-                    <h5>Team Invitations</h5>
+                    <h5>Solution Submissions (Hosts)</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get emails when a new solution is received
                   </p>
                 </div>
               </div>
             </div>
             <div className="row my-4">
               <div className="col-md-6">
-                <h5>Email Notification</h5>
+                <h5>Push Notification</h5>
                 <p>
-                  Get emails to find out what is going on when you are not
-                  online
+                  Get push notifications to find out what is happening when you
+                  are online
                 </p>
               </div>
               <div className="col-md-6 d-flex">
@@ -138,7 +138,7 @@ const NotificationSetting = () => {
                     <h5>Team Invitations</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get notified when you are invited to join a team
                   </p>
                 </div>
               </div>
@@ -150,10 +150,10 @@ const NotificationSetting = () => {
                     <span>
                       <small></small>
                     </span>
-                    <h5>Team Invitations</h5>
+                    <h5>Challenge Updates</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get notified when a participating challenge update is posted
                   </p>
                 </div>
               </div>
@@ -165,10 +165,10 @@ const NotificationSetting = () => {
                     <span>
                       <small></small>
                     </span>
-                    <h5>Team Invitations</h5>
+                    <h5>New Message</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get notified when someone sends you a new message
                   </p>
                 </div>
               </div>
@@ -180,10 +180,10 @@ const NotificationSetting = () => {
                     <span>
                       <small></small>
                     </span>
-                    <h5>Team Invitations</h5>
+                    <h5>Replies to Community Discussion</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get notified when a reply is received on your topic
                   </p>
                 </div>
               </div>
@@ -195,10 +195,10 @@ const NotificationSetting = () => {
                     <span>
                       <small></small>
                     </span>
-                    <h5>Team Invitations</h5>
+                    <h5>Solution Submissions (Hosts)</h5>
                   </label>
                   <p className="toggelP">
-                    Get emails when you are invited to join a team
+                    Get notified when a new solution is received
                   </p>
                 </div>
               </div>

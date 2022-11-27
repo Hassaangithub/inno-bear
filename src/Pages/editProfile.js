@@ -288,7 +288,7 @@ const EditProfile = () => {
             <div className="profileInner m-5">
               <form className="m-5 profileForm">
                 <h3>Password</h3>
-                <p>Manage your Innobear Password</p>
+                <p>Save your profile by entering your password below</p>
                 <div className="form-row">
                   <div className="form-group col-md-6">
                     <label htmlFor="changePassword">Password</label>

@@ -29,8 +29,8 @@ const sidebarlist = [
   },
   {
     img: Vector,
-    title: 'Innovation Pipiline',
-    path: '/innovation-pipiline',
+    title: 'Innovation Pipeline',
+    path: '/innovation-pipeline',
   },
   {
     img: Vector1,
@@ -76,7 +76,7 @@ const AdminSettings = () => {
     getData();
   }, []);
   return (
-    <DashboardSidebar list={sidebarlist}>
+    <DashboardSidebar list={sidebarlist} isProfile={true}>
       <div className="pl-3">
         <Link to="/challenges">
           <div
@@ -114,7 +114,7 @@ const AdminSettings = () => {
               <p className="my-2 d-flex align-items-center">
                 Admins <span className="fa fa-question ml-3"></span>
               </p>
-              <h2 className="font-IBM">10</h2>
+              <h2 className="font-IBM">1</h2>
             </div>
           </div>
         </div>

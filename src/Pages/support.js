@@ -66,7 +66,7 @@ const Support = () => {
         <div className="profile m-5  ">
           <div className="profileInner m-5">
             <h3>Contact Support</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>Let us know how we can help.</p>
 
             <div className="col-lg-6 contactLabel">
               <label htmlFor="subject">Subject</label> <br />

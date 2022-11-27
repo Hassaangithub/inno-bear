@@ -21,7 +21,7 @@ const sidebarlist = [
   {
     img: FluentPeople,
     title: 'Team',
-    path: '/dashboard/create-team',
+    path: '/dashboard/team',
   },
   {
     img: OutlineWork,
@@ -30,8 +30,8 @@ const sidebarlist = [
   },
   {
     img: Vector,
-    title: 'Innovation Pipiline',
-    path: '/innovation-pipiline',
+    title: 'Innovation Pipeline',
+    path: '/innovation-pipeline',
   },
   {
     img: Vector1,
@@ -153,7 +153,7 @@ const UserDashboard = () => {
       </div>
       <div className="row mx-0">
         <div className="col-12 d-flex flex-wrap justify-content-between my-4">
-          <h5>See other challenges you might like</h5>
+          <h5>See Other Challenges You Might Like</h5>
           <a href="#" className="text-muted">
             View more
           </a>
@@ -162,7 +162,7 @@ const UserDashboard = () => {
           <OtherChallengesCard likedChallenges={data?.favouriteChallenges} />
         ) : (
           <div className="ml-4 text-center w-100">
-            We donot have any liked challenge
+            No Challenge Recommendation At This Time
           </div>
         )}
       </div>

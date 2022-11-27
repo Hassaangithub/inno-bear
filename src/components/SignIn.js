@@ -188,7 +188,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-// "1024862251961-c69lv4b0lj6q0oi8shr01cn9vvqt30vg.apps.googleusercontent.com" : Clientid
-
-// "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": secrete

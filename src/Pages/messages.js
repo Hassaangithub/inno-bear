@@ -25,8 +25,8 @@ const Messages = () => {
           },
           {
             img: Vector,
-            title: 'Innovation Pipiline',
-            path: '/innovation-pipiline',
+            title: 'Innovation Pipeline',
+            path: '/innovation-pipeline',
           },
           {
             img: Vector1,

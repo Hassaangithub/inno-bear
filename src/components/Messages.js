@@ -6,12 +6,11 @@ const MessageBody = () => {
     <div style={{paddingBottom: '22rem'}}>
       <div className="col-lg-10 mx-auto mt-5">
         <div className="card p-3">
-          <h5>How does the award process work?</h5>
+          <h5>COMMING SOON: send messages from your dashboard?</h5>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-            beatae, itaque eum ad alias dolorem, quia dolore qui assumenda
-            voluptatum magnam natus harum a numquam iure quam recusandae
-            pariatur error?
+            Communicate directly with other users centrally from your dashboard.
+            No longer worry about how you’ll be able to have a one to one touch
+            to collaborate with another user.
           </p>
           <div className="media">
             <img
@@ -42,21 +41,19 @@ const MessageBody = () => {
             <p className="text-muted mx-2 mt-2">3 days ago</p>
           </div>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus iure
-            perspiciatis dolores facere tempore id corporis totam laborum
-            voluptate, reiciendis nam molestias neque! Ipsam quibusdam labore
-            provident, molestias odit consectetur!
+            Looking forward to this feature, there’s good opportunities to
+            seriously find a great set of teammates for the next challenge!
           </p>
         </div>
       </div>
       <div className="col-lg-10 mx-auto mt-5">
         <div className="card p-3">
-          <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit.?</h5>
+          <h5>I will be able to submit solution early?</h5>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-            beatae, itaque eum ad alias dolorem, quia dolore qui assumenda
-            voluptatum magnam natus harum a numquam iure quam recusandae
-            pariatur error?
+            Submissions will not be accepted prior to the submission open date,
+            and thankfully you have the option to drop a message to the host
+            just like this. The host can then make your question and her answer
+            public to ensure everyone get’s the same set of information.
           </p>
           <div className="media">
             <img

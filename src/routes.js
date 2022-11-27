@@ -32,6 +32,8 @@ import AllCurrentChallenges from './Pages/allUserChallenges';
 import InnovationLibrary from './Pages/innovationLibrary';
 import Resetpassword from './Pages/resetpassword';
 import TermAndCondition from './Pages/termAndCondition';
+import InnovationPipeline from './Pages/innovation-pipeline';
+import Teams from './Pages/teams';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -88,6 +90,8 @@ const Router = () => {
       <Route path="/privacy-&-policy" element={<PrivacyAndPolicy />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/innovation-library" element={<InnovationLibrary />} />
+      <Route path="innovation-pipeline" element={<InnovationPipeline />} />
+      <Route path="/dashboard/team" element={<Teams />} />
       <Route path="/reset-password" element={<Resetpassword />} />
       <Route path="/term&conditions" element={<TermAndCondition />} />
     </Routes>

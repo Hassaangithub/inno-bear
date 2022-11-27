@@ -1616,6 +1616,14 @@ div.switcher label input:checked + span small {
   color: #030d56;
 }
 
+.static-content h2 {
+  margin-block: 30px;
+}
+
+.static-content {
+  padding-inline: 30px;
+}
+
 @media (max-width: 1199px) {
   .challenge-body {
     padding: 36px;

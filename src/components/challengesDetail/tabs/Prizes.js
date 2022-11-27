@@ -10,9 +10,7 @@ const Prizes = ({awards, prize}) => {
       <div className="mb-md-5 mb-3">
         <h3 className="mb-3">Prizes</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-          similique et dolor eius sunt natus, accusantium placeat corporis
-          beatae <strong>${prize}</strong>
+          Total prize pool for this challenge is: <strong>${prize}</strong>
         </p>
       </div>
       <div className="mb-3">
@@ -20,7 +18,7 @@ const Prizes = ({awards, prize}) => {
           <thead>
             <tr>
               <th>Award</th>
-              <th>Curency</th>
+              <th>Currency</th>
               <th>Amount</th>
               <th>Number of Awards</th>
             </tr>
@@ -38,12 +36,8 @@ const Prizes = ({awards, prize}) => {
         </table>
       </div>
       <div className="mb-3">
-        <h3>Aditional Prize Information</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ea
-          soluta, in sit dolorem ipsum temporibus ipsam? Consectetur repudiandae
-          et alias expedita soluta debitis aut eum illo quae. Odit, voluptates.
-        </p>
+        <h3>Additional Prize Information</h3>
+        <p>See overview tab for additional prize information</p>
       </div>
     </div>
   );

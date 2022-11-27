@@ -6,7 +6,7 @@ import Vector from '../images/Vector.png';
 import Vector1 from '../images/Vector-1.png';
 import Vector3 from '../images/Vector-3.png';
 import Vector4 from '../images/Vector-4.png';
-import compass from '../images/compas.png';
+
 const sidebarlist = [
   {
     img: FluentPeople,
@@ -40,7 +40,7 @@ const sidebarlist = [
   },
 ];
 
-const InnovationLibrary = () => {
+const Teams = () => {
   return (
     <DashboardSidebar list={sidebarlist} isProfile={true}>
       <div className="vh-100 d-flex align-items-center justify-content-center">
@@ -52,4 +52,4 @@ const InnovationLibrary = () => {
   );
 };
 
-export default InnovationLibrary;
+export default Teams;

@@ -7,17 +7,15 @@ const Overview = ({cashPrize, type, submission, close}) => {
     <>
       <div className="row">
         <div className="col-sm-7">
-          <h5 className="heading">Challenge type:</h5>
-          <p className="mb-0">
-           {type}
-          </p>
+          <h5 className="heading">Challenge Keyword(s):</h5>
+          <p className="mb-0">{type}</p>
           <div className="row my-sm-4 my-3 challenge-block">
             <div className="pr-0 col-lg-4 col-6">
-              <p className="mb-0 text-uppercase label">Submission period:</p>
+              <p className="mb-0 text-uppercase label">Submission Open:</p>
               <p className="mb-0">{submission}</p>
             </div>
             <div className="pl-0 col-lg-4 col-6">
-              <p className="mb-0 text-uppercase label">Closed period:</p>
+              <p className="mb-0 text-uppercase label">Closed Closed:</p>
               <p className="mb-0">{close}</p>
             </div>
           </div>
@@ -27,7 +25,6 @@ const Overview = ({cashPrize, type, submission, close}) => {
           <h3>${cashPrize}</h3>
         </div>
       </div>
-     
     </>
   );
 };

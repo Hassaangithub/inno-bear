@@ -15,7 +15,7 @@ const Timelines = ({launch, closing, submission}) => {
           </div>
           <div className="col-lg-11 ">
             <div className="card  p-3">
-              <h5>Challenge Launch</h5>
+              <h5>Challenge Registration Open</h5>
               <p>{launch}</p>
             </div>
           </div>
@@ -27,7 +27,7 @@ const Timelines = ({launch, closing, submission}) => {
           </div>
           <div className="col-lg-10">
             <div className="card p-3 ">
-              <h5>Challenge Submission</h5>
+              <h5>Challenge Submission Open</h5>
               <p>{submission}</p>
             </div>
           </div>
@@ -39,7 +39,7 @@ const Timelines = ({launch, closing, submission}) => {
           </div>
           <div className="col-lg-10">
             <div className="card p-3 ">
-              <h5>Closing Period</h5>
+              <h5>Submission Deadline</h5>
               <p>{closing}</p>
             </div>
           </div>
