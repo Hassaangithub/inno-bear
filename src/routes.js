@@ -34,6 +34,7 @@ import Resetpassword from './Pages/resetpassword';
 import TermAndCondition from './Pages/termAndCondition';
 import InnovationPipeline from './Pages/innovation-pipeline';
 import Teams from './Pages/teams';
+import UpdatePassword from './Pages/updatePassword';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -70,6 +71,7 @@ const Router = () => {
         <Route path="/notification-setting" element={<NotificationSetting />} />
         <Route path="/support" element={<Support />} />
         <Route path="/dashboard/messages" element={<Messages />} />
+        <Route path="/dashboard/reset-password" element={<UpdatePassword />} />
         <Route path="/dashboard/admin-settings" element={<AdminSettings />} />
         <Route path="/ongoing-challenges" element={<AllOngoingChallenges />} />
         <Route path="/submitted-solution" element={<AllSubmittedSolutions />} />

@@ -32,11 +32,14 @@ const DashboardSidebar = ({list, footer, children, isProfile}) => {
       </CustomModal>
       <div id="sideNavOverlay" className="d-none" />
       <div id="dashboardSidebar">
-        <img
-          src={AccountAuthLogo}
-          onClick={() => navigate('/home')}
-          role="button"
-        />
+        <div className="auth-icon-wrapper">
+          <img
+            className="auth-icon"
+            src={AccountAuthLogo}
+            onClick={() => navigate('/home')}
+            role="button"
+          />
+        </div>
         <aside className="side-nav">
           <ul className="mb-0 side-nav-links">
             {list?.map((item, index) => (

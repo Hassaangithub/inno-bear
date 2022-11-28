@@ -23,8 +23,9 @@ const Resetpassword = () => {
   };
   return (
     <>
-      <div className="text-center my-lg-0 my-3">
+      <div className="text-center my-lg-0 my-3 auth-icon-wrapper">
         <img
+          className="auth-icon"
           src={accountAuth}
           alt="account-auth-logo"
           onClick={() =>

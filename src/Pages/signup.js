@@ -26,8 +26,9 @@ const Signup = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="text-center my-lg-0 my-3">
+      <div className="text-center my-lg-0 my-3 auth-icon-wrapper">
         <img
+          className="auth-icon"
           src={logo}
           alt="account-auth-logo"
           role="button"

@@ -1624,6 +1624,19 @@ div.switcher label input:checked + span small {
   padding-inline: 30px;
 }
 
+.auth-icon-wrapper {
+  height: 40px;
+  width: 80px;
+  margin: 0 !important;
+}
+
+.auth-icon {
+  min-height: 100%;
+  max-width: 100%;
+  height: 40px;
+  width: 80px;
+}
+
 @media (max-width: 1199px) {
   .challenge-body {
     padding: 36px;

@@ -10,7 +10,7 @@ import {changePassword} from '../Services/profile';
 import {toast} from 'react-toastify';
 import {useNavigate} from 'react-router-dom';
 
-const ResetPassword = () => {
+const UpdatePassword = () => {
   const navigate = useNavigate();
   const [currentpass, setCurrentPass] = useState();
   const [newpass, setNewPass] = useState();
@@ -135,4 +135,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default UpdatePassword;

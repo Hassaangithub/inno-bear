@@ -23,7 +23,7 @@ const list = [
   {
     img: OutlineWork,
     title: 'Reset Password',
-    path: '/reset-password',
+    path: '/dashboard/reset-password',
   },
   {
     img: Vector,

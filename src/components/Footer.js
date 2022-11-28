@@ -7,8 +7,14 @@ const Footer = () => {
     <footer className="footer">
       <div className="row container-fluid mt-md-4 pt-md-0 pt-3 mx-auto">
         <div className="col-md-3 px-sm-3 px-0">
-          <Link className="navbar-brand" to="/">
-            <img src={AccountAuthLogo} alt="main-account-auth-logo" />
+          <Link
+            className="navbar-brand overflow-hidden auth-icon-wrapper"
+            to="/">
+            <img
+              src={AccountAuthLogo}
+              alt="main-account-auth-logo"
+              className="auth-icon"
+            />
           </Link>
           <p className="text-white mt-md-0 mt-3">
             Tapping into human brilliance to create innovative and scalable

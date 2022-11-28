@@ -68,8 +68,12 @@ const TopNav = ({dashboard}) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light px-sm-4 px-3 py-sm-3 py-2 header-navbar">
-      <Link to="/" className="navbar-brand">
-        <img src={accountAuth} alt="main-account-auth-logo" />
+      <Link to="/" className="navbar-brand auth-icon-wrapper">
+        <img
+          src={accountAuth}
+          alt="main-account-auth-logo auth-icon"
+          style={{minHeight: '100%', maxWidth: '100%'}}
+        />
       </Link>
       <button
         className="navbar-toggler"
