@@ -6,6 +6,8 @@ import Vector1 from '../images/Vector-1.png';
 import {useNavigate} from 'react-router-dom';
 import DashboardSidebar from '../components/UserDashboard/DashboardSidebar';
 import {useState} from 'react';
+import Select from 'react-select';
+
 import {
   getCities,
   getCountries,
@@ -39,17 +41,17 @@ const list = [
 const EditProfile = () => {
   // const navigate = useNavigate();
 
-  const [firstNm, setFirstNm] = useState();
-  const [lastNm, setLastNm] = useState();
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-  const [country, setCountry] = useState();
-  const [allCountries, setAllCountries] = useState();
-  const [allCities, setAllCities] = useState();
-  const [city, setCity] = useState();
-  const [pass, setPass] = useState();
-  const [profileImg, setProfileImg] = useState();
-  const [imgUrl, setImgUrl] = useState();
+  const [firstNm, setFirstNm] = useState('');
+  const [lastNm, setLastNm] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [country, setCountry] = useState('');
+  const [allCountries, setAllCountries] = useState([]);
+  const [allCities, setAllCities] = useState([]);
+  const [city, setCity] = useState('');
+  const [pass, setPass] = useState('');
+  const [profileImg, setProfileImg] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [disableInput, setDisableInput] = useState(false);
   const fetchProfile = async () => {

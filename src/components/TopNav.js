@@ -93,7 +93,7 @@ const TopNav = ({dashboard}) => {
               <li
                 key={index}
                 className={`nav-item ${
-                  ((item.path === 'Home' && pathName === '/') ||
+                  ((item.path === '/home' && pathName === '/') ||
                     item.path === pathName) &&
                   'active'
                 }`}>
