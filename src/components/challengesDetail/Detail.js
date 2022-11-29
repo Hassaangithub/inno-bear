@@ -75,6 +75,7 @@ const Detail = () => {
   useEffect(() => {
     fetchCommunityPosts(id);
   }, [message]);
+
   return (
     <>
       <ToastContainer

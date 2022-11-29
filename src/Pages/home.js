@@ -1,25 +1,18 @@
 import React, {useEffect, useState} from 'react';
-// import {useNavigate} from 'react-router-dom';
 import Layout from '../components/Layout';
 import group1726 from '../images/Group-1726.png';
-import rectangle35 from '../images/rectangle-35.png';
 import draw1 from '../images/draw-1.png';
 import draw2 from '../images/draw-2.png';
 import draw3 from '../images/draw-3.png';
 import draw4 from '../images/draw-4.png';
 import scienceHaromatic from '../images/science-hromatic.png';
 import {useNavigate} from 'react-router-dom';
-import challenges from '../images/challege.png';
-import {Button} from 'react-bootstrap';
 import {allChallenges} from '../Services/challanges';
-import {useSetRecoilState} from 'recoil';
-import {challengeAtom} from '../recoil/atom';
 
 const Home = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem('token');
   const [data, setData] = useState();
-  const setChallenges = useSetRecoilState(challengeAtom);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -29,7 +22,6 @@ const Home = () => {
       if (!response) {
       } else {
         setData(response.data.successData.data);
-        setChallenges(response.data.successData.data);
         setLoading(false);
       }
     };

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {responsivePropType} from 'react-bootstrap/esm/createUtilityClasses';
 import {useNavigate} from 'react-router-dom';
 import {useRecoilState} from 'recoil';
-// import {storage} from '../../Firebase/firebase';
 import {challengeAtom} from '../../recoil/atom';
 import {toast} from 'react-toastify';
 import {createChallenge, saveChallenge7} from '../../Services/challanges';
@@ -62,6 +61,7 @@ const Step7 = ({challengeId, step}) => {
         user_id: userId,
         step: 7,
       };
+
       const response = await createChallenge(formData);
       if (response) {
         setLoading(false);

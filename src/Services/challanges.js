@@ -26,8 +26,9 @@ const singleChallenge = id =>
       return error;
     });
 
-const createChallenge = data =>
-  axios({
+const createChallenge = data => {
+  console.log('payload', data);
+  return axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/create-challenge`,
     data: data,
@@ -39,6 +40,7 @@ const createChallenge = data =>
     .catch(error => {
       return error;
     });
+};
 
 const saveChallenge1 = data =>
   axios({
