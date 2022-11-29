@@ -1,6 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar';
-import OverviewTab from './tabs/OverviewTab';
 
 const Overview = ({cashPrize, type, submission, close}) => {
   return (
@@ -15,7 +13,7 @@ const Overview = ({cashPrize, type, submission, close}) => {
               <p className="mb-0">{submission}</p>
             </div>
             <div className="pl-0 col-lg-4 col-6">
-              <p className="mb-0 text-uppercase label">Closed Closed:</p>
+              <p className="mb-0 text-uppercase label">Submission Closed:</p>
               <p className="mb-0">{close}</p>
             </div>
           </div>

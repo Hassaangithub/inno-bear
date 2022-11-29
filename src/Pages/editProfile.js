@@ -15,6 +15,7 @@ import {
   postUpdatedData,
 } from '../Services/profile';
 import {toast} from 'react-toastify';
+import {useRef} from 'react';
 
 const list = [
   {
@@ -40,7 +41,7 @@ const list = [
 ];
 const EditProfile = () => {
   // const navigate = useNavigate();
-
+  const ref = useRef();
   const [firstNm, setFirstNm] = useState('');
   const [lastNm, setLastNm] = useState('');
   const [email, setEmail] = useState('');
@@ -54,6 +55,7 @@ const EditProfile = () => {
   const [imgUrl, setImgUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [disableInput, setDisableInput] = useState(false);
+
   const fetchProfile = async () => {
     const response = await getProfileData();
     if (response.successData) {
@@ -95,10 +97,31 @@ const EditProfile = () => {
     }
   };
 
+  // const getCities = response => {
+  //   console.log('hello', country);
+  //   const getCountry = response.data?.filter(
+  //     country => country.name == country,
+  //   );
+  //   console.log('get', getCountry);
+  // };
+
   useEffect(() => {
     fetchProfile();
     fetchCountries();
   }, []);
+
+  // useEffect(() => {
+  //   if (country && allCountries) {
+  //     const getCountry = allCountries.filter(item => item.name === country);
+  //     const [{iso2, iso3, name}] = getCountry;
+  //     fetchCities(name, iso2, iso3);
+  //     console.log('bgi', iso2, iso3, name);
+  //   }
+  // }, [country, allCountries]);
+
+  // useEffect(() => {
+  //   console.log(ref.current.value);
+  // }, [ref.current.value]);
 
   const handleImage = e => {
     setProfileImg(URL.createObjectURL(e.target.files[0]));
@@ -157,7 +180,7 @@ const EditProfile = () => {
       setLoading(false);
     }
   };
-
+  // console.log(country, city);
   return (
     <>
       <DashboardSidebar list={list} isProfile={true}>
@@ -244,21 +267,20 @@ const EditProfile = () => {
                   <div className="form-group col-lg-6">
                     <label htmlFor="Country">Country</label>
                     <select
+                      ref={ref}
                       className="form-control"
                       onChange={handleCountry}
-                      // defaultValue={country}
-
-                      value="bus">
-                      <option value={null}>--Please Select--</option>
-                      {/* {allCountries?.map((item, index) => (
+                      value={country}>
+                      <option value={country}>{country}</option>
+                      {allCountries?.map((item, index) => (
                         <option key={index} value={JSON.stringify(item)}>
                           {item.name}
                         </option>
-                      ))} */}
-
+                      ))}
+                      {/* 
                       <option>car</option>
                       <option>bus</option>
-                      <option>bike</option>
+                      <option>bike</option> */}
                     </select>
                   </div>
 
@@ -268,8 +290,8 @@ const EditProfile = () => {
                       disabled={disableInput}
                       className={`form-control ${disableInput && 'cursor-na'}`}
                       onChange={handleCity}
-                      defaultValue={city}>
-                      <option disabled>--Please Select--</option>
+                      value={city}>
+                      <option value={city}>{city}</option>
                       {allCities?.map((item, index) => (
                         <option key={index}>{item}</option>
                       ))}

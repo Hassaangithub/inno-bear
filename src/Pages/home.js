@@ -120,7 +120,9 @@ const Home = () => {
                       </div>
                       <div className="ml-3">
                         <p className="mb-0 text-dark font-14">{card.title}</p>
-                        <p className="mb-0 font-14">{card.submission_date}</p>
+                        <p className="mb-0 font-14">
+                          closed {card.submission_date}
+                        </p>
                       </div>
                     </div>
                   </div>
