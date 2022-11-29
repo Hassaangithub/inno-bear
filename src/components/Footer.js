@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import AccountAuthLogo from '../images/account-auth-logo.png';
+import footerlogo from '../images/footerlogo.png';
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
             className="navbar-brand overflow-hidden auth-icon-wrapper"
             to="/">
             <img
-              src={AccountAuthLogo}
+              src={footerlogo}
               alt="main-account-auth-logo"
               className="auth-icon"
             />
