@@ -28,7 +28,7 @@ const ProjectAdmin = () => {
           </div>
         </div> */}
         <button className="theme-link">
-          <span className="mr-3 fa fa-plus"></span>Add admin (Comming soon)
+          <span className="mr-3 fa fa-plus"></span>Add admin (Coming soon)
         </button>
       </div>
     </div>

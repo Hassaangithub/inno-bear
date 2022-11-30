@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 const AboutUs = () => {
   return (
     <Layout>
-      <div className="container mt-5">
+      <div className="static-content mt-5">
         <h1 className="mb-4">About Us</h1>
         <p>
           Floor23 InnoBear is an open innovation software application of

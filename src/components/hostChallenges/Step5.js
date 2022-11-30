@@ -109,7 +109,7 @@ const Step5 = ({setStep, challengeId, step}) => {
     if (filteredRules.length) {
       setChallenge({
         ...challenge,
-        rules: filteredRules,
+        rule: filteredRules,
       });
       setStep(6);
     }
@@ -122,10 +122,10 @@ const Step5 = ({setStep, challengeId, step}) => {
     const filteredRules = getFilteredRules();
 
     const response = await saveChallenge5({
-      user_id: localStorage.getItem('userId'),
+      user_id: Number(localStorage.getItem('userId')),
       step: step,
       challenge_id: challengeId,
-      rules: filteredRules,
+      rule: filteredRules,
     });
 
     if (response.status === 200) {

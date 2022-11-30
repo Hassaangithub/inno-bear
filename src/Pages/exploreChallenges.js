@@ -23,7 +23,6 @@ const ExploreChallenges = () => {
   const handleCard = id => {
     navigate(`/challenges/detail:${id}`);
   };
-
   return (
     <Layout>
       <div className="page-main-content mt-3 px-md-5 px-3">
@@ -69,7 +68,7 @@ const ExploreChallenges = () => {
                         overflow: 'hidden',
                       }}>
                       <img
-                        src={card.header_image}
+                        src={card.thumbnail_image}
                         alt="challege"
                         style={{
                           minHeight: '100%',

@@ -31,6 +31,7 @@ const Home = () => {
   const handleCard = id => {
     navigate(`/challenges/detail:${id}`);
   };
+
   return (
     <Layout>
       <div className="px-md-5 px-3">

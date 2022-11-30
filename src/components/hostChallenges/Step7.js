@@ -35,7 +35,7 @@ const Step7 = ({challengeId, step}) => {
   };
   const handleSubmit = async e => {
     e.preventDefault();
-    const userId = localStorage.getItem('userId');
+    const userId = Number(localStorage.getItem('userId'));
     if (
       description &&
       Object.keys(headerImage).length &&
@@ -59,14 +59,14 @@ const Step7 = ({challengeId, step}) => {
         header_image: imagePath.header,
         thumbnail_image: imagePath.thumbnail,
         user_id: userId,
-        step: 7,
+        step: 'completed',
       };
 
       const response = await createChallenge(formData);
       if (response) {
         setLoading(false);
         toast.success(response.data.message);
-        navigate('/challenges');
+        // navigate('/challenges');
       } else {
         toast.error(response.response.data.message);
         setLoading(false);
@@ -80,7 +80,7 @@ const Step7 = ({challengeId, step}) => {
     setDraftLoading(true);
 
     const response = await saveChallenge7({
-      user_id: localStorage.getItem('userId'),
+      user_id: Number(localStorage.getItem('userId')),
       step: step,
       challenge_id: challengeId,
       attachment_description: description,

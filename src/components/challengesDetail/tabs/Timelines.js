@@ -16,7 +16,7 @@ const Timelines = ({launch, closing, submission}) => {
           <div className="col-lg-11 ">
             <div className="card  p-3">
               <h5>Challenge Registration Open</h5>
-              <p>{launch}</p>
+              <p>{launch.split('T')[0]}</p>
             </div>
           </div>
           <div className="col-lg-12 mb-3"></div>

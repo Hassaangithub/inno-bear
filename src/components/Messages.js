@@ -6,7 +6,7 @@ const MessageBody = () => {
     <div style={{paddingBottom: '22rem'}}>
       <div className="col-lg-10 mx-auto mt-5">
         <div className="card p-3">
-          <h5>COMMING SOON: send messages from your dashboard?</h5>
+          <h5>COMING SOON: send messages from your dashboard?</h5>
           <p>
             Communicate directly with other users centrally from your dashboard.
             No longer worry about how you’ll be able to have a one to one touch
@@ -48,7 +48,7 @@ const MessageBody = () => {
       </div>
       <div className="col-lg-10 mx-auto mt-5">
         <div className="card p-3">
-          <h5>I will be able to submit solution early?</h5>
+          <h5>Will I be able to submit solution early?</h5>
           <p>
             Submissions will not be accepted prior to the submission open date,
             and thankfully you have the option to drop a message to the host

@@ -18,7 +18,9 @@ const PrivacyAndPolicy = () => {
 
   return (
     <Layout>
-      <div>{ReactHtmlParser(data?.description)}</div>
+      <div className="static-content mt-5">
+        {ReactHtmlParser(data?.description)}
+      </div>
     </Layout>
   );
 };
