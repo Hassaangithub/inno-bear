@@ -21,7 +21,8 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
   };
 
   const handleUpdateMe = e => {
-    // setFormData({...formData, updateMe: e.target.checked});
+    console.log(e.target.checked);
+    setFormData({...formData, updateMe: e.target.checked});
   };
 
   const handleSubmit = async e => {
@@ -110,6 +111,8 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
               className="custom-control-input"
               id="emailUpdate"
               onClick={handleUpdateMe}
+              checked={formData.updateMe}
+              value={formData.updateMe}
             />
             <label
               className="custom-control-label mt-lg-2 mb-lg-4 my-3 pass-below-text"

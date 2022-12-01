@@ -66,7 +66,7 @@ const Step7 = ({challengeId, step}) => {
       if (response) {
         setLoading(false);
         toast.success(response.data.message);
-        // navigate('/challenges');
+        navigate('/challenges');
       } else {
         toast.error(response.response.data.message);
         setLoading(false);

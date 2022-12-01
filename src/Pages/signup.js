@@ -21,12 +21,13 @@ const Signup = () => {
     interested_challenges_keywords: '',
     email: '',
     password: '',
+    updateMe: true,
   });
 
   const navigate = useNavigate();
   return (
     <>
-      <div className="text-center my-lg-0 my-3 auth-icon-wrapper">
+      {/* <div className="text-center my-lg-0 my-3 auth-icon-wrapper">
         <img
           className="auth-icon"
           src={logo}
@@ -38,7 +39,7 @@ const Signup = () => {
               : navigate('/home')
           }
         />
-      </div>
+      </div> */}
       <div className="row mx-0 mb-lg-0 mb-4 pr-lg-4 account-auth-pg">
         <div className="col-lg-6 pl-lg-0 d-lg-block d-none side-img-block">
           <img

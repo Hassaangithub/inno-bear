@@ -55,14 +55,17 @@ const EditProfile = () => {
   const [imgUrl, setImgUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [disableInput, setDisableInput] = useState(false);
+  const [states, setStates] = useState();
 
   const fetchProfile = async () => {
     const response = await getProfileData();
     if (response.successData) {
+      // console.log(response.successData.user);
       setFirstNm(response.successData.user.fname);
       setLastNm(response.successData.user.lname);
       setEmail(response.successData.user.email);
       setPhone(response.successData.user.phone);
+
       setCountry(response.successData.user.country);
       setCity(response.successData.user.city);
       setProfileImg(response.successData.user.image);
@@ -97,31 +100,18 @@ const EditProfile = () => {
     }
   };
 
-  // const getCities = response => {
-  //   console.log('hello', country);
-  //   const getCountry = response.data?.filter(
-  //     country => country.name == country,
-  //   );
-  //   console.log('get', getCountry);
-  // };
-
   useEffect(() => {
     fetchProfile();
     fetchCountries();
   }, []);
-
-  // useEffect(() => {
-  //   if (country && allCountries) {
-  //     const getCountry = allCountries.filter(item => item.name === country);
-  //     const [{iso2, iso3, name}] = getCountry;
-  //     fetchCities(name, iso2, iso3);
-  //     console.log('bgi', iso2, iso3, name);
-  //   }
-  // }, [country, allCountries]);
-
-  // useEffect(() => {
-  //   console.log(ref.current.value);
-  // }, [ref.current.value]);
+  useEffect(() => {
+    if (country && allCountries) {
+      const [selectedCountry] = allCountries.filter(
+        item => item.name === country,
+      );
+      setStates(selectedCountry.states);
+    }
+  }, [country]);
 
   const handleImage = e => {
     setProfileImg(URL.createObjectURL(e.target.files[0]));
@@ -180,7 +170,6 @@ const EditProfile = () => {
       setLoading(false);
     }
   };
-  // console.log(country, city);
   return (
     <>
       <DashboardSidebar list={list} isProfile={true}>
@@ -270,17 +259,13 @@ const EditProfile = () => {
                       ref={ref}
                       className="form-control"
                       onChange={handleCountry}
-                      value={country}>
+                      defaultValue={country}>
                       <option value={country}>{country}</option>
                       {allCountries?.map((item, index) => (
                         <option key={index} value={JSON.stringify(item)}>
                           {item.name}
                         </option>
                       ))}
-                      {/* 
-                      <option>car</option>
-                      <option>bus</option>
-                      <option>bike</option> */}
                     </select>
                   </div>
 
@@ -292,17 +277,12 @@ const EditProfile = () => {
                       onChange={handleCity}
                       value={city}>
                       <option value={city}>{city}</option>
-                      {allCities?.map((item, index) => (
-                        <option key={index}>{item}</option>
+                      {states?.map((item, index) => (
+                        <option key={index} value={item.name}>
+                          {item.name}
+                        </option>
                       ))}
                     </select>
-                  </div>
-                  <div>
-                    {allCities?.map((item, index) => (
-                      <div className="text-danger" key={index}>
-                        {item.name}
-                      </div>
-                    ))}
                   </div>
                 </div>
               </form>

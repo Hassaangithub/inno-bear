@@ -1,9 +1,10 @@
-import React, {useMemo, useState} from 'react';
-import countryList from 'react-select-country-list';
+import React, {useState} from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import {registerUserStep2} from '../Services/auth';
 import {toast, ToastContainer} from 'react-toastify';
+import {useEffect} from 'react';
+import {getCountries} from '../Services/profile';
 
 const SignupStepTwo = ({setFormData, formData, setStep}) => {
   const [formError, setFormError] = useState({
@@ -14,7 +15,22 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
     phoneNo: false,
   });
   const [loading, setLoading] = useState(false);
-  const countries = useMemo(() => countryList().getData(), []);
+  const [allCountries, setAllCountries] = useState();
+  const [cities, setCities] = useState();
+
+  const fetchCountries = async () => {
+    const response = await getCountries();
+    if (response.data) {
+      setAllCountries(response.data);
+    } else {
+      toast.error('Failed to fetch countries');
+    }
+  };
+
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
   const handleFirstName = e => {
     if (e.target.value) {
       setFormError({...formError, firstName: false});
@@ -40,11 +56,14 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
     setFormData({...formData, city: e.target.value});
   };
   const handleCountry = e => {
+    const countryObj = JSON.parse(e.target.value);
+    setCities(countryObj.states);
     if (e.target.value) {
       setFormError({...formError, country: false});
     }
-    setFormData({...formData, country: e.target.value});
+    setFormData({...formData, country: countryObj.name});
   };
+
   const handleSubmit = async e => {
     e.preventDefault();
     if (!formData.fname) {
@@ -89,7 +108,7 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
       }
     }
   };
-
+  console.log('all', allCountries);
   return (
     <>
       <ToastContainer
@@ -155,9 +174,13 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
                   formError.country && 'border-danger'
                 }`}
                 onChange={handleCountry}>
-                <option disabled>--Please Select--</option>
-                {countries.map((country, index) => (
-                  <option key={index}>{country.label}</option>
+                <option disabled selected value="">
+                  --Please Select--
+                </option>
+                {allCountries?.map((country, index) => (
+                  <option key={index} value={JSON.stringify(country)}>
+                    {country.name}
+                  </option>
                 ))}
               </select>
               {formError.country && (
@@ -167,11 +190,19 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
             <div className="form-group col-lg-6">
               <label htmlFor="City">City</label>
               <select
-                className={`form-control ${formError.city && 'border-danger'}`}
-                onChange={handleCity}>
-                <option disabled>--Please Select--</option>
-                <option>Lahore</option>
-                <option>Karachi</option>
+                className={`form-control ${formError.city && 'border-danger'} ${
+                  !cities && 'cursor-na'
+                }`}
+                onChange={handleCity}
+                disabled={!cities}>
+                <option disabled selected value="">
+                  --Please Select--
+                </option>
+                {cities?.map((state, index) => (
+                  <option index={index} value={state.name}>
+                    {state.name}
+                  </option>
+                ))}
               </select>
               {formError.city && (
                 <span className="text-danger ml-2 ">Select City</span>
@@ -190,7 +221,6 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
               type="tel"
               onChange={handlePhone}
               value={formData.phoneNo}
-              // country={"us"}
             />
             {formError.phoneNo && (
               <span className="text-danger ml-2 ">Enter Phone No.</span>
