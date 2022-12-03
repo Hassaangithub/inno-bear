@@ -60,7 +60,6 @@ const EditProfile = () => {
   const fetchProfile = async () => {
     const response = await getProfileData();
     if (response.successData) {
-      // console.log(response.successData.user);
       setFirstNm(response.successData.user.fname);
       setLastNm(response.successData.user.lname);
       setEmail(response.successData.user.email);
@@ -109,7 +108,7 @@ const EditProfile = () => {
       const [selectedCountry] = allCountries.filter(
         item => item.name === country,
       );
-      setStates(selectedCountry.states);
+      setStates(selectedCountry?.states);
     }
   }, [country]);
 

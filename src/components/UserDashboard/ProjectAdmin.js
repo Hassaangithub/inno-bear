@@ -9,8 +9,8 @@ const ProjectAdmin = () => {
         <div className="d-flex flex-wrap align-items-center mb-4 project-admins">
           <img src={ProfileImage} alt="profile-img" />
           <div className="ml-3">
-            <p className="mb-0 name">Jennifer Okoro</p>
-            <p className="mb-0 email">jennifer@xyzmail.com</p>
+            <p className="mb-0 name">Admin Name</p>
+            <p className="mb-0 email">admin@123.com</p>
           </div>
         </div>
         {/* <div className="d-flex flex-wrap align-items-center mb-4 project-admins">

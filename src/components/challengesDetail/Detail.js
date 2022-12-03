@@ -90,7 +90,7 @@ const Detail = () => {
         pauseOnHover
         theme="light"
       />
-      <Banner image={data?.thumbnail_image} title={data?.title} />
+      <Banner image={data?.header_image} title={data?.title} />
       <div className="challenges-pg px-md-5 px-3">
         <div className="my-4 d-flex flex-wrap flex-md-row flex-column flex-column-reverse justify-content-between team-project-section">
           <div className="breadcrumbs">

@@ -4,6 +4,8 @@ import axios from 'axios';
 import {saveAs} from 'file-saver';
 
 const Resoucerses = ({resources}) => {
+  const sourceArray = resources.split('/');
+  const sourceName = sourceArray[sourceArray.length - 1];
   // function downloadFile(url, fileName) {
   //   fetch(url, {method: 'get', mode: 'no-cors', referrerPolicy: 'no-referrer'})
   //     .then(res => res.blob())
@@ -27,6 +29,10 @@ const Resoucerses = ({resources}) => {
         saveAs(res.data, filename);
       });
   };
+
+  const getChallengeName = resources => {
+    return sourceName;
+  };
   return (
     <div
       className="py-md-4 py-3"
@@ -40,7 +46,7 @@ const Resoucerses = ({resources}) => {
             <div className="card p-3">
               <i className="fas fa-file-pdf pdf-icon"></i>
               <div className=" d-flex justify-content-between mt-5">
-                <small className="text-muted">Challenge Brief</small>
+                <small className="text-muted">{sourceName}</small>
                 <small className="text-muted">10kb</small>
               </div>
               <div className="mt-3">

@@ -108,7 +108,6 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
       }
     }
   };
-  console.log('all', allCountries);
   return (
     <>
       <ToastContainer

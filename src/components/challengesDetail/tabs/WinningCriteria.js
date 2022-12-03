@@ -1,7 +1,6 @@
 import React from 'react';
 
 const WinningCriteria = ({winningRule}) => {
-  console.log(winningRule);
   return (
     <div
       className="py-md-4 py-3"

@@ -21,7 +21,6 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
   };
 
   const handleUpdateMe = e => {
-    console.log(e.target.checked);
     setFormData({...formData, updateMe: e.target.checked});
   };
 

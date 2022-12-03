@@ -6,7 +6,14 @@ const Overview = ({cashPrize, type, submission, close}) => {
       <div className="row">
         <div className="col-sm-7">
           <h5 className="heading">Challenge Keyword(s):</h5>
-          <p className="mb-0">{type}</p>
+          <div className="d-flex">
+            {type?.split(',').map((keyword, index) => (
+              <p className="mb-0 mr-2" key={index}>
+                {<span>{keyword}</span>}
+                {index !== type?.split(',').length - 1 ? ',' : ''}
+              </p>
+            ))}
+          </div>
           <div className="row my-sm-4 my-3 challenge-block">
             <div className="pr-0 col-lg-4 col-6">
               <p className="mb-0 text-uppercase label">Submission Open:</p>

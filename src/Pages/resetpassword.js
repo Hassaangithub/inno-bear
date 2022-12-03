@@ -15,7 +15,6 @@ const Resetpassword = () => {
     e.preventDefault();
     setLoading(true);
     const response = await changePassword();
-    console.log(response);
     if (response) {
       setLoading(false);
       toast.error(response.data.message);

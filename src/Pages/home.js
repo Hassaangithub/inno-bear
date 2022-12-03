@@ -81,7 +81,7 @@ const Home = () => {
                     role="button"
                     onClick={() => handleCard(card.id)}>
                     <img
-                      src={card.header_image}
+                      src={card.thumbnail_image}
                       alt="rectangle-35"
                       className="w-100"
                     />
@@ -114,7 +114,7 @@ const Home = () => {
                       <div className="ml-3">
                         <p className="mb-0 text-dark font-14">{card.title}</p>
                         <p className="mb-0 font-14">
-                          closed {card.submission_date}
+                          closes: {card.submission_date}
                         </p>
                       </div>
                     </div>
