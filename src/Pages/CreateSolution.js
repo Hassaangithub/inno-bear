@@ -7,6 +7,9 @@ import {createSolution} from '../Services/solution';
 import image1 from '../images/sidebar-img-1.png';
 import {useNavigate} from 'react-router-dom';
 import {toast, ToastContainer} from 'react-toastify';
+import resourcePic from '../images/resourcepic.jpg';
+import creatinOutOfBox from '../images/creatingOutOfBoxSub.pdf';
+import preSubmissionList from '../images/preSubmissionList.pdf';
 
 const CreateSolution = () => {
   const [character, setCharacter] = useState();
@@ -178,70 +181,34 @@ const CreateSolution = () => {
           <div className="col-lg-5">
             <h5 className="my-lg-3 mt-4 mb-3">Resources</h5>
             <a
+              download
               className="row align-items-center mb-sm-4 mb-3 text-decoration-none"
-              href="#">
+              href={creatinOutOfBox}>
               <div className="col-sm-5 col-6">
                 <img src={image1} alt="sidebar-img-1" className="w-100" />
               </div>
               <div className="col-sm-7 col-6 px-sm-3 px-2">
                 <h6 className="text-dark">
-                  How to submit novel, award winning ideas
+                  Creating Out-of-the-Box Submissions
                 </h6>
                 <p className="mb-0 text-truncate-2 text-blue">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing eli elit
-                  Quam Lorem ipsum dolor sit amet, consectetur adipiscing eli
-                  elit Quam
+                  Helpful considerations when creating your next solution.
                 </p>
               </div>
             </a>
             <a
+              download
               className="row align-items-center mb-sm-4 mb-3 text-decoration-none"
-              href="#">
+              href={preSubmissionList}>
               <div className="col-sm-5 col-6">
-                <img src={image1} alt="sidebar-img-1" className="w-100" />
+                <img src={resourcePic} alt="sidebar-img-1" className="w-100" />
               </div>
               <div className="col-sm-7 col-6 px-sm-3 px-2">
                 <h6 className="text-dark">
-                  How to submit novel, award winning ideas
+                  Pre-Submission Checklist for Success
                 </h6>
                 <p className="mb-0 text-truncate-2 text-blue">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing eli elit
-                  Quam Lorem ipsum dolor sit amet, consectetur adipiscing eli
-                  elit Quam
-                </p>
-              </div>
-            </a>
-            <a
-              className="row align-items-center mb-sm-4 mb-3 text-decoration-none"
-              href="#">
-              <div className="col-sm-5 col-6">
-                <img src={image1} alt="sidebar-img-1" className="w-100" />
-              </div>
-              <div className="col-sm-7 col-6 px-sm-3 px-2">
-                <h6 className="text-dark">
-                  How to submit novel, award winning ideas
-                </h6>
-                <p className="mb-0 text-truncate-2 text-blue">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing eli elit
-                  Quam Lorem ipsum dolor sit amet, consectetur adipiscing eli
-                  elit Quam
-                </p>
-              </div>
-            </a>
-            <a
-              className="row align-items-center mb-sm-4 mb-3 text-decoration-none"
-              href="#">
-              <div className="col-sm-5 col-6">
-                <img src={image1} alt="sidebar-img-1" className="w-100" />
-              </div>
-              <div className="col-sm-7 col-6 px-sm-3 px-2">
-                <h6 className="text-dark">
-                  How to submit novel, award winning ideas
-                </h6>
-                <p className="mb-0 text-truncate-2 text-blue">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing eli elit
-                  Quam Lorem ipsum dolor sit amet, consectetur adipiscing eli
-                  elit Quam
+                  Helpful considerations before submitting your final solution.
                 </p>
               </div>
             </a>
