@@ -175,7 +175,7 @@ const SignIn = () => {
               )}
             </button>
             <p className="mt-lg-4 mt-3 mb-0">
-              Dont have an account?{' '}
+              Don't have an account?{' '}
               <Link to="/signup" className="theme-link">
                 Create your account
               </Link>
