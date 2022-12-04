@@ -7,174 +7,36 @@ import {useRecoilState} from 'recoil';
 import {saveChallenge5} from '../../Services/challanges';
 import {toast} from 'react-toastify';
 import {useEffect} from 'react';
+import {
+  IdeationRules,
+  EngagementRules,
+  AnalysisRules,
+  BuildRules,
+  Acceleration,
+} from './rules';
 
 const Step5 = ({setStep, challengeId, step}) => {
   const [challenge, setChallenge] = useRecoilState(challengeAtom);
   const [rules, setRules] = useState();
   const [addRule, setAddRule] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [data , setData ] = useState()
-  // let a = 'Ideation';
-  useEffect(() => {
-    switch (challenge?.challenge_type) {
-      case 'Ideation':
-        setRules([
-          {
-            id: 1,
-            status: true,
-            text: 'Submission Item: Prototype: Provide a < physical> OR< digital> prototype of your solution with the following specifications in mind. -Specification -Specification...',
-            readOnly: true,
-          },
-          {
-            id: 2,
-            status: true,
-            text: ' Submission Item: Letters of Support: Attach one-page letters of support, intent, or commitment from relevant entities (e.g., potential users of the proposed innovation or strategic manufacturing partners) to provide context. Letters of support from partners or others that are critical to the success of your proposed solution will likely increase your score. General letters of support from parties that are not critical to the execution of your solution will likely not factor into your score. Please do not submit multi-page letters.',
-            readOnly: true,
-          },
-          {
-            id: 3,
-            status: true,
-            text: 'Provide the following artifacts to demonstrate your solution’s readiness to advance to the next < stage of the Challenge> OR <innovation stage> Proof Point Item #1 Proof Point Item...',
-            readOnly: true,
-          },
-          {
-            id: 4,
-            status: false,
-            text: 'Due to the nature of this challenge it is <required> OR <recommended but not required> that the participants carry <types of insurance> in a minimum amount of <enter dollar value and relevant detail> in order to protect <insert what this policy will protect against>.',
-            readOnly: true,
-          },
-        ]);
-        break;
 
+  useEffect(() => {
+    switch (challenge.challenge_types) {
+      case 'Ideation':
+        setRules(IdeationRules);
+        break;
       case 'Engagement':
-        setRules([
-          {
-            id: 1,
-            status: true,
-            text: 'Submission Item: Prototype: Provide a < physical> OR< digital> prototype of your solution with the following specifications in mind. -Specification 1 -Specification...',
-            readOnly: true,
-          },
-          {
-            id: 2,
-            status: true,
-            text: 'Submission Item: Demo Video: Provide a video (Max 5 minutes) that demonstrates your solution or your solution concept. Your video should cover the following points -Point A -Point...',
-            readOnly: false,
-          },
-          {
-            id: 3,
-            status: true,
-            text: 'Submission Item: Readiness Proof: Provide the following artifacts to demonstrate your solution’s readiness to advance to the next <stage of the Challenge> OR <innovation stage> Proof Point Item #1 Proof Point Item...',
-            readOnly: false,
-          },
-          {
-            id: 4,
-            status: true,
-            text: 'Insurance Requirements: Due to the nature of this challenge it is <required> OR <recommended but not required> that the participants carry <types of insurance> in a minimum amount of <enter dollar value and relevant detail> in order to protect <insert what this policy will protect against>.',
-            readOnly: true,
-          },
-        ]);
+        setRules(EngagementRules);
         break;
       case 'Analysis/Open Data':
-        setRules([
-          {
-            id: 1,
-            status: true,
-            text: 'Submission Item: Concept Paper: Provide a written summary of what your solution is, how it works and what is required for it to work successful. Address each of the below questions in your submission. -Question 1   -Question...',
-            readOnly: true,
-          },
-          {
-            id: 2,
-            status: true,
-            text: 'Submission Item: Prototype: Provide a < physical> OR< digital> prototype of your solution with the following specifications in mind. -Specification 1 -Specification...',
-            readOnly: false,
-          },
-          {
-            id: 3,
-            status: true,
-            text: ' Submission Item: Letters of Support: Attach one-page letters of support, intent, or commitment from relevant entities (e.g., potential users of the proposed innovation or strategic manufacturing partners) to provide context. Letters of support from partners or others that are critical to the success of your proposed solution will likely increase your score. General letters of support from parties that are not critical to the execution of your solution will likely not factor into your score. Please do not submit multi-page letters.',
-            readOnly: false,
-          },
-          {
-            id: 4,
-            status: true,
-            text: 'Submission Item: Readiness Proof: Provide the following artifacts to demonstrate your solution’s readiness to advance to the next < stage of the Challenge> OR <innovation stage> Proof Point Item #1 Proof Point Item...',
-            readOnly: true,
-          },
-          {
-            id: 5,
-            status: true,
-            text: 'Insurance Requirements: Due to the nature of this challenge it is <required> OR <recommended but not required> that the participants carry <types of insurance> in a minimum amount of <enter dollar value and relevant detail> in orderto protect <insert what this policy will protect against>.',
-            readOnly: true,
-          },
-        ]);
+        setRules(AnalysisRules);
         break;
       case 'Build':
-        setRules([
-          {
-            id: 1,
-            status: true,
-            text: 'Submission Item: Concept Paper: Provide a written summary of what your solution is, how it works and what is required for it to work successful. Address each of the below questions in your submission. -Question 1   -Question...',
-            readOnly: true,
-          },
-          {
-            id: 2,
-            status: true,
-            text: 'Submission Item: Prototype: Provide a < physical> OR< digital> prototype of your solution with the following specifications in mind. -Specification 1 -Specification...',
-            readOnly: false,
-          },
-          {
-            id: 3,
-            status: true,
-            text: ' Submission Item: Letters of Support: Attach one-page letters of support, intent, or commitment from relevant entities (e.g., potential users of the proposed innovation or strategic manufacturing partners) to provide context. Letters of support from partners or others that are critical to the success of your proposed solution will likely increase your score. General letters of support from parties that are not critical to the execution of your solution will likely not factor into your score. Please do not submit multi-page letters.',
-            readOnly: false,
-          },
-          {
-            id: 4,
-            status: true,
-            text: 'Submission Item: Readiness Proof: Provide the following artifacts to demonstrate your solution’s readiness to advance to the next < stage of the Challenge> OR <innovation stage> Proof Point Item #1 Proof Point Item...',
-            readOnly: true,
-          },
-          {
-            id: 5,
-            status: true,
-            text: 'Insurance Requirements: Due to the nature of this challenge it is <required> OR <recommended but not required> that the participants carry <types of insurance> in a minimum amount of <enter dollar value and relevant detail> in orderto protect <insert what this policy will protect against>.',
-            readOnly: true,
-          },
-        ]);
+        setRules(BuildRules);
         break;
       case 'Acceleration':
-        setRules([
-          {
-            id: 1,
-            status: true,
-            text: 'Submission Item: Concept Paper: Provide a written summary of what your solution is, how it works and what is required for it to work successful. Address each of the below questions in your submission. -Question 1   -Question...',
-            readOnly: true,
-          },
-          {
-            id: 2,
-            status: true,
-            text: 'Submission Item: Prototype: Provide a < physical> OR< digital> prototype of your solution with the following specifications in mind. -Specification 1 -Specification...',
-            readOnly: false,
-          },
-          {
-            id: 3,
-            status: true,
-            text: ' Submission Item: Letters of Support: Attach one-page letters of support, intent, or commitment from relevant entities (e.g., potential users of the proposed innovation or strategic manufacturing partners) to provide context. Letters of support from partners or others that are critical to the success of your proposed solution will likely increase your score. General letters of support from parties that are not critical to the execution of your solution will likely not factor into your score. Please do not submit multi-page letters.',
-            readOnly: false,
-          },
-          {
-            id: 4,
-            status: true,
-            text: 'Submission Item: Readiness Proof: Provide the following artifacts to demonstrate your solution’s readiness to advance to the next < stage of the Challenge> OR <innovation stage> Proof Point Item #1 Proof Point Item...',
-            readOnly: true,
-          },
-          {
-            id: 5,
-            status: true,
-            text: 'Insurance Requirements: Due to the nature of this challenge it is <required> OR <recommended but not required> that the participants carry <types of insurance> in a minimum amount of <enter dollar value and relevant detail> in orderto protect <insert what this policy will protect against>.',
-            readOnly: true,
-          },
-        ]);
+        setRules(Acceleration);
         break;
     }
   }, []);

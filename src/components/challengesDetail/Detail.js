@@ -127,7 +127,7 @@ const Detail = () => {
               cashPrize={data?.award_prize}
               type={data?.keywords}
               submission={data?.submission_date}
-              close={data?.cutOff_date}
+              close={data?.cutoff_date}
             />
           )}
           {view === 'teams' && (
@@ -152,7 +152,7 @@ const Detail = () => {
           {activeTab === 'Timeline' && (
             <Timelines
               launch={data?.created_at}
-              closing={data?.cutOff_date}
+              closing={data?.cutoff_date}
               submission={data?.submission_date}
             />
           )}

@@ -22,15 +22,19 @@ const Footer = () => {
           </p>
           <div className="mt-lg-5 mb-md-0 my-3 d-flex flex-wrap">
             <a
-              href="/www.facebook.org/immobear"
+              href="https://www.facebook.com/floor23digital/"
               className="text-decoration-none">
               <span className="fab fa-facebook-f social-media-link"></span>
             </a>
-            <a href="#" className="mx-3 text-decoration-none">
+            <a
+              href="https://instagram.com/floor23digital_?igshid=YmMyMTA2M2Y="
+              className="mx-3 text-decoration-none">
               <span className="fab fa-instagram social-media-link"></span>
             </a>
-            <a href="#" className="text-decoration-none">
-              <span className="fab fa-twitter social-media-link"></span>
+            <a
+              href="https://www.linkedin.com/company/floor23-digital/"
+              className="text-decoration-none">
+              <span className="fab fa-linkedin social-media-link"></span>
             </a>
           </div>
         </div>

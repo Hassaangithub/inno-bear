@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import plusIcon from '../../images/plus-icon.png';
 import pencilIcon from '../../images/Pencil-alt.png';
 import minusIcon from '../../images/minus-icon.png';
@@ -6,43 +6,17 @@ import {challengeAtom} from '../../recoil/atom';
 import {useRecoilState} from 'recoil';
 import {saveChallenge6} from '../../Services/challanges';
 import {toast} from 'react-toastify';
+import {
+  ideation,
+  engagement,
+  acceleration,
+  analysis,
+  build,
+} from './winingCriteria';
 
 const Step6 = ({setStep, challengeId, step}) => {
-  const data = [
-    {
-      id: 1,
-      status: true,
-      text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
-      readOnly: true,
-    },
-    {
-      id: 2,
-      status: true,
-      text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
-      readOnly: true,
-    },
-    {
-      id: 3,
-      status: true,
-      text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
-      readOnly: true,
-    },
-    {
-      id: 4,
-      status: false,
-      text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
-      readOnly: true,
-    },
-    {
-      id: 5,
-      status: true,
-      text: 'Lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque eget bibendum ut dui. Risus porta dignissim',
-      readOnly: true,
-    },
-  ];
-
   const [edit, setEdit] = useState(false);
-  const [rules, setRules] = useState(data);
+  const [rules, setRules] = useState();
   const [editedRule, setEditedRule] = useState({
     id: '',
     text: '',
@@ -52,6 +26,26 @@ const Step6 = ({setStep, challengeId, step}) => {
   const [addRule, setAddRule] = useState(false);
   const [editFeild, setEditFeild] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    switch (challenge.challenge_types) {
+      case 'Ideation':
+        setRules(ideation);
+        break;
+      case 'Engagement':
+        setRules(engagement);
+        break;
+      case 'Analysis/Open Data':
+        setRules(analysis);
+        break;
+      case 'Build':
+        setRules(build);
+        break;
+      case 'Acceleration':
+        setRules(acceleration);
+        break;
+    }
+  }, []);
 
   const toggleAdd = position => {
     setRules(
