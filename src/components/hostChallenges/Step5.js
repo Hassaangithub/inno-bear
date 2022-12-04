@@ -22,11 +22,12 @@ const Step5 = ({setStep, challengeId, step}) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    switch (challenge.challenge_types) {
+    switch (challenge.challenge_type) {
       case 'Ideation':
         setRules(IdeationRules);
         break;
       case 'Engagement':
+        console.log('help');
         setRules(EngagementRules);
         break;
       case 'Analysis/Open Data':
@@ -39,7 +40,7 @@ const Step5 = ({setStep, challengeId, step}) => {
         setRules(Acceleration);
         break;
     }
-  }, []);
+  }, [challenge]);
 
   const toggleAdd = position => {
     setRules(

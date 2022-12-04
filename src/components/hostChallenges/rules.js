@@ -107,7 +107,7 @@ export const EngagementRules = [
   {
     id: 2,
     status: true,
-    text: 'Submission Item: Cover Page: List basic information about your submission including; -Project Name -Team Members           -Solution title or tagline -Project Keywords -Team location and zipcode if a US only eligible challenge.',
+    text: 'Submission Item: Cover Page: List basic information about your submission including; -Project Name -Team Members -Solution title or tagline -Project Keywords -Team location and zipcode if a US only eligible challenge.',
     readOnly: false,
   },
   {
@@ -119,7 +119,7 @@ export const EngagementRules = [
   {
     id: 4,
     status: false,
-    text: 'Submission Item: Letters of Support: Attach one-page letters of support, intent, or commitment from relevant entities (e.g., potential users of the proposed innovation or strategic            manufacturing partners) to provide context. Letters of support from partners or others that are critical to the success of your proposed solution will likely increase your score. General letters of support from parties that are not critical to the execution of your solution will likely not factor into your score. Please do not submit multi-page letters.',
+    text: 'Submission Item: Letters of Support: Attach one-page letters of support, intent, or commitment from relevant entities (e.g., potential users of the proposed innovation or strategic manufacturing partners) to provide context. Letters of support from partners or others that are critical to the success of your proposed solution will likely increase your score. General letters of support from parties that are not critical to the execution of your solution will likely not factor into your score. Please do not submit multi-page letters.',
     readOnly: true,
   },
   {

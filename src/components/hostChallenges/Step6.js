@@ -28,7 +28,7 @@ const Step6 = ({setStep, challengeId, step}) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    switch (challenge.challenge_types) {
+    switch (challenge.challenge_type) {
       case 'Ideation':
         setRules(ideation);
         break;
