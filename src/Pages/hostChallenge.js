@@ -10,7 +10,7 @@ import Step7 from '../components/hostChallenges/Step7';
 import Layout from '../components/Layout';
 
 const HostChallenge = () => {
-  const [step, setStep] = useState(6);
+  const [step, setStep] = useState(1);
   const [challengeId, setChallengeId] = useState();
 
   const updateId = id => {
