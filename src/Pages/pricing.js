@@ -45,7 +45,7 @@ const Pricing = () => {
             free and get billed only after you've made your challenge live
           </p>
           <p className="text-center">
-            Interested in hosting multiple challenges?"{' '}
+            Interested in hosting multiple challenges?
             <span className="orange contact-us-txt">Contact Us</span> for
             Special Pricing
           </p>

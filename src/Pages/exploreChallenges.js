@@ -51,13 +51,11 @@ const ExploreChallenges = () => {
                     alt="rectangle-35"
                     className="w-100"
                   />
-                  <h6 className="mt-3 mb-2">
-                    {card.description_about_challenge} &nbsp;
-                  </h6>
+                  <h6 className="mt-3 mb-2">{card.title} &nbsp;</h6>
                   <p>{card.challenge_type}</p>
                   <div>
                     <span className="orange-txt">Award</span>
-                    <span className="grey-txt">$ {card.award_prize}</span>
+                    <span className="grey-txt">${card.award_prize}</span>
                   </div>
                   <div className="d-flex align-items-center mt-md-4 mt-3">
                     <div
