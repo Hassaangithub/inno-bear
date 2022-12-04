@@ -112,7 +112,7 @@ const Home = () => {
                       <div className="ml-3">
                         <p className="mb-0 text-dark font-14">{card.title}</p>
                         <p className="mb-0 font-14">
-                          closes: {card.submission_date}
+                          Closes: {card.submission_date}
                         </p>
                       </div>
                     </div>

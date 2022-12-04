@@ -133,7 +133,7 @@ const SignupStepOne = ({setFormData, formData, setStep}) => {
             )}
           </button>
           <p className="mt-lg-4 mt-3 mb-0">
-            By signing up, You agree to all of our
+            By signing up, you agree to all of our
             <Link to="/term&conditions" className="ml-1 theme-link">
               Terms and Conditions
             </Link>

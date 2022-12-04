@@ -59,6 +59,15 @@ const Community = ({communityPost, message, setMessage}) => {
     setFilteredData(communityPost);
   }, []);
 
+  const handleAddTopic = () => {
+    const data = {
+      challenge_host_id: '',
+      challenge_id: '',
+      title: '',
+      message: '',
+    };
+  };
+
   return (
     <div
       className="py-md-4 py-3"
@@ -75,7 +84,7 @@ const Community = ({communityPost, message, setMessage}) => {
             placeholder="Search Community"
             onChange={handleSearch}
           />
-          <button className=" btn-edit d-none">
+          <button className=" btn-edit" onClick={handleAddTopic}>
             Add a new topic <i className="fas fa-plus"></i>
           </button>
         </div>

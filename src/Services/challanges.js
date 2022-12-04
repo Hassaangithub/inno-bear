@@ -187,6 +187,23 @@ const postComment = data =>
       return error.response;
     });
 
+const addTopic = data =>
+  axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/add-topic-in-challenge`,
+    data: data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      return error.response;
+    });
+
 export {
   allChallenges,
   createChallenge,
@@ -201,4 +218,5 @@ export {
   getUpdates,
   getCommunity,
   postComment,
+  addTopic,
 };

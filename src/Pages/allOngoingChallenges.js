@@ -47,9 +47,7 @@ const AllOngoingChallenges = () => {
                   alt="challenge header image"
                   className="w-100"
                 />
-                <h6 className="mt-3 mb-2">
-                  {item.description_about_challenge}
-                </h6>
+                <h6 className="mt-3 mb-2">{item.title}</h6>
                 <small className="mb-0">{item.title}</small>
                 <div className="mt-2">
                   <span className="orange-txt">Award</span>
@@ -62,7 +60,7 @@ const AllOngoingChallenges = () => {
             </div>
           ))}
         </div>
-        <div className="row mx-0">
+        <div className="row mx-0 d-none">
           <div className="col-12 d-flex flex-wrap justify-content-between my-4">
             <h5>
               Drafts <small className="grey-txt">(2)</small>

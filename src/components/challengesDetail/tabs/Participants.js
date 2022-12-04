@@ -18,7 +18,7 @@ export const Participants = () => {
           </a> */}
         </div>
         <p className="team-txt">
-          COMING SOON:Find teams with capacity for additional teammates here
+          COMING SOON: Find teams with capacity for additional teammates here
         </p>
         <div className="row">
           <div className="col-xl-3 col-lg-4 col-sm-6 mb-md-4 mb-3">

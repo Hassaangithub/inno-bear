@@ -46,7 +46,7 @@ const Pricing = () => {
           </p>
           <p className="text-center">
             Interested in hosting multiple challenges?
-            <span className="orange contact-us-txt">Contact Us</span> for
+            <span className="orange contact-us-txt ml-1">Contact Us</span> for
             Special Pricing
           </p>
         </div>

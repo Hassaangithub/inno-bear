@@ -52,7 +52,7 @@ const MessageBody = () => {
           <p>
             Submissions will not be accepted prior to the submission open date,
             and thankfully you have the option to drop a message to the host
-            just like this. The host can then make your question and her answer
+            just like this. The host can then make your question and your answer
             public to ensure everyone get’s the same set of information.
           </p>
           <div className="media">

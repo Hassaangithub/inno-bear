@@ -22,11 +22,12 @@ const Resetpassword = () => {
   };
   return (
     <>
-      <div className="text-center my-lg-0 my-3 auth-icon-wrapper">
+      <div className="text-center my-lg-0 my-3 position-relative">
         <img
           className="auth-icon"
           src={accountAuth}
           alt="account-auth-logo"
+          style={{top: '20px'}}
           onClick={() =>
             localStorage.getItem('token')
               ? navigate('/dashboard')
@@ -35,7 +36,7 @@ const Resetpassword = () => {
           role="button"
         />
       </div>
-      <div className="row mx-0 mb-lg-0 mb-4 pr-lg-4 account-auth-pg account-auth-step-2 vh-100">
+      <div className="row mx-0 mb-lg-0 mb-4 pr-lg-4 account-auth-pg account-auth-step-2 vh-100 top-3">
         <div className="col-lg-6  side-look-img">
           <div className="text-center ">
             <img
