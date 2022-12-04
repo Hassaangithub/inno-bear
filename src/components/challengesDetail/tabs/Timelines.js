@@ -11,7 +11,9 @@ const Timelines = ({launch, closing, submission}) => {
         <h3 className="mb-3">Timeline</h3>
         <div className="row mb-3">
           <div className="col-lg-1 mb-2 d-flex align-items-center">
-            <i className="fas fa-check check-done"> Done</i>
+            <i className="fas fa-check check-done">
+              <span className="ml-1">Done</span>
+            </i>
           </div>
           <div className="col-lg-11 ">
             <div className="card  p-3">
@@ -22,7 +24,7 @@ const Timelines = ({launch, closing, submission}) => {
           <div className="col-lg-12 mb-3"></div>
           <div className="col-lg-2 mb-2 d-flex justify-content-center align-items-center ">
             <i className="fas fa-calendar text-muted text-center">
-              Not Started
+              <span className="ml-1">Not Started</span>
             </i>
           </div>
           <div className="col-lg-10">
@@ -34,7 +36,7 @@ const Timelines = ({launch, closing, submission}) => {
           <div className="col-lg-12 mb-3"></div>
           <div className="col-lg-2 mb-2 d-flex justify-content-center align-items-center ">
             <i className="fas fa-calendar text-muted text-center">
-              Not Started
+              <span className="ml-1">Not Started</span>
             </i>
           </div>
           <div className="col-lg-10">

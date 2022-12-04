@@ -158,7 +158,7 @@ const SignIn = () => {
             </div>
             <p className="mt-2 mb-lg-4 mb-3">
               Forgot Password?{' '}
-              <Link to="/reset-password" className="theme-link">
+              <Link to="/confirm-email" className="theme-link">
                 Click here to reset password
               </Link>
             </p>

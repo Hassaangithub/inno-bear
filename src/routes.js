@@ -35,6 +35,7 @@ import TermAndCondition from './Pages/termAndCondition';
 import InnovationPipeline from './Pages/innovation-pipeline';
 import Teams from './Pages/teams';
 import UpdatePassword from './Pages/updatePassword';
+import ConfirmEmail from './Pages/confirmEmail';
 
 export const ProtectedRoutes = () => {
   const isLogin = localStorage.getItem('token');
@@ -95,6 +96,7 @@ const Router = () => {
       <Route path="innovation-pipeline" element={<InnovationPipeline />} />
       <Route path="/dashboard/team" element={<Teams />} />
       <Route path="/reset-password" element={<Resetpassword />} />
+      <Route path="/confirm-email" element={<ConfirmEmail />} />
       <Route path="/term&conditions" element={<TermAndCondition />} />
     </Routes>
   );
