@@ -3,13 +3,28 @@ import React, {useState} from 'react';
 import {useEffect} from 'react';
 import {toast} from 'react-toastify';
 import ellipse3 from '../../../images/Ellipse-3.png';
-import {postComment} from '../../../Services/challanges';
+import {postComment, addTopic} from '../../../Services/challanges';
+import CustomModal from '../../modals/CutomModal';
 
-const Community = ({communityPost, message, setMessage}) => {
+const Community = ({
+  communityPost,
+  message,
+  setMessage,
+  challengeId,
+  hostId,
+}) => {
   const [loading, setLoading] = useState(false);
   const [toggleComment, setToggleComment] = useState('');
   const [answersToggle, setAnswersToggle] = useState('');
   const [filteredData, setFilteredData] = useState();
+  const [show, setShow] = useState(false);
+  const [postMessage, setPostMessage] = useState('');
+  const [topic, setTopic] = useState('');
+  const handleClose = e => {
+    e.preventDefault();
+    setShow(false);
+  };
+  const handleShow = () => setShow(true);
 
   const handleComment = async (e, id) => {
     setLoading(true);
@@ -59,14 +74,23 @@ const Community = ({communityPost, message, setMessage}) => {
     setFilteredData(communityPost);
   }, []);
 
-  const handleAddTopic = () => {
+  const handleAddTopic = async e => {
+    e.preventDefault();
     const data = {
-      challenge_host_id: '',
-      challenge_id: '',
-      title: '',
-      message: '',
+      challenge_host_id: hostId,
+      challenge_id: challengeId,
+      title: topic,
+      message: postMessage,
     };
+    const response = await addTopic(data);
+    if (response.status === 200) {
+      toast.success(response.message);
+      setShow(false);
+    } else {
+      toast.error(response.message);
+    }
   };
+  console.log(communityPost);
 
   return (
     <div
@@ -74,6 +98,47 @@ const Community = ({communityPost, message, setMessage}) => {
       id="timeline"
       role="tabpanel"
       aria-labelledby="timelineTab">
+      <CustomModal show={show} handleClose={handleClose}>
+        <div className="modal-body challenge-body">
+          <form action="">
+            <div>
+              <h3>Add a new topic</h3>
+            </div>
+            <div className="mt-3">
+              <label htmlFor="">Topic</label>
+              <input
+                type="text"
+                className="form-control"
+                onChange={e => setTopic(e.target.value)}
+              />
+            </div>
+            <div className="mt-3">
+              <label htmlFor="">Message</label>
+              <textarea
+                name=""
+                id=""
+                cols="3"
+                rows="3"
+                onChange={e => setPostMessage(e.target.value)}
+                className="form-control"></textarea>
+            </div>
+            <div className="d-flex  mt-3">
+              <button
+                type="submit"
+                className="px-md-4 white-btn btn"
+                onClick={handleClose}>
+                Cancel
+              </button>
+              <button
+                onClick={handleAddTopic}
+                type="button"
+                className="px-md-4 d-flex align-items-center  btn-post ml-lg-5 ml-3">
+                Post
+              </button>
+            </div>
+          </form>
+        </div>
+      </CustomModal>
       <div className="mb-md-5 mb-3">
         <h3 className="mb-3">Community</h3>
         <div className="d-flex flex-wrap justify-content-between align-items-center my-4">
@@ -84,9 +149,11 @@ const Community = ({communityPost, message, setMessage}) => {
             placeholder="Search Community"
             onChange={handleSearch}
           />
-          <button className=" btn-edit" onClick={handleAddTopic}>
-            Add a new topic <i className="fas fa-plus"></i>
-          </button>
+          {localStorage.getItem('userId') == hostId && (
+            <button className=" btn-edit" onClick={handleShow}>
+              Add a new topic <i className="fas fa-plus"></i>
+            </button>
+          )}
         </div>
         {filteredData?.map((item, index) => (
           <div key={item.id}>

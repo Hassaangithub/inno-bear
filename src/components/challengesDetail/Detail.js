@@ -38,7 +38,6 @@ const Detail = () => {
   const setChallengeId = useSetRecoilState(challengeId);
   const allChallenges = useRecoilValue(challengeAtom);
   const setCurrentChallenge = useSetRecoilState(currentChallenge);
-
   const getChallenge = async id => {
     setLoading(true);
     const response = await singleChallenge(id);
@@ -172,6 +171,8 @@ const Detail = () => {
               communityPost={communityPost}
               message={message}
               setMessage={setMessage}
+              challengeId={id}
+              hostId={data?.user_id}
             />
           )}
         </div>
