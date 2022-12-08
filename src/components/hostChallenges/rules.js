@@ -74,7 +74,7 @@ export const IdeationRules = [
   {
     id: 13,
     status: false,
-    text: 'Intellectual Property: Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any Submission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any',
+    text: 'Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any Submission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any applicable U.S. or foreign state or federal law You are required to ensure that all releases or transfers of technical data to non-US persons comply with International Traffic in Arms Regulation (ITAR), 22 C.F.R. §§ 120.1 to 130.17.In special cases, where a challenge is not a competition and where incentives are paid in direct one to one corellation to work completed, it is work for hire and the intellectual property is assigned to the Challenge Sponsor at completion and payment for the work.',
     readOnly: true,
   },
   {
@@ -92,7 +92,7 @@ export const IdeationRules = [
   {
     id: 16,
     status: false,
-    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the            Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge            Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE',
+    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE CORRESPONDING TIME ZONE IN YOUR LOCATION.',
     readOnly: true,
   },
 ];
@@ -173,7 +173,7 @@ export const EngagementRules = [
   {
     id: 12,
     status: false,
-    text: 'Intellectual Property: Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any            Submission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without            limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any',
+    text: 'Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any Submission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any applicable U.S. or foreign state or federal law You are required to ensure that all releases or transfers of technical data to non-US persons comply with International Traffic in Arms Regulation (ITAR), 22 C.F.R. §§ 120.1 to 130.17.In special cases, where a challenge is not a competition and where incentives are paid in direct one to one corellation to work completed, it is work for hire and the intellectual property is assigned to the Challenge Sponsor at completion and payment for the work.',
     readOnly: true,
   },
   {
@@ -191,7 +191,7 @@ export const EngagementRules = [
   {
     id: 15,
     status: false,
-    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the            Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge            Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE',
+    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE CORRESPONDING TIME ZONE IN YOUR LOCATION.',
     readOnly: true,
   },
 ];
@@ -260,7 +260,7 @@ export const AnalysisRules = [
   {
     id: 11,
     status: false,
-    text: 'Intellectual Property: Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any Submission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any',
+    text: 'Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any Submission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any applicable U.S. or foreign state or federal law You are required to ensure that all releases or transfers of technical data to non-US persons comply with International Traffic in Arms Regulation (ITAR), 22 C.F.R. §§ 120.1 to 130.17.In special cases, where a challenge is not a competition and where incentives are paid in direct one to one corellation to work completed, it is work for hire and the intellectual property is assigned to the Challenge Sponsor at completion and payment for the work.',
     readOnly: false,
   },
   {
@@ -272,7 +272,7 @@ export const AnalysisRules = [
   {
     id: 13,
     status: false,
-    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE',
+    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE CORRESPONDING TIME ZONE IN YOUR LOCATION.',
     readOnly: false,
   },
 ];
@@ -384,7 +384,7 @@ export const BuildRules = [
   {
     id: 18,
     status: false,
-    text: 'Intellectual Property: Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any falseSubmission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without             limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any',
+    text: 'Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any falseSubmission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any applicable U.S. or foreign state or federal law You are required to ensure that all releases or transfers of technical data to non-US persons comply with International Traffic in Arms Regulation (ITAR), 22 C.F.R. §§ 120.1 to 130.17.In special cases, where a challenge is not a competition and where incentives are paid in direct one to one corellation to work completed, it is work for hire and the intellectual property is assigned to the Challenge Sponsor at completion and payment for the work.',
     readOnly: true,
   },
   {
@@ -396,7 +396,7 @@ export const BuildRules = [
   {
     id: 20,
     status: false,
-    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE',
+    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE CORRESPONDING TIME ZONE IN YOUR LOCATION.',
     readOnly: true,
   },
 ];
@@ -496,7 +496,7 @@ export const Acceleration = [
   {
     id: 16,
     status: false,
-    text: 'Intellectual Property: Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any falseSubmission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without             limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any',
+    text: 'Intellectual Property: Awarded/Incentivized participants agree to an irrevocable, paid-up, royalty-free non exclusive worldwide license to reproduce, publish, post, link to, share, and display publicly (e.g., on websites) the submission and abstracts on the web or elsewhere will be provided to the Challenge Sponsor. Participants agree not to make any falseSubmission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any applicable U.S. or foreign state or federal law You are required to ensure that all releases or transfers of technical data to non-US persons comply with International Traffic in Arms Regulation (ITAR), 22 C.F.R. §§ 120.1 to 130.17.In special cases, where a challenge is not a competition and where incentives are paid in direct one to one corellation to work completed, it is work for hire and the intellectual property is assigned to the Challenge Sponsor at completion and payment for the work.',
     readOnly: true,
   },
   {
@@ -514,7 +514,7 @@ export const Acceleration = [
   {
     id: 19,
     status: false,
-    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the            Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge            Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE',
+    text: 'Challenge Period: The “Challenge Period” will run from the Start Date and time to the Final Submission Deadline as listed on the Challenge Website. Within the Challenge period, the Challenge Sponsor reserves the right to update or introduce additional deadlines during the Challenge Period. Any updated or additional deadlines will be publicized on the Challenge Website. It is your responsibility to check the Challenge Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE CORRESPONDING TIME ZONE IN YOUR LOCATION.',
     readOnly: true,
   },
 ];

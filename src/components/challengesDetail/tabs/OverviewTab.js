@@ -1,8 +1,6 @@
 import React from 'react';
 
 const OverviewTab = ({goal, background}) => {
-  // console.log(background);
-
   function NewlineText(string) {
     const text = string;
     return text?.split('\n').map((str, index) => (
@@ -10,7 +8,6 @@ const OverviewTab = ({goal, background}) => {
         {str}
       </div>
     ));
-    // console.log(text?.split('\n').map((str, index) => <div>{str}</div>));
   }
 
   return (
@@ -22,8 +19,7 @@ const OverviewTab = ({goal, background}) => {
         aria-labelledby="overviewTab">
         <div className="mb-md-5 mb-3">
           <h3 className="mb-3">Background</h3>
-          {/* {background?.toString} */}
-          {/* {'hello workd' + ' \n' + 'amdlasf asjdfl'} */}
+
           {NewlineText('i am hero \n \n \n \n i am zero')}
         </div>
         <div className="mb-md-5 mb-3">
