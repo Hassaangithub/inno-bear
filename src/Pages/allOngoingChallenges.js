@@ -40,7 +40,7 @@ const AllOngoingChallenges = () => {
               key={item.id}
               className="col-lg-4 col-md-4 col-sm-6 mb-sm-4 mb-3 current-challenge-block-main"
               role="button"
-              onClick={() => navigate(`/view-ongoing-challenge/:${item.id}`)}>
+              onClick={() => navigate(`/challenges/detail:${item.id}`)}>
               <div className="p-3 current-challenge-block">
                 <img
                   src={item.header_image}

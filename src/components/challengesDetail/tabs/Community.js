@@ -3,23 +3,25 @@ import React, {useState} from 'react';
 import {useEffect} from 'react';
 import {toast} from 'react-toastify';
 import ellipse3 from '../../../images/Ellipse-3.png';
-import {postComment, addTopic} from '../../../Services/challanges';
+import {
+  postComment,
+  addTopic,
+  getCommunity,
+} from '../../../Services/challanges';
 import CustomModal from '../../modals/CutomModal';
 
-const Community = ({
-  communityPost,
-  message,
-  setMessage,
-  challengeId,
-  hostId,
-}) => {
+const Community = ({challengeId, hostId}) => {
   const [loading, setLoading] = useState(false);
+  const [modalLoading, setModalLoading] = useState(false);
+  const [message, setMessage] = useState();
   const [toggleComment, setToggleComment] = useState('');
   const [answersToggle, setAnswersToggle] = useState('');
   const [filteredData, setFilteredData] = useState();
   const [show, setShow] = useState(false);
   const [postMessage, setPostMessage] = useState('');
   const [topic, setTopic] = useState('');
+  const [communityPost, setCommunityPost] = useState();
+
   const handleClose = e => {
     e.preventDefault();
     setShow(false);
@@ -69,28 +71,43 @@ const Community = ({
   const handleAnswer = id => {
     setAnswersToggle(id);
   };
+  const fetchCommunityPosts = async id => {
+    const response = await getCommunity({challenge_id: Number(id)});
+    if (response.successData) {
+      setCommunityPost(response.successData?.challengeTopic);
+    }
+  };
+
+  useEffect(() => {
+    fetchCommunityPosts(challengeId);
+  }, [loading, show]);
 
   useEffect(() => {
     setFilteredData(communityPost);
-  }, []);
+  }, [communityPost]);
 
   const handleAddTopic = async e => {
-    e.preventDefault();
-    const data = {
-      challenge_host_id: hostId,
-      challenge_id: challengeId,
-      title: topic,
-      message: postMessage,
-    };
-    const response = await addTopic(data);
-    if (response.status === 200) {
-      toast.success(response.message);
-      setShow(false);
-    } else {
-      toast.error(response.message);
+    if (topic && postMessage) {
+      setModalLoading(true);
+      e.preventDefault();
+      const data = {
+        challenge_host_id: hostId,
+        challenge_id: challengeId,
+        title: topic,
+        message: postMessage,
+      };
+      const response = await addTopic(data);
+      if (response.status === 200) {
+        setModalLoading(false);
+
+        toast.success(response.message);
+        setShow(false);
+      } else {
+        toast.error(response.message);
+        setModalLoading(false);
+      }
     }
   };
-  console.log(communityPost);
 
   return (
     <div
@@ -107,6 +124,7 @@ const Community = ({
             <div className="mt-3">
               <label htmlFor="">Topic</label>
               <input
+                required
                 type="text"
                 className="form-control"
                 onChange={e => setTopic(e.target.value)}
@@ -115,6 +133,7 @@ const Community = ({
             <div className="mt-3">
               <label htmlFor="">Message</label>
               <textarea
+                required
                 name=""
                 id=""
                 cols="3"
@@ -131,9 +150,16 @@ const Community = ({
               </button>
               <button
                 onClick={handleAddTopic}
-                type="button"
+                type="submit"
                 className="px-md-4 d-flex align-items-center  btn-post ml-lg-5 ml-3">
-                Post
+                {modalLoading ? (
+                  <div
+                    className="spinner-border text-primary spinner-border-md"
+                    role="status"
+                  />
+                ) : (
+                  'Post'
+                )}
               </button>
             </div>
           </form>

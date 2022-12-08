@@ -32,8 +32,6 @@ const Detail = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState();
   const [updates, setUpdates] = useState();
-  const [communityPost, setCommunityPost] = useState();
-  const [message, setMessage] = useState();
 
   const setChallengeId = useSetRecoilState(challengeId);
   const allChallenges = useRecoilValue(challengeAtom);
@@ -59,21 +57,11 @@ const Detail = () => {
     }
   };
 
-  const fetchCommunityPosts = async id => {
-    const response = await getCommunity({challenge_id: Number(id)});
-    if (response.successData) {
-      setCommunityPost(response.successData?.challengeTopic);
-    }
-  };
   useEffect(() => {
     setChallengeId(id);
     getChallenge(id);
     fetchUpdates(id);
   }, []);
-
-  useEffect(() => {
-    fetchCommunityPosts(id);
-  }, [message]);
 
   return (
     <>
@@ -167,13 +155,7 @@ const Detail = () => {
           )}
           {activeTab === 'Updates' && <Updates updates={updates} />}
           {activeTab === 'Community' && (
-            <Community
-              communityPost={communityPost}
-              message={message}
-              setMessage={setMessage}
-              challengeId={id}
-              hostId={data?.user_id}
-            />
+            <Community challengeId={id} hostId={data?.user_id} />
           )}
         </div>
       </div>

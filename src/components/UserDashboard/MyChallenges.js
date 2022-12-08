@@ -37,7 +37,7 @@ const MyChallenges = ({myChallenges}) => {
                     </label>
                   </div>
                 </td>
-                <td>{challenge.cutOff_date}</td>
+                <td>{challenge.cutoff_date}</td>
                 <td>
                   <b>${challenge.award_prize}</b>
                 </td>
