@@ -19,8 +19,7 @@ const OverviewTab = ({goal, background}) => {
         aria-labelledby="overviewTab">
         <div className="mb-md-5 mb-3">
           <h3 className="mb-3">Background</h3>
-
-          {NewlineText('i am hero \n \n \n \n i am zero')}
+          {NewlineText(background)}
         </div>
         <div className="mb-md-5 mb-3">
           <h3 className="mb-3">Challenge Goal</h3>

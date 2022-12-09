@@ -6,10 +6,13 @@ import accountAuth from '../images/account-auth-logo.png';
 import signInStepSide from '../images/sign-in-step-side-img.png';
 import {login} from '../Services/auth';
 import {toast, ToastContainer} from 'react-toastify';
-import GoogleLogin from 'react-google-login';
-import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {useSetRecoilState} from 'recoil';
 import {userData} from '../recoil/atom';
-import {contains} from 'jquery';
+import {GoogleLogin, useGoogleLogin} from '@react-oauth/google';
+import {FcGoogle} from 'react-icons/fc';
+import {BsFacebook} from 'react-icons/bs';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import jwt_decode from 'jwt-decode';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -73,8 +76,18 @@ const SignIn = () => {
       }
     }
   };
-  const responseGoogle = response => {};
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: credentialResponse =>
+      console.log(
+        'hello',
+        credentialResponse,
+        // jwt_decode(credentialResponse.access_token),
+      ),
+  });
 
+  const responseFacebook = response => {
+    console.log('fb', response);
+  };
   return (
     <>
       <ToastContainer
@@ -114,17 +127,38 @@ const SignIn = () => {
           <p className="beneath-main-heading">
             Please sign into your account to continue with your project
           </p>
-          {/* <div className="my-lg-4 my-2 d-flex flex-wrap justify-content-between">
-            <GoogleLogin
-              className="account-auth-btns"
-              clientId="1024862251961-c69lv4b0lj6q0oi8shr01cn9vvqt30vg.apps.googleusercontent.com"
-              buttonText="Sign up with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
-            <button className="account-auth-btns">Sign up with Facebook</button>
-          </div> */}
+          <div className="my-lg-4 my-2 d-flex flex-wrap justify-content-between ">
+            {/* <button className="account-auth-btns" onClick={loginWithGoogle}>
+              <span className="mr-2">
+                <FcGoogle />
+              </span>
+              Sign up with Google
+            </button> */}
+            {/* <GoogleLogin
+              onSuccess={credentialResponse => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            /> */}
+
+            {/* <FacebookLogin
+              appId="458635639791959"
+              autoLoad={true}
+              // fields="name,email,picture"
+              // onClick={componentClicked}
+              callback={responseFacebook}
+              render={renderProps => (
+                <button
+                  onClick={renderProps.onClick}
+                  className="account-auth-btns">
+                  <BsFacebook size={20} fill="#4f46E5" className="mr-2" />
+                  Sign up with facebook
+                </button>
+              )}
+            /> */}
+          </div>
           <form>
             <div className="form-group mb-lg-4">
               <label htmlFor="userEmail">Email Address</label>
