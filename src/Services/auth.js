@@ -56,4 +56,24 @@ const registerUserStep2 = async params =>
       return response;
     });
 
-export {login, registerUser, registerUserStep1, registerUserStep2};
+const forgetPassword = params =>
+  axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/forget-password`,
+    data: params,
+    headers: {'Content-Type': 'multipart/form-data'},
+  })
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (response) {
+      return response;
+    });
+
+export {
+  login,
+  registerUser,
+  registerUserStep1,
+  registerUserStep2,
+  forgetPassword,
+};

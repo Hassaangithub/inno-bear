@@ -4,7 +4,7 @@ const Challanges = ({challanges, checkedState, handleCheckbox}) => {
   return (
     <>
       {challanges.map((challenge, index) => (
-        <div className="custom-control custom-checkbox" key={index}>
+        <div className="custom-control custom-checkbox w-100" key={index}>
           <input
             type="checkbox"
             className="custom-control-input"

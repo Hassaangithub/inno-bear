@@ -23,7 +23,6 @@ const ViewSubmittedSolution = () => {
 
     getData();
   }, []);
-
   return (
     <>
       <TopNav dashboard={true} />
@@ -32,7 +31,32 @@ const ViewSubmittedSolution = () => {
         <div className="mt-5 mb-3">
           <div className="col-lg-12 row flex align-items-center">
             <span className="font-weight-bolder">Submitted By</span>{' '}
-            <div className="mx-2">
+            <div className="mx-2 d-flex align-items-center">
+              {/* <span className="mx-2 rounded-circle overflow-hidden bg-">
+                <img src={data?.user.image} className="shared-by " alt="" />
+              </span> */}
+
+              {data?.user.image ? (
+                <img src={data?.user.image} className="shared-by mr-2" />
+              ) : (
+                <span
+                  className="profile-user-pic d-flex shared-by align-items-center justify-content-center text-white mx-2"
+                  style={{
+                    background: '#9e9e9e',
+                    fontSize: '26px',
+                  }}>
+                  {data?.user.fname[0].toUpperCase()}
+                </span>
+              )}
+
+              <span className="text-muted">
+                {data?.user.fname?.charAt(0).toUpperCase() +
+                  data?.user.fname.slice(1) +
+                  ' '}
+                {data?.user.lname}
+              </span>
+            </div>
+            {/* <div className="mx-2">
               <span className="mx-2">
                 <img src={ellipse3} className="shared-by " alt="" />
               </span>
@@ -43,16 +67,10 @@ const ViewSubmittedSolution = () => {
                 <img src={ellipse3} className="shared-by " alt="" />
               </span>
               <span className="text-muted">jonne man</span>
-            </div>
-            <div className="mx-2">
-              <span className="mx-2">
-                <img src={ellipse3} className="shared-by " alt="" />
-              </span>
-              <span className="text-muted">jonne man</span>
-            </div>
+            </div> */}
           </div>
         </div>
-        <p>{data?.created_at}</p>
+        <p>{data?.created_at?.split('T')[0]}</p>
         <div className="mt-5">
           <h3>Description</h3>
           <p>{data?.discription}</p>
@@ -65,11 +83,11 @@ const ViewSubmittedSolution = () => {
             <div className="card p-3">
               <i className="fas fa-file-pdf pdf-icon"></i>
               <div className=" d-flex justify-content-between mt-5">
-                <small className="text-muted">Challenge Brief</small>
-                <small className="text-muted">10kb</small>
+                <small className="text-muted">Solution Proposal</small>
+                <small className="text-muted"></small>
               </div>
               <div className="mt-3">
-                <a href="" download>
+                <a href={data?.proposal} download>
                   Download <i className="fas fa-download"></i>
                 </a>
               </div>

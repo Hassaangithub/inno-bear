@@ -146,7 +146,7 @@ const SignupStepFour = ({setFormData, formData}) => {
         interested_challenges_keywords: addedKeyword,
       });
       if (response.data) {
-        toast.success(response.message);
+        toast.success(response.data.message);
         setLoading(false);
         navigate('/sign-in');
       } else {
@@ -159,18 +159,6 @@ const SignupStepFour = ({setFormData, formData}) => {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <InputModal
         title="Add Keyword"
         submitText="Add Keyword"

@@ -100,8 +100,8 @@ const CreateSolution = () => {
               <button
                 className="mb-sm-4 mb-3 theme-blue-link"
                 onClick={e => e.preventDefault()}>
-                <span className="mr-2 fa fa-plus"></span>Invite team members to
-                collaborate
+                <span className="mr-2 fa fa-plus"></span>(Coming Soon) Invite
+                team members to collaborate
               </button>
               <form>
                 <div className="form-row mx-0 mb-lg-4 mb-0">

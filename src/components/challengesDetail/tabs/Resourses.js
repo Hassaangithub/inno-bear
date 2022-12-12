@@ -46,7 +46,7 @@ const Resoucerses = ({resources}) => {
             <div className="card p-3">
               <i className="fas fa-file-pdf pdf-icon"></i>
               <div className=" d-flex justify-content-between mt-5">
-                <small className="text-muted">Formal Document</small>
+                <small className="text-muted">Official Rules</small>
                 <small className="text-muted"></small>
               </div>
               <div className="mt-3">

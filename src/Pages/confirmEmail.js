@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+import {toast} from 'react-toastify';
 import accountAuth from '../images/account-auth-logo.png';
 import resetImg from '../images/image27.png';
+import {forgetPassword} from '../Services/auth';
 
 const ConfirmEmail = () => {
   const navigate = useNavigate();
@@ -11,12 +13,14 @@ const ConfirmEmail = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    // setLoading(true);
-    // const response = await changePassword();
-    // if (response) {
-    //   setLoading(false);
-    //   toast.error(response.data.message);
-    // }
+    setLoading(true);
+    const response = await forgetPassword();
+
+    if (response) {
+      console.log('GOT', response);
+      setLoading(false);
+      toast.error(response.data.message);
+    }
   };
   return (
     <>
@@ -54,7 +58,7 @@ const ConfirmEmail = () => {
           <form>
             <div className="form-row">
               <div className="form-group col-lg-12">
-                <label for="firstName">Email</label>
+                <label htmlFor="firstName">Email</label>
                 <input
                   required
                   type="email"

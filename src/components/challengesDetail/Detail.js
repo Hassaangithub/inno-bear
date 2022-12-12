@@ -113,7 +113,7 @@ const Detail = () => {
             <Overview
               cashPrize={data?.award_prize}
               type={data?.keywords}
-              submission={data?.submission_date}
+              submission={data?.start_date}
               close={data?.cutoff_date}
             />
           )}
@@ -140,7 +140,7 @@ const Detail = () => {
             <Timelines
               launch={data?.created_at}
               closing={data?.cutoff_date}
-              submission={data?.submission_date}
+              submission={data?.start_date}
             />
           )}
           {activeTab === 'Prizes' && (

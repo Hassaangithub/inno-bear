@@ -269,7 +269,7 @@ const EditProfile = () => {
                   </div>
 
                   <div className="form-group col-lg-6">
-                    <label htmlFor="City">City</label>
+                    <label htmlFor="City">State/Province</label>
                     <select
                       disabled={disableInput}
                       className={`form-control ${disableInput && 'cursor-na'}`}

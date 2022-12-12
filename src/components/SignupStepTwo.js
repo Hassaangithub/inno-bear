@@ -187,7 +187,7 @@ const SignupStepTwo = ({setFormData, formData, setStep}) => {
               )}
             </div>
             <div className="form-group col-lg-6">
-              <label htmlFor="City">City</label>
+              <label htmlFor="City">State/Province</label>
               <select
                 className={`form-control ${formError.city && 'border-danger'} ${
                   !cities && 'cursor-na'
