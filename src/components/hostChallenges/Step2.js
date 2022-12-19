@@ -56,7 +56,7 @@ const Step2 = ({setStep, step, challengeId}) => {
     const response = await saveChallenge2({
       user_id: localStorage.getItem('userId'),
       step: step,
-      cutOff_date: question,
+      cutoff_date: question,
       Q_A: isQA,
       start_date: start,
       submission_date: deadline,
@@ -120,7 +120,8 @@ const Step2 = ({setStep, step, challengeId}) => {
           <div className="w-100">
             <h6>What is the cutoff date for questions?</h6>
             <input
-              min={deadline}
+              max={deadline}
+              min={start}
               type="date"
               className={`form-control ${error.question && 'border-danger'}`}
               onChange={e => {

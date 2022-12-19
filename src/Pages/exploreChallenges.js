@@ -21,7 +21,7 @@ const ExploreChallenges = () => {
   }, []);
   const navigate = useNavigate();
   const handleCard = id => {
-    navigate(`/challenges/detail:${id}`);
+    navigate(`/challenges/detail/:${id}`);
   };
   return (
     <Layout>
@@ -67,7 +67,7 @@ const ExploreChallenges = () => {
                       }}>
                       <img
                         src={card.header_image}
-                        alt="challege"
+                        alt="challenge"
                         style={{
                           minHeight: '100%',
                           objectFit: 'cover',

@@ -50,11 +50,11 @@ const ContactUs = () => {
         <div className="col-lg-6 p-0">
           <div className="contacr-details  side-contact-block">
             <h2>
-              Got a question for us <br /> today? Lets talk!
+              Got a question for us ? <br /> Lets talk!
             </h2>
             <p>
               We’re here for you. Let us know what you need and how we can be of
-              service. Someone will get back to you as soon as humanly possible
+              service. Someone will get back to you as soon as humanly possible.
             </p>
             <div className="mt-3">
               <span>

@@ -32,7 +32,7 @@ const StarterKit = () => {
               to it that will need special attention. Things like rules, judging
               criteria, and submission package. You know what you need solutions
               for and we can help you quickly fill the gap with our Challenge
-              Starter Kit’s.
+              Starter Kits.
             </p>
             <button
               className="btn text-white"
@@ -57,7 +57,7 @@ const StarterKit = () => {
         <h2 className="mt-md-5 mt-3">Setting up your challenge</h2>
         <p className="mb-md-4">
           While setting up your challenge you’ll be able to choose a custom
-          Starter Kit based on your challenge type
+          Starter Kit based on your challenge type.
         </p>
         <div className="row">
           <div className="col-lg-4 col-sm-6 text-md-left text-center mb-lg-5 mb-4">
@@ -88,7 +88,7 @@ const StarterKit = () => {
             <img src={img4} alt="img-1" className="challenge-img" />
             <h5 className="mt-3 mb-2">Analysis/open data</h5>
             <p className="mb-0">
-              This type of challenge seeks answer through data and/or data
+              This type of challenge seeks answers through data and/or data
               analytics.
             </p>
           </div>
@@ -103,7 +103,7 @@ const StarterKit = () => {
         </div>
         <h2 className="mt-md-5 mt-3">Starter kit features</h2>
         <p className="mb-md-4">
-          Each Starter Kit, does your heavy lifting with the following
+          Each Starter Kit does your heavy lifting with the following
           pre-designed and customizable items:
         </p>
         <div className="row">
@@ -138,8 +138,8 @@ const StarterKit = () => {
             </h2>
             <p>
               Shh…our secret sauce is in our proprietary Brilliance Participant
-              Pool method and engagement. Said simply the depth, and quality,
-              and inventiveness of your solution is based on the brilliant minds
+              Pool method and engagement. Said simply the depth, quality, and
+              inventiveness of your solution is based on the brilliant minds
               that accept your challenge and send through a submission.
             </p>
             <p>

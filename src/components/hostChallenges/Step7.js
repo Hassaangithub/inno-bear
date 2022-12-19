@@ -114,8 +114,8 @@ const Step7 = ({challengeId, step}) => {
           Let's give them some resources and finalize things
         </h4>
         <p>
-          Add some resources that solvers can find find useful. Then, upload
-          your artwork, and put the final touches on this challenge
+          Add some resources that participants can find find useful. Then,
+          upload your artwork, and put the final touches on this challenge.
         </p>
         <form>
           <div className="form-row mx-0">

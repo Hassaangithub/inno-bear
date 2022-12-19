@@ -132,13 +132,13 @@ const SignupStepThree = ({setFormData, formData, setStep}) => {
       <div className="col-lg-6 col-md-8">
         <h1>Complete your sign up process</h1>
         <p className="beneath-main-heading">
-          Let's grab a few more details to finish setting up your account
+          Let's grab a few more details to finish setting up your account.
         </p>
         <div className="d-flex flex-wrap mb-3">
           <span className="auth-step gradient-step mr-2"></span>
           <span className="auth-step grey-step"></span>
         </div>
-        <p className="mb-xl-4">I am signing up as a</p>
+        <p className="mb-xl-4">I am signing up as a...</p>
         <form>
           <div className="form-row">
             <div

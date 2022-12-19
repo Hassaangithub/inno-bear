@@ -23,7 +23,7 @@ const AllCurrentChallenges = () => {
   }, []);
   const navigate = useNavigate();
   const handleCard = id => {
-    navigate(`/challenges/detail:${id}`);
+    navigate(`/challenges/detail/:${id}`);
   };
 
   return (

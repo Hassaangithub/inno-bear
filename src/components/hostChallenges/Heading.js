@@ -7,9 +7,8 @@ const Heading = () => {
         Create a New <span className="orange h2">Challenge</span>
       </h2>
       <p className="text-center mb-0">
-        Get started on your innovation journey to solving the world’s greatest
-        challenges through our Brilliance Participant Pool method which ensures
-        a diverse population of brilliant and innovative minds
+        Get started creating a challenge and engage brilliant minds to solve
+        your toughest problems.
       </p>
     </div>
   );

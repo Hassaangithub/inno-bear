@@ -170,14 +170,14 @@ const SignupStepFour = ({setFormData, formData}) => {
       <div className="col-lg-6 col-md-8">
         <h1>Complete your sign up process</h1>
         <p className="beneath-main-heading">
-          Let's grab a few more details to finish setting up your account
+          Let's grab a few more details to finish setting up your account.
         </p>
         <div className="d-flex flex-wrap mb-3">
           <span className="auth-step grey-step mr-2"></span>
           <span className="auth-step gradient-step"></span>
         </div>
         <h6 className="mt-lg-4 my-3">
-          Choose the types of challenges you prefer to participate in
+          Choose the types of challenges you prefer to participate in:
         </h6>
         <form>
           <div className="form-row">
@@ -192,8 +192,8 @@ const SignupStepFour = ({setFormData, formData}) => {
               </span>
             )}
             <h6 className="my-3">
-              What keywords should we look out for that describe the types of
-              challenges you might be interested in?
+              What keywords describe the types of challenges you DON’T typically
+              participate in BUT would LOVE to engage in?
             </h6>
             <div className="mb-3 interests-container">
               {keywords.map((item, index) => (

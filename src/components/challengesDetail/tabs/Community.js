@@ -45,7 +45,7 @@ const Community = ({challengeId, hostId}) => {
   };
   const handleSearch = e => {
     const filteredPosts = communityPost?.filter(post => {
-      return post.title.includes(e.target.value);
+      return post.title.toLowerCase().includes(e.target.value.toLowerCase());
     });
     setFilteredData(filteredPosts);
   };

@@ -29,7 +29,7 @@ const Home = () => {
   }, []);
 
   const handleCard = id => {
-    navigate(`/challenges/detail:${id}`);
+    navigate(`/challenges/detail/:${id}`);
   };
 
   return (
@@ -44,8 +44,9 @@ const Home = () => {
             <p className="mb-0 col-xl-10 px-0 paragraph">
               Brilliant minds are EVERYWHERE. Getting a solution to your
               problem, or creating the next great breakthrough innovation, is
-              only a few humans away. Tap into human minds across the globe with
-              a challenge prize competition, and watch the solutions roll in.
+              only a few humans away. Use a challenge to tap into human minds
+              around the globe or right in your backyard and watch problems
+              become solutions.
             </p>
             <button
               className="btn action-btn text-white"
@@ -73,7 +74,7 @@ const Home = () => {
               />
             </div>
           ) : (
-            <div className="row mt-lg-5 mt-4 mb-3">
+            <div className="row mt-lg-5 mt-4 mb-3 w-100">
               {data?.map((card, index) => (
                 <div className="col-lg-4 col-sm-6 mb-sm-4 mb-3" key={index}>
                   <div
@@ -129,31 +130,28 @@ const Home = () => {
             <h4 className="mt-md-4 mb-3 d-inline-flex justify-content-center align-items-center draw-number">
               1
             </h4>
-            <p>Sign up or log into your account</p>
+            <p>Sign up or log into your account.</p>
           </div>
           <div className="col-lg-3 col-sm-6 mb-md-0 mb-3">
             <img src={draw2} alt="draw-2" className="w-100 draw-img" />
             <h4 className="mt-md-4 mb-3 d-inline-flex justify-content-center align-items-center draw-number">
               2
             </h4>
-            <p>Create your challenge and pick a "brlliant minds" pool.</p>
+            <p>Gather your details and create your challenge.</p>
           </div>
           <div className="col-lg-3 col-sm-6 mb-md-0 mb-3">
             <img src={draw3} alt="draw-3" className="w-100 draw-img" />
             <h4 className="mt-md-4 mb-3 d-inline-flex justify-content-center align-items-center draw-number">
               3
             </h4>
-            <p>Add a funding source for your prize award and launch.</p>
+            <p>Pick a payment plan and launch.</p>
           </div>
           <div className="col-lg-3 col-sm-6 mb-md-0 mb-3">
             <img src={draw4} alt="draw-4" className="w-100 draw-img" />
             <h4 className="mt-md-4 mb-3 d-inline-flex justify-content-center align-items-center draw-number">
               4
             </h4>
-            <p>
-              Watch the brilliant minds at work as registrations and solutions
-              roll in.
-            </p>
+            <p>Share it! Watch the brilliant minds and solutions roll in.</p>
           </div>
         </div>
         <div className="row my-sm-5 my-3 content-w-side-img">
@@ -165,9 +163,9 @@ const Home = () => {
             <p className="col-xl-10 px-0 mb-0 paragraph">
               Let’s face it, putting together a challenge has a few components
               to it that will need special attention. Things like rules, judging
-              criteria, and submission package. You know what you need solutions
-              for and we can help you quickly fill the gap with our Challenge
-              Starter Kit’s.
+              criteria, and the submission package. You know what you need
+              solutions for and we can help you quickly fill the gap with our
+              Challenge Starter Kits.
             </p>
             <button
               className="btn action-btn text-white"

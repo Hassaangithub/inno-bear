@@ -14,7 +14,7 @@ const Prizes = ({awards, prize}) => {
         </p>
       </div>
       <div className="mb-3">
-        <table className="table table-striped table-borderless table-responsive">
+        <table className="table table-striped table-borderless table-responsive w-100">
           <thead>
             <tr>
               <th>Award</th>

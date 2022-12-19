@@ -10,7 +10,7 @@ const HeaderContent = ({type, description, keyword}) => {
         <h5 className="mb-0">{type}</h5>
         <div className="mt-3 mb-lg-5 mb-3 d-block interests-block">
           {keywords.map((item, index) => (
-            <span className="interest" key={index}>
+            <span className="interest mr-2" key={index}>
               {item}
             </span>
           ))}

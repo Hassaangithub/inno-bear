@@ -62,7 +62,7 @@ const Detail = () => {
     getChallenge(id);
     fetchUpdates(id);
   }, []);
-
+  console.log(data);
   return (
     <>
       <ToastContainer
@@ -119,7 +119,7 @@ const Detail = () => {
           )}
           {view === 'teams' && (
             <Teams
-              description={data?.description_about_challenge}
+              endGoal={data?.end_goal}
               type={data?.challenge_type}
               keyword={data?.keywords}
             />

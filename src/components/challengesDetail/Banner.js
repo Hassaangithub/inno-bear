@@ -6,7 +6,7 @@ const Banner = ({image, title}) => {
     <div className="position-relative">
       <div className="w-100" style={{height: '400px'}}>
         <img
-          src={image ?? banner}
+          src={image}
           alt="banner-img"
           className="w-100"
           style={{objectFit: 'cover', maxHeight: '100%'}}

@@ -62,8 +62,8 @@ const Step4 = ({setStep, challengeId, step}) => {
         <div className="form-row mb-sm-4 mb-3">
           <div className="w-100 form-group mb-0">
             <h6>
-              Provide some background on why this Challenge exists. What’s the
-              Problem? Or What’s the opportunity?
+              Provide some background on why this Challenge exists. What's the
+              problem or opportunity?
             </h6>
             <textarea
               value={background}
