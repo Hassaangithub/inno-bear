@@ -21,6 +21,7 @@ const Pricing = () => {
 
   const handleClick = (e, planType) => {
     if (localStorage.getItem('token')) {
+      console.log('hellp', planType);
       navigate('/host-Challenge/funding-source');
     } else {
       navigate('/sign-in');
@@ -65,7 +66,13 @@ const Pricing = () => {
               </h6>
               <a
                 className="px-md-5 white-btn btn w-100 my-4 py-3"
-                onClick={e => handleClick(e, item.plan_title)}>
+                onClick={e =>
+                  handleClick(e, {
+                    title: item.plan_title,
+                    discount: item.plan_discount,
+                    price: item.plan_price,
+                  })
+                }>
                 Begin {item.plan_title}
               </a>
               <ul className="list-style-none">

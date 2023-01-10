@@ -194,7 +194,7 @@ const Community = ({challengeId, hostId}) => {
               <div className="media">
                 <img
                   className="align-self-start community-media-img"
-                  src={ellipse3}
+                  src={item.admin.image}
                   alt="community-media-img"
                 />
                 <div className="media-body mx-3">

@@ -8,18 +8,19 @@ import {forgetPassword} from '../Services/auth';
 const ConfirmEmail = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
-  const [confirm, setConfirm] = useState();
   const [loading, setLoading] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
-    const response = await forgetPassword();
+    const response = await forgetPassword({email});
 
-    if (response) {
-      console.log('GOT', response);
+    if (response.status !== 200) {
       setLoading(false);
-      toast.error(response.data.message);
+      toast.error(response.message);
+    } else {
+      setLoading(false);
+      toast.success('Link send to email');
     }
   };
   return (

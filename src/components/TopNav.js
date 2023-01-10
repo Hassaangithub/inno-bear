@@ -123,7 +123,7 @@ const TopNav = ({dashboard}) => {
                 aria-expanded="false">
                 {profileImg ? (
                   <img src={profileImg} className="profile-user-pic" />
-                ) : (
+                ) : localStorage.getItem('email') ? (
                   <div
                     className="profile-user-pic d-flex align-items-center justify-content-center text-white"
                     style={{
@@ -132,6 +132,13 @@ const TopNav = ({dashboard}) => {
                     }}>
                     {localStorage.getItem('email')[0].toUpperCase()}
                   </div>
+                ) : (
+                  <div
+                    className="profile-user-pic d-flex align-items-center justify-content-center text-white"
+                    style={{
+                      background: '#fff',
+                      fontSize: '26px',
+                    }}></div>
                 )}
               </a>
               <div className="dropdown-menu dropdown-menu-right animated-dropdown slideIn w-100 border-0 dark-box-shadow">

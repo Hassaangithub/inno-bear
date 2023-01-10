@@ -95,7 +95,7 @@ const Router = () => {
       <Route path="/innovation-library" element={<InnovationLibrary />} />
       <Route path="innovation-pipeline" element={<InnovationPipeline />} />
       <Route path="/dashboard/team" element={<Teams />} />
-      <Route path="/reset-password" element={<Resetpassword />} />
+      <Route path="/reset-password/:id" element={<Resetpassword />} />
       <Route path="/confirm-email" element={<ConfirmEmail />} />
       <Route path="/term&conditions" element={<TermAndCondition />} />
     </Routes>

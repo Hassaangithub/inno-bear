@@ -11,10 +11,12 @@ const ViewOngoingChallenge = () => {
   const [data, setData] = useState();
   const {id} = useParams();
   const solutionId = id.replace(':', '');
-
+  console.log('hello', data);
   useEffect(() => {
     const getData = async () => {
       const response = await fetchOngoingChallengesById(solutionId);
+      console.log('hello', response);
+
       if (response.successData) {
         setData(response.successData.solution);
       } else {

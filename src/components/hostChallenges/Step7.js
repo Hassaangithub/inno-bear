@@ -35,6 +35,7 @@ const Step7 = ({challengeId, step}) => {
   };
   const handleSubmit = async e => {
     e.preventDefault();
+
     const userId = Number(localStorage.getItem('userId'));
     if (
       description &&
@@ -52,6 +53,25 @@ const Step7 = ({challengeId, step}) => {
         thumbnail_image: imagePath.thumbnail,
         user_id: userId,
       });
+
+      //   const response = await saveChallenge7({
+      //     user_id: Number(localStorage.getItem('userId')),
+      //     step: step,
+      //     challenge_id: challengeId,
+      //     attachment_description: description,
+      //     attachment: file,
+      //     header_image: imagePath.header,
+      //     thumbnail_image: imagePath.thumbnail,
+      //   });
+      //   if (response.status === 200) {
+      //     toast.success(response.message);
+      //     setDraftLoading(false);
+      //     navigate('/pricing');
+      //   } else {
+      //     toast.error(response.data.message);
+      //     setDraftLoading(false);
+      //   }
+      // }
       const formData = {
         ...challenge,
         attachment_description: description,
@@ -91,6 +111,7 @@ const Step7 = ({challengeId, step}) => {
     if (response.status === 200) {
       toast.success(response.message);
       setDraftLoading(false);
+      navigate('/ongoing-challenges');
     } else {
       toast.error(response.data.message);
       setDraftLoading(false);
@@ -228,7 +249,7 @@ const Step7 = ({challengeId, step}) => {
                   role="status"
                 />
               ) : (
-                'Save as Draft'
+                'Save and Preview'
               )}
             </button>
             <button

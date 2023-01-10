@@ -64,10 +64,10 @@ const forgetPassword = params =>
     headers: {'Content-Type': 'multipart/form-data'},
   })
     .then(function (response) {
-      return response;
+      return response.data;
     })
     .catch(function (response) {
-      return response;
+      return response.response.data;
     });
 
 export {

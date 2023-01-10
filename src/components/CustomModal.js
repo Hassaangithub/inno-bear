@@ -14,7 +14,7 @@ const CustomModal = ({
       <Modal.Body>
         {children}
         {/* <div className=" text-center"></div> */}
-        {!modalType === 'info' && (
+        {modalType === 'logout' && (
           <div className="d-flex justify-content-center pb-5">
             <Button
               className="mr-2 rounded btn btn-secondary btn-sm logoutCancel"

@@ -40,7 +40,7 @@ const AllOngoingChallenges = () => {
               key={item.id}
               className="col-lg-4 col-md-4 col-sm-6 mb-sm-4 mb-3 current-challenge-block-main"
               role="button"
-              onClick={() => navigate(`/challenges/detail:${item.id}`)}>
+              onClick={() => navigate(`/view-ongoing-challenge/:${item.id}`)}>
               <div className="p-3 current-challenge-block">
                 <img
                   src={item.header_image}
@@ -60,7 +60,7 @@ const AllOngoingChallenges = () => {
             </div>
           ))}
         </div>
-        <div className="row mx-0 d-none">
+        <div className="row mx-0">
           <div className="col-12 d-flex flex-wrap justify-content-between my-4">
             <h5>
               Drafts <small className="grey-txt">(2)</small>

@@ -61,7 +61,7 @@ const changePassword = data =>
   axios({
     method: 'post',
     url: `${process.env.REACT_APP_BASE_URL}/change-password`,
-    headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+    // headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
     data: data,
   })
     .then(response => {

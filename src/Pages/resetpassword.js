@@ -14,7 +14,10 @@ const Resetpassword = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
-    const response = await changePassword();
+    const response = await changePassword({
+      password: password,
+      confirmed: confirm,
+    });
     if (response) {
       setLoading(false);
       toast.error(response.data.message);

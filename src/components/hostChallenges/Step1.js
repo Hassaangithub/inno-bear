@@ -125,7 +125,7 @@ const Step1 = ({setStep, step, updateId}) => {
       .map(item => item.value)
       .toString();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const keywordList = getKeywordList();
     if (title && challengeType && keywordList) {
@@ -135,7 +135,24 @@ const Step1 = ({setStep, step, updateId}) => {
         challenge_type: challengeType,
         keywords: keywordList,
       });
-      setStep(2);
+
+      const response = await saveChallenge1({
+        title: title,
+        user_id: localStorage.getItem('userId'),
+        keywords: keywordList,
+        step: step,
+        challenge_type: challengeType,
+      });
+
+      if (response.successData) {
+        updateId(response.successData.getChallenge.id);
+        // toast.success(response.message);
+        // setLoading(false);
+        setStep(2);
+      } else {
+        toast.error(response.data.message);
+        // setLoading(false);
+      }
     }
   };
 

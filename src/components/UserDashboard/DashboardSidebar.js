@@ -25,7 +25,8 @@ const DashboardSidebar = ({list, footer, children, isProfile}) => {
         show={show}
         handleClose={handleClose}
         onSubmit={SubmitModal}
-        submitTxt="Sign out">
+        submitTxt="Sign out"
+        modalType="logout">
         <div className="modal-body mt-5 text-center">
           Are you sure you want to log out?
         </div>

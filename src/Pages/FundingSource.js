@@ -20,8 +20,9 @@ import {
 import axios from 'axios';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+import PaymentForm from '../components/Paymentform';
 
-const PUBLIC_KEY = 'pk_live_9Qn6W31EUmj6MYM6qYerPAhp00jL1mKZjs';
+const PUBLIC_KEY = 'pk_test_574eldxLSK8mMqpYQz3alvnO00WAyRJgV5';
 const options = {
   clientSecrete: process.env.REACT_APP_STRIPE_CLIENT_SECRETE,
 };
@@ -147,130 +148,9 @@ const FundingSource = () => {
           </p>
         </div>
       </CustomModal>
-      {/* <Elements stripe={stripePromise} options={options}> */}
-      <div className="page-main-content mt-3 px-md-5 px-3">
-        <div className="col-xl-6 mx-auto">
-          <h2 className="text-center">
-            Connect a <span className="orange h2">Funding</span> Source
-          </h2>
-          <p className="text-center mb-0">
-            Choose the funding method you will use to provide your prize awards.
-            You don't have to complete this step now, but it should be completed
-            within 5 days of your challenge live date, to get your badge showing
-            brilliant minds that your challenge is ready, funded, and open for
-            ideas
-          </p>
-        </div>
-        <div className="col-xl-5 col-lg-6 col-md-8 col-sm-10 mb-md-5 mb-3 mx-auto p-0 steps-model funding-method">
-          <h5 className="mb-0 text-center p-4 main-heading">
-            Choose a Funding Method
-          </h5>
-          {/* <CardElement /> */}
-          {/* <CardExpiryElement options={CARD_ELEMENT_OPTIONS} />
-            <CardCvcElement options={CARD_ELEMENT_OPTIONS} />
-            <CardNumberElement options={CARD_ELEMENT_OPTIONS} /> */}
-          <div className="d-flex justify-content-between p-4">
-            <div className="d-flex flex-column align-items-center cursor-na">
-              <span className="img-holder">
-                <img src={Image1} alt="bank-transfer-1" />
-              </span>
-              <small className="grey-text">Wire Transfer</small>
-            </div>
-            <div
-              className="d-flex flex-column align-items-center"
-              role="button">
-              <span className="img-holder active">
-                <img src={Image2} alt="bank-transfer-2" />
-              </span>
-              <small className="grey-text active">Visa</small>
-            </div>
-            <div className="d-flex flex-column align-items-center cursor-na">
-              <span className="img-holder">
-                <img src={Image3} alt="bank-transfer-3" />
-              </span>
-              <small className="grey-text">Paypal</small>
-            </div>
-            <div className="d-flex flex-column align-items-center cursor-na">
-              <span className="img-holder">
-                <img src={Image4} alt="bank-transfer-4" />
-              </span>
-              <small className="grey-text">Off Platform</small>
-            </div>
-          </div>
-          <form className="px-4 pb-5">
-            <div className="w-100 form-group mb-sm-4 mb-3">
-              <h6>Cardholder’s Name</h6>
-              <input
-                type="text"
-                className="form-control"
-                value={cardholderName}
-                onChange={e => setCardholderName(e.target.value)}
-              />
-            </div>
-            <div className="w-100 form-group mb-sm-4 mb-3">
-              <h6>Card Number</h6>
-              <input
-                type="text"
-                className="form-control"
-                value={cardNumber}
-                onChange={e => setCardNumber(e.target.value)}
-              />
-            </div>
-            <div className="form-row">
-              <div className="form-group col-6">
-                <h6>CVV</h6>
-                <input
-                  type="text"
-                  className="form-control"
-                  onChange={e => setCvv(e.target.value)}
-                />
-              </div>
-              <div className="form-group col-6">
-                <h6>Date</h6>
-                <input
-                  type="date"
-                  className="form-control"
-                  value={date}
-                  onChange={e => setDate(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="w-100 custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                id="chalOne"
-                value={saveDetails}
-                onChange={e => setSaveDetails(e.target.checked)}
-              />
-              <label
-                className="my-1 custom-control-label pass-below-text"
-                htmlFor="chalOne">
-                Save my funding details for future challenges
-              </label>
-            </div>
-            <div className="mt-xl-5 mt-sm-4 mt-3 text-center">
-              <button
-                type="submit"
-                className="w-100 mb-3 btn text-white"
-                onClick={handleSubmit}>
-                {loading ? (
-                  <div
-                    className="spinner-border text-primary spinner-border-md"
-                    role="status"
-                  />
-                ) : (
-                  'Add Funding Method'
-                )}
-              </button>
-              <a href="#">
-                <h6 className="d-inline">Do this later</h6>
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
-      {/* </Elements> */}
+      <Elements stripe={stripePromise} options={options}>
+        <PaymentForm />
+      </Elements>
     </Layout>
   );
 };
