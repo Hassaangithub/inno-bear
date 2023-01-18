@@ -1,24 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {toast, ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 import Banner from '../components/challengesDetail/Banner';
 import Footer from '../components/Footer';
 import TopNav from '../components/TopNav';
 import ellipse3 from '../images/Ellipse-3.png';
-import {fetchOngoingChallengesById} from '../Services/dashboard';
+import {singleChallenge} from '../Services/challanges';
 
 const ViewOngoingChallenge = () => {
   const [data, setData] = useState();
   const {id} = useParams();
-  const solutionId = id.replace(':', '');
-  console.log('hello', data);
+  const challengeId = id.replace(':', '');
   useEffect(() => {
     const getData = async () => {
-      const response = await fetchOngoingChallengesById(solutionId);
-      console.log('hello', response);
-
-      if (response.successData) {
-        setData(response.successData.solution);
+      const response = await singleChallenge(challengeId);
+      if (response.data.successData) {
+        setData(response.data.successData.data);
       } else {
         toast.error(response.response.data.message);
       }
@@ -26,39 +23,28 @@ const ViewOngoingChallenge = () => {
 
     getData();
   }, []);
+
+  console.log(data?.rules);
   return (
     <>
       <TopNav dashboard={true} />
 
-      <Banner />
+      <Banner image={data?.header_image} title={data?.title} />
       <div className="page-main-content create-new-solution-pg px-md-5 px-3">
         <div className="row my-sm-5 my-3">
           <div className="col-lg-12">
             <p className="text-muted mb-2">Challenge Type</p>
-            <h5 className="mb-0">Ideate, Accelerate</h5>
+            <h5 className="mb-0"> {data?.challenge_type}</h5>
             <div className="mt-3 mb-lg-5 mb-3 d-block interests-block">
-              <span className="interest">Analytics</span>
-              <span className="interest">Visualizations</span>
-              <span className="interest">
-                Algorithms Technology Demonstration
-              </span>
-              <span className="interest">Hardware</span>
+              {data?.keywords?.split(',').map((keyword, index) => (
+                <span className="interest mr-2" key={index}>
+                  {keyword}
+                </span>
+              ))}
             </div>
             <div className="mt-5">
               <h3>Overview</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-                perspiciatis distinctio veritatis laudantium, velit voluptates
-                quaerat illo eius ipsam magni nulla illum tempore, officiis
-                reiciendis, assumenda ipsum minima iure delectus?Lorem, ipsum
-                dolor sit amet consectetur adipisicing elit. Quaerat expedita
-                asperiores laudantium commodi ullam minus voluptatum magnam
-                maxime! Eum ipsa, fugit unde eius quos est qui sed eaque odio
-                pariatur?Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Provident dolor inventore rerum voluptate omnis nihil
-                debitis aliquid commodi voluptas, repellat quae! Dolores
-                molestias porro consequatur, eos nobis est magnam architecto!
-              </p>
+              <p>{data?.description_about_challenge}</p>
             </div>
           </div>
         </div>
@@ -136,56 +122,18 @@ const ViewOngoingChallenge = () => {
         <div className="row mt-5">
           <div className="col-lg-12">
             <h3>Rules</h3>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo
-              aperiamt.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo aperiam
-              .
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo aperiam.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo aperiam{' '}
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo aperiam.
-            </li>
+            {data?.rules.map(item => (
+              <li key={item.id}>{item.rule}</li>
+            ))}
           </div>
         </div>
 
         <div className="row mt-5">
           <div className="col-lg-12">
             <h3>Judging Criteria</h3>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo
-              aperiamt.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo aperiam
-              .
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo aperiam.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo aperiam{' '}
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-              voluptate qui delectus cumque perferendis, rem dolor illo aperiam.
-            </li>
+            {data?.determines.map(winningRule => (
+              <li key={winningRule.id}>{winningRule.wining_rule}</li>
+            ))}
           </div>
         </div>
         <div className="row mt-5">

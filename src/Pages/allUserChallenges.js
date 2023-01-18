@@ -23,7 +23,7 @@ const AllCurrentChallenges = () => {
   }, []);
   const navigate = useNavigate();
   const handleCard = id => {
-    navigate(`/challenges/detail/:${id}`);
+    navigate(`/view-ongoing-challenge/:${id}`);
   };
 
   return (
@@ -68,7 +68,7 @@ const AllCurrentChallenges = () => {
                       }}>
                       <img
                         src={card.header_image}
-                        alt="challege"
+                        alt="challenge"
                         style={{
                           minHeight: '100%',
                           objectFit: 'cover',
