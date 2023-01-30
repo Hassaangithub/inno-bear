@@ -14,7 +14,7 @@ function Prizes({awards, prize}) {
           Total prize pool for this challenge is:
           <strong>{prize + ' USD'}</strong>
         </p>
-        {awards.map((item, index) => (
+        {awards?.map((item, index) => (
           <h5 key={item.id}>
             Award {index + 1}: <strong> {item.price} </strong> | Number of
             Awards: <strong> {item.number_of_awards}</strong>

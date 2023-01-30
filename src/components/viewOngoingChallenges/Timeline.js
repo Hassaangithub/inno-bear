@@ -15,7 +15,7 @@ function Timeline({launch, closing, submission}) {
       <div className="col-lg-11 ">
         <div className="card  p-3">
           <h5>Challenge Launch</h5>
-          <p>{launch.split('T')[0]}</p>
+          <p>{launch?.split('T')[0]}</p>
         </div>
       </div>
       <div className="col-lg-12 mb-3"></div>
