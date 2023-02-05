@@ -41,7 +41,7 @@ const ViewOngoingChallenge = () => {
     getData();
     fetchUpdates(challengeId);
   }, []);
-
+console.log(data)
   return (
     <>
       <TopNav dashboard={true} />
@@ -56,6 +56,7 @@ const ViewOngoingChallenge = () => {
           launch={data?.created_at}
           closing={data?.cutoff_date}
           submission={data?.start_date}
+          deadline= {data?.submission_date}
         />
         <Prizes awards={data?.awards} prize={data?.award_prize} />
         <Rules rules={data?.rules} />

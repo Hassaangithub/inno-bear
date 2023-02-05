@@ -82,7 +82,7 @@ const Router = () => {
           element={<ViewOngoingChallenge />}
         />
         <Route
-          path="/view-submitted-solution:id"
+          path="/view-submitted-solution/:id"
           element={<ViewSubmittedSolution />}
         />
         <Route path="/create-team" element={<CreateTeam />} />

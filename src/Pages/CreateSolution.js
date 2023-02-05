@@ -60,7 +60,7 @@ const CreateSolution = () => {
         setDescription('');
         setTitle('');
         setCharacter('');
-        navigate(`/challenges/detail:${id}`);
+        navigate(`/challenges/detail/:${id}`);
       } else {
         setLoading(false);
         toast.error(response.response.data.message);

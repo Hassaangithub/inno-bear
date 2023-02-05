@@ -25,7 +25,7 @@ const AllSubmittedSolutions = () => {
   }, []);
 
   const handleClick = id => {
-    navigate(`/view-submitted-solution:${id}`);
+    navigate(`/view-submitted-solution/:${id}`);
   };
 
   return (
