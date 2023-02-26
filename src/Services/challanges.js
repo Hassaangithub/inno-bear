@@ -204,6 +204,23 @@ const addTopic = data =>
       return error.response.data;
     });
 
+const updateChallenge = data =>
+  axios({
+    method: 'post',
+    url: `${process.env.REACT_APP_BASE_URL}/challenge-update`,
+    data: data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      return error.response.data;
+    });
+
 export {
   allChallenges,
   createChallenge,
@@ -219,4 +236,5 @@ export {
   getCommunity,
   postComment,
   addTopic,
+  updateChallenge,
 };

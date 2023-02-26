@@ -14,12 +14,22 @@ import {
   Updates,
   WinningCriteria,
 } from '../components/viewOngoingChallenges';
+import moment from 'moment';
 
 const ViewOngoingChallenge = () => {
   const [data, setData] = useState();
+  // const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const {id} = useParams();
   const challengeId = id.replace(':', '');
   const [updates, setUpdates] = useState();
+  const [formData, setFormData] = useState({
+    id: challengeId,
+    created_at: moment(data?.created_at).format('YYYY-MM-DD'),
+    start_date: moment(data?.start_date).format('YYYY-MM-DD'),
+    cutoff_date: moment(data?.cutoff_date).format('YYYY-MM-DD'),
+  });
 
   const fetchUpdates = async id => {
     const response = await getUpdates({challenge_id: Number(id)});
@@ -40,37 +50,74 @@ const ViewOngoingChallenge = () => {
 
     getData();
     fetchUpdates(challengeId);
-  }, []);
-console.log(data)
+  }, [success]);
+
+  const afterUpdate = () => {
+    setSuccess(!success);
+  };
+
+  const updateForm = (identifier, data) => {
+    setFormData({...formData, [identifier]: data});
+  };
+
+  // const onEdit = async e => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   const response = await updateChallenge(formData);
+  //   if (response.status === 200) {
+  //     toast.success(response.message);
+  //     setLoading(false);
+  //   } else {
+  //     toast.error(response.message);
+  //     setLoading(false);
+  //   }
+  // };
+
   return (
     <>
       <TopNav dashboard={true} />
       <Banner image={data?.header_image} title={data?.title} />
-      <div className="page-main-content create-new-solution-pg px-md-5 px-3">
+      <form className="page-main-content create-new-solution-pg px-md-5 px-3">
         <Overview
           challenge_type={data?.challenge_type}
           keywords={data?.keywords}
-          description_about_challenge={data?.description_about_challenge}
+          descriptionAboutChallenge={data?.description_about_challenge}
+          afterUpdate={afterUpdate}
         />
         <Timeline
           launch={data?.created_at}
           closing={data?.cutoff_date}
           submission={data?.start_date}
-          deadline= {data?.submission_date}
+          deadline={data?.submission_date}
+          afterUpdate={afterUpdate}
         />
-        <Prizes awards={data?.awards} prize={data?.award_prize} />
+        <Prizes
+          previousAwards={data?.awards}
+          prize={data?.award_prize}
+          formData={formData}
+          updateForm={updateForm}
+        />
         <Rules rules={data?.rules} />
         <WinningCriteria determines={data?.determines} />
         <Resources resources={data?.attachment} />
         <Updates updates={updates} />
-      </div>
+        {/* <button
+          type="submit"
+          onClick={onEdit}
+          className="px-md-5 btn create-account-btn text-white mb-5 ml-auto">
+          {loading ? (
+            <div
+              className="spinner-border text-primary spinner-border-md"
+              role="status"
+            />
+          ) : (
+            ' Save Changes'
+          )}
+        </button> */}
+      </form>
       <Footer />
     </>
   );
 };
 
 export default ViewOngoingChallenge;
-
-
-
-// https://innobearadmin.floor23digital.com/api/challenge-update

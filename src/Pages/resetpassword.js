@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import resetImg from '../images/image27.png';
 import accountAuth from '../images/account-auth-logo.png';
-import {useNavigate} from 'react-router-dom';
-import {changePassword} from '../Services/profile';
+import {useNavigate, useParams} from 'react-router-dom';
 import {toast} from 'react-toastify';
+import { changePassword } from '../Services/profile';
 
 const Resetpassword = () => {
+  const params = useParams();
+  const id = params.id
   const navigate = useNavigate();
   const [password, setPassword] = useState();
   const [confirm, setConfirm] = useState();
@@ -17,6 +19,7 @@ const Resetpassword = () => {
     const response = await changePassword({
       password: password,
       confirmed: confirm,
+      id: id
     });
     if (response) {
       setLoading(false);
@@ -57,7 +60,7 @@ const Resetpassword = () => {
           <form>
             <div className="form-row">
               <div className="form-group col-lg-12">
-                <label for="firstName">Password</label>
+                <label htmlFor="firstName">Password</label>
                 <input
                   required
                   type="password"
@@ -71,7 +74,7 @@ const Resetpassword = () => {
             </div>
             <div className="form-row">
               <div className="form-group col-lg-12">
-                <label for="firstName">Confirm Password</label>
+                <label htmlFor="firstName">Confirm Password</label>
                 <input
                   required
                   type="password"

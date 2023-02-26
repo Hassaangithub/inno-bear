@@ -1,22 +1,69 @@
-import moment from 'moment/moment';
+import moment from 'moment';
 import React, {useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {toast} from 'react-toastify';
+import {updateChallenge} from '../../Services/challanges';
 
-function Timeline({launch, closing, submission, deadline}) {
+function Timeline({launch, closing, submission, deadline, afterUpdate}) {
+  const {id} = useParams();
+  const challengeId = id.replace(':', '');
   const [isEdit, setIsEdit] = useState(false);
-  const [createdAt, setCreatedAt] = useState(
-    moment(launch).format('YYYY-MM-DD'),
-  );
-  const [start, setStart] = useState(moment(submission).format('YYYY-MM-DD'));
-  const [question, setQuestion] = useState(
-    moment(closing).format('YYYY-MM-DD'),
-  );
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    id: challengeId,
+    created_at: moment(launch).format('YYYY-MM-DD'),
+    start_date: moment(submission).format('YYYY-MM-DD'),
+    cutoff_date: moment(closing).format('YYYY-MM-DD'),
+  });
+
+  const updateForm = (identifier, data) => {
+    setFormData({...formData, [identifier]: data});
+  };
+
+  const onEdit = async e => {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+    const prevState = {
+      id: challengeId,
+      created_at: moment(launch).format('YYYY-MM-DD'),
+      start_date: moment(submission).format('YYYY-MM-DD'),
+      cutoff_date: moment(closing).format('YYYY-MM-DD'),
+    };
+
+    if (
+      e.target.innerText.trim() === 'Save' &&
+      JSON.stringify(prevState) !== JSON.stringify(formData)
+    ) {
+      setLoading(true);
+      const response = await updateChallenge(formData);
+      if (response.status === 200) {
+        afterUpdate();
+        toast.success(response.message);
+        setLoading(false);
+       
+      } else {
+        toast.error(response.message);
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <div className="row mt-5">
       <div className="col-12 d-flex flex-wrap justify-content-between my-4">
         <h3>Timeline</h3>
-        <button className=" btn-edit" onClick={setIsEdit}>
-          Edit <i className="fas fa-pen"></i>
+        <button className=" btn-edit" onClick={onEdit}>
+          {loading ? (
+            <div
+              className="spinner-border text-primary spinner-border-md"
+              role="status"
+            />
+          ) : (
+            <>
+              {isEdit ? 'Save ' : 'Edit '}
+              <i className="fas fa-pen"></i>
+            </>
+          )}
         </button>
       </div>
       <div className="col-lg-1 mb-2 d-flex align-items-center">
@@ -28,9 +75,9 @@ function Timeline({launch, closing, submission, deadline}) {
           {isEdit ? (
             <input
               type="date"
-              value={createdAt}
+              value={formData.created_at}
               min={submission}
-              onChange={e => setCreatedAt(e.target.value)}
+              onChange={e => updateForm('created_at', e.target.value)}
               className="form-control"
             />
           ) : (
@@ -49,8 +96,8 @@ function Timeline({launch, closing, submission, deadline}) {
             <input
               type="date"
               className="form-control"
-              value={start}
-              onChange={e => setStart(e.target.value)}
+              value={formData.start_date}
+              onChange={e => updateForm('start_date', e.target.value)}
             />
           ) : (
             <p>{submission}</p>
@@ -70,8 +117,8 @@ function Timeline({launch, closing, submission, deadline}) {
               max={deadline}
               min={submission}
               className="form-control"
-              value={question}
-              onChange={e => setQuestion(e.target.value)}
+              value={formData.cutoff_date}
+              onChange={e => updateForm('cutoff_date', e.target.value)}
             />
           ) : (
             <p>{closing}</p>
