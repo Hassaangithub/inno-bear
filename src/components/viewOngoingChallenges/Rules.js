@@ -23,7 +23,7 @@ function Rules({rules = [], afterUpdate = () => {}}) {
         if (object.id === id) {
           return {
             ...object,
-            text: e.target.value,
+            rule: e.target.value,
           };
         } else return object;
       }),
@@ -35,7 +35,7 @@ function Rules({rules = [], afterUpdate = () => {}}) {
     setEditedRules([
       ...editedRules,
       {
-        text: '',
+        rule: '',
         id: rules.length + 1,
       },
     ]);

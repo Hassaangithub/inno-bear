@@ -22,6 +22,10 @@ function Prizes({previousAwards = [], prize = '', afterUpdate = () => {}}) {
     setAwards(awardToMap);
   }, [previousAwards]);
 
+  useEffect(() => {
+    setEditPrize(prize);
+  }, [prize]);
+
   const handleAward = ({target: {id, value}}, position) => {
     let type = id === 'money' ? 'text' : 'number';
     setAwards(
@@ -60,13 +64,6 @@ function Prizes({previousAwards = [], prize = '', afterUpdate = () => {}}) {
     const price = getPrice();
     const awardsNumber = getAwardsNumber();
 
-    if (!editedPrize) {
-      toast.error('Total prize is Missing');
-    }
-    if (!totalAwards.length) {
-      toast.error('Award info is Missing');
-    }
-
     const body = {
       id: challengeId,
       award_prize: editedPrize,
@@ -75,6 +72,12 @@ function Prizes({previousAwards = [], prize = '', afterUpdate = () => {}}) {
     };
 
     if (e.target.innerText.trim() === 'Save') {
+      if (!editedPrize) {
+        toast.error('Total prize is Missing');
+      }
+      if (!totalAwards.length) {
+        toast.error('Award info is Missing');
+      }
       setLoading(true);
       if (prize && totalAwards.length) {
         const response = await updateChallenge(body);
