@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {toast} from 'react-toastify';
+import {updateChallenge} from '../../Services/challanges';
 
-function Prizes({
-  previousAwards = [],
-  prize = '',
-  formData = {},
-  updateForm = () => {},
-}) {
+function Prizes({previousAwards = [], prize = '', afterUpdate = () => {}}) {
+  const {id} = useParams();
+  const challengeId = id.replace(':', '');
   const [isEdit, setIsEdit] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [awards, setAwards] = useState({});
+  const [editedPrize, setEditPrize] = useState(prize);
 
   useEffect(() => {
     const awardToMap = previousAwards?.map(award => {
@@ -19,11 +21,6 @@ function Prizes({
 
     setAwards(awardToMap);
   }, [previousAwards]);
-
-  const onEdit = e => {
-    e.preventDefault();
-    setIsEdit(!isEdit);
-  };
 
   const handleAward = ({target: {id, value}}, position) => {
     let type = id === 'money' ? 'text' : 'number';
@@ -46,12 +43,68 @@ function Prizes({
     }
   };
 
+  const getTotalAwards = () =>
+    awards.filter(item => item.number && item.number !== '');
+
+  const getPrice = () =>
+    awards.filter(item => item.text && item.number).map(item => item.text);
+
+  const getAwardsNumber = () =>
+    awards.filter(item => item.text && item.number).map(item => item.number);
+
+  const onEdit = async e => {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+
+    const totalAwards = getTotalAwards();
+    const price = getPrice();
+    const awardsNumber = getAwardsNumber();
+
+    if (!editedPrize) {
+      toast.error('Total prize is Missing');
+    }
+    if (!totalAwards.length) {
+      toast.error('Award info is Missing');
+    }
+
+    const body = {
+      id: challengeId,
+      award_prize: editedPrize,
+      number_of_awards: awardsNumber,
+      price: price,
+    };
+
+    if (e.target.innerText.trim() === 'Save') {
+      setLoading(true);
+      if (prize && totalAwards.length) {
+        const response = await updateChallenge(body);
+        if (response.status === 200) {
+          afterUpdate();
+          toast.success(response.message);
+          setLoading(false);
+        } else {
+          toast.error(response.message);
+          setLoading(false);
+        }
+      }
+    }
+  };
+
   return (
     <div className="row mt-5">
       <div className="col-12 d-flex flex-wrap justify-content-between my-4">
         <h3>Prizes</h3>
         <button className=" btn-edit" onClick={onEdit}>
-          {isEdit ? 'Edit' : 'Save'} <i className="fas fa-pen"></i>
+          {loading ? (
+            <div
+              className="spinner-border text-primary spinner-border-md"
+              role="status"
+            />
+          ) : (
+            <>
+              {isEdit ? 'Save' : 'Edit'} <i className="fas fa-pen"></i>
+            </>
+          )}
         </button>
       </div>
       <div className="col-lg-12">
@@ -62,8 +115,8 @@ function Prizes({
               className="form-control col-3 ml-2"
               type="number"
               min={0}
-              value={formData.prize?.replace(/\,/g, '')}
-              onChange={e => updateForm('prize', e.target.value)}
+              value={editedPrize?.replace(/\,/g, '')}
+              onChange={e => setEditPrize(e.target.value)}
             />
           ) : (
             <strong>{prize + ' USD'}</strong>
