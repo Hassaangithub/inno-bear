@@ -72,6 +72,8 @@ const ViewOngoingChallenge = () => {
   //     setLoading(false);
   //   }
   // };
+
+  console.log(data);
   return (
     <>
       <TopNav dashboard={true} />
@@ -93,10 +95,19 @@ const ViewOngoingChallenge = () => {
         <Prizes
           previousAwards={data?.awards}
           prize={data?.award_prize}
-          updateForm={updateForm}
+          afterUpdate={afterUpdate}
+          challengeData={data}
         />
-        <Rules rules={data?.rules} />
-        <WinningCriteria determines={data?.determines} />
+        <Rules
+          rules={data?.rules}
+          challengeData={data}
+          afterUpdate={afterUpdate}
+        />
+        <WinningCriteria
+          determines={data?.determines}
+          afterUpdate={afterUpdate}
+          challengeData={data}
+        />
         <Resources resources={data?.attachment} />
         <Updates updates={updates} />
         {/* <button

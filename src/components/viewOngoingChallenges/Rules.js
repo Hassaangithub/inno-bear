@@ -4,14 +4,12 @@ import {useParams} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {updateChallenge} from '../../Services/challanges';
 
-function Rules({rules = [], afterUpdate = () => {}}) {
+function Rules({rules = [], afterUpdate = () => {}, challengeData = {}}) {
   const {id} = useParams();
   const challengeId = id.replace(':', '');
   const [isEdit, setIsEdit] = useState(false);
   const [loading, setLoading] = useState(false);
   const [editedRules, setEditedRules] = useState(rules);
-
-  // console.log('editedRules', {rules, editedRules});
 
   useEffect(() => {
     setEditedRules(rules);
@@ -61,7 +59,11 @@ function Rules({rules = [], afterUpdate = () => {}}) {
         rules: getFilteredRules,
       };
       if (getFilteredRules.length) {
-        const response = await updateChallenge(body);
+        const response = await updateChallenge({
+          ...challengeData,
+          id: challengeId,
+          rules: getFilteredRules,
+        });
         if (response.status === 200) {
           afterUpdate();
           toast.success(response.message);

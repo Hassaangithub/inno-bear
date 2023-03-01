@@ -3,7 +3,12 @@ import {useParams} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {updateChallenge} from '../../Services/challanges';
 
-function Prizes({previousAwards = [], prize = '', afterUpdate = () => {}}) {
+function Prizes({
+  previousAwards = [],
+  prize = '',
+  afterUpdate = () => {},
+  challengeData,
+}) {
   const {id} = useParams();
   const challengeId = id.replace(':', '');
   const [isEdit, setIsEdit] = useState(false);
@@ -80,7 +85,13 @@ function Prizes({previousAwards = [], prize = '', afterUpdate = () => {}}) {
       }
       setLoading(true);
       if (prize && totalAwards.length) {
-        const response = await updateChallenge(body);
+        const response = await updateChallenge({
+          ...challengeData,
+          id: challengeId,
+          award_prize: editedPrize,
+          number_of_awards: awardsNumber,
+          price: price,
+        });
         if (response.status === 200) {
           afterUpdate();
           toast.success(response.message);
