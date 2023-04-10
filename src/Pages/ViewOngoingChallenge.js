@@ -14,7 +14,6 @@ import {
   Updates,
   WinningCriteria,
 } from '../components/viewOngoingChallenges';
-import moment from 'moment';
 
 const ViewOngoingChallenge = () => {
   const [data, setData] = useState();
@@ -24,12 +23,12 @@ const ViewOngoingChallenge = () => {
   const {id} = useParams();
   const challengeId = id.replace(':', '');
   const [updates, setUpdates] = useState();
-  const [formData, setFormData] = useState({
-    id: challengeId,
-    created_at: moment(data?.created_at).format('YYYY-MM-DD'),
-    start_date: moment(data?.start_date).format('YYYY-MM-DD'),
-    cutoff_date: moment(data?.cutoff_date).format('YYYY-MM-DD'),
-  });
+  // const [formData, setFormData] = useState({
+  //   id: challengeId,
+  //   created_at: moment(data?.created_at).format('YYYY-MM-DD'),
+  //   start_date: moment(data?.start_date).format('YYYY-MM-DD'),
+  //   cutoff_date: moment(data?.cutoff_date).format('YYYY-MM-DD'),
+  // });
 
   const fetchUpdates = async id => {
     const response = await getUpdates({challenge_id: Number(id)});
@@ -56,9 +55,9 @@ const ViewOngoingChallenge = () => {
     setSuccess(!success);
   };
 
-  const updateForm = (identifier, data) => {
-    setFormData({...formData, [identifier]: data});
-  };
+  // const updateForm = (identifier, data) => {
+  //   setFormData({...formData, [identifier]: data});
+  // };
 
   // const onEdit = async e => {
   //   e.preventDefault();
@@ -73,7 +72,6 @@ const ViewOngoingChallenge = () => {
   //   }
   // };
 
-  console.log(data);
   return (
     <>
       <TopNav dashboard={true} />
@@ -108,8 +106,12 @@ const ViewOngoingChallenge = () => {
           afterUpdate={afterUpdate}
           challengeData={data}
         />
-        <Resources resources={data?.attachment} />
-        <Updates updates={updates} />
+        <Resources resources={data?.attachment} challengeData={data} />
+        <Updates
+          updates={updates}
+          challengeData={data}
+          challengeId={challengeId}
+        />
         {/* <button
           type="submit"
           onClick={onEdit}

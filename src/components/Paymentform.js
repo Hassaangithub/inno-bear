@@ -108,7 +108,7 @@ const PaymentForm = () => {
 
   return (
     <>
-      <CustomModal show={show} handleClose={handleClose} modalType="info">
+      <CustomModal show={show} handleClose={handleClose}>
         <div className="modal-body challenge-body">
           <div className="text-center">
             <h4>

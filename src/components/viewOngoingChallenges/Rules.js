@@ -118,7 +118,7 @@ function Rules({rules = [], afterUpdate = () => {}, challengeData = {}}) {
           </>
         ) : (
           <>
-            {rules?.map(item => (
+            {editedRules?.map(item => (
               <li key={item.id}>{item.rule}</li>
             ))}
           </>

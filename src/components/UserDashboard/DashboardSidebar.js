@@ -26,8 +26,8 @@ const DashboardSidebar = ({list, footer, children, isProfile}) => {
         handleClose={handleClose}
         onSubmit={SubmitModal}
         submitTxt="Sign out"
-        modalType="logout">
-        <div className="modal-body mt-5 text-center">
+        isFooter>
+        <div className="modal-body mt-5 text-center mb-4">
           Are you sure you want to log out?
         </div>
       </CustomModal>
@@ -77,21 +77,4 @@ const DashboardSidebar = ({list, footer, children, isProfile}) => {
 
 export default DashboardSidebar;
 
-{
-  /* <!-- Modal --> */
-}
-{
-  /* <div class="modal fade p-5 " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body mt-5 text-center">
-            Are you sure you want to log out?
-        </div>
-        <div class="pb-5 text-center">
-          <button type="button" class="btn btn-secondary btn-sm logoutCancel" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary btn-sm">Sign Out</button>
-        </div>
-      </div>
-    </div>
-  </div> */
-}
+

@@ -6,18 +6,21 @@ const CustomModal = ({
   handleClose,
   onSubmit,
   children,
-  submitTxt,
-  modalType,
+  submitTxt = '',
+  isFooter = false,
+  size = '',
+  footerClassName = '',
 }) => {
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleClose} centered size={size}>
       <Modal.Body>
         {children}
         {/* <div className=" text-center"></div> */}
-        {modalType === 'logout' && (
-          <div className="d-flex justify-content-center pb-5">
+        {isFooter && (
+          <div
+            className={`d-flex justify-content-end pb-2 mr-3 ${footerClassName}`}>
             <Button
-              className="mr-2 rounded btn btn-secondary btn-sm logoutCancel"
+              className="mr-3 rounded btn btn-secondary btn-sm logoutCancel"
               variant="secondary"
               onClick={handleClose}>
               Cancel

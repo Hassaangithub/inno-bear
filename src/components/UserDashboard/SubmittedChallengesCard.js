@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 const SubmittedChallengesCard = ({submittedIdea}) => {
   const navigate = useNavigate();
   const handleClick = id => {
-    navigate(`/view-submitted-solution:${id}`);
+    navigate(`/view-submitted-solution/${id}`);
   };
 
   return (

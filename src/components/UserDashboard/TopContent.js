@@ -42,8 +42,8 @@ const TopContent = ({isProfile}) => {
         handleClose={handleClose}
         onSubmit={SubmitModal}
         submitTxt="Sign out"
-        modalType="logout">
-        <div className="modal-body mt-5 text-center">
+        isFooter>
+        <div className="modal-body mt-5 text-center mb-4">
           Are you sure you want to log out?
         </div>
       </CustomModal>
